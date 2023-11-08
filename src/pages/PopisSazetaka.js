@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
+const io = require('socket.io-client');
 import { Table, Form } from 'react-bootstrap';
 import DownloadLink from './DownloadLink';
 import forbidden from '../assets/media/forbiden.jpg'
