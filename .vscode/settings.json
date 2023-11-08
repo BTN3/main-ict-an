@@ -1,2 +1,4 @@
 {
+    "appService.defaultWebAppToDeploy": "/subscriptions/a80c4f08-5792-4d07-b63a-224494f68f0d/resourceGroups/NewServer/providers/Microsoft.Web/sites/horizonti-snage",
+    "appService.deploySubpath": "."
 }
