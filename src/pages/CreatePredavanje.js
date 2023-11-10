@@ -13,7 +13,7 @@ export default function CreatePredavanje() {
   let tip = '';
  
  // const navigate = useNavigate();
-  const socket = socketClient('https://horizonti-snage.azurewebsites.net/');
+  const socket = socketClient('https://horizonti-snage12.azurewebsites.net/');
 
   const [predavanje, setPredavanje] = useState({
     Predavanje_ID: (Predavanje.Predavanje_ID = Predavanje_ID),

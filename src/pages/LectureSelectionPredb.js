@@ -13,7 +13,7 @@ export default function LectureSelectionPredb() {
   const [lista, setLista] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const socket = socketClient('https://horizonti-snage.azurewebsites.net/');
+  const socket = socketClient('https://horizonti-snage12.azurewebsites.net/');
 
   
 socket.on('getYourOwnPredbiljezbe', (data) => {

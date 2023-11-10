@@ -12,16 +12,17 @@ const fs = require('fs').promises;
 // const {authPage,authPred} = require('./src/middlewares')
 
 // Serve static files (build folder) for the React app
-//app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // Catch-all route to serve index.html for client-side routing
-app.get('/api/lala', (req, res) => {
+/*app.get(/^\/(?!lala\/?$)/, (req, res) => {
   res.send("lala");
-});
-// Catch-all route to serve index.html for client-side routing
-/*app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });*/
+// Catch-all route to serve index.html for client-side routing
+app.get('*', (req, res) => {
+  console.log("pozvao");
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // Import database operations
 // Import database operations
@@ -106,11 +107,17 @@ function sendEmail (userPsiholog) {
   
 const io = socketIo(server,{ 
     cors: {
-      origin: 'https://horizonti-snage.azurewebsites.net/'
+      origin: 'https://horizonti-snage12.azurewebsites.net/'
     }
 })
 
+io.configure(function() {
+  // Force websocket
+  io.set('transports', ['websocket']);
 
+  // Force SSL
+  io.set('match origin protocol', true);
+});
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {
