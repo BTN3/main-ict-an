@@ -12,7 +12,7 @@ const fs = require('fs').promises;
 // const {authPage,authPred} = require('./src/middlewares')
 
 // Serve static files (build folder) for the React app
-app.use(express.static(path.join(__dirname, 'build')));
+//app.use(express.static(path.join(__dirname, 'build')));
 
 // Catch-all route to serve index.html for client-side routing
 app.get('/api/lala', (req, res) => {

@@ -46,13 +46,7 @@
     "websocket": "^1.0.34"
   },
   "scripts": {
-    "start": "node server.js",
-    "build": "react-scripts build && node server.js",
-    "dev": "run-p server start ",
-    "server": "node server.js",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "type": "module"
+    "start": "node server.js"
   },
   "eslintConfig": {
     "extends": [
