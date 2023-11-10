@@ -2,7 +2,6 @@
   "name": "web-page-horizonti",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:8080/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
@@ -47,8 +46,8 @@
     "websocket": "^1.0.34"
   },
   "scripts": {
-    "start": "react-scripts start ",
-    "build": "react-scripts build",
+    "start": "node server.js",
+    "build": "react-scripts build && node server.js",
     "dev": "run-p server start ",
     "server": "node server.js",
     "test": "react-scripts test",

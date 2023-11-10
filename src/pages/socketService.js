@@ -1,7 +1,7 @@
 // socketService.js
-const io = require('socket.io-client');
+import socketClient  from "socket.io-client";
 
-const socket = io('http://localhost:3000');
+const socket = socketClient('https://horizonti-snage.azurewebsites.net/');
 
 export const emitPsihologID = (psihologID) => {
   socket.emit('Psiholog_ID', psihologID);

@@ -1,7 +1,7 @@
 //novi - 20.8. onaj sa updateom
 import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { io } from 'socket.io-client';
+import socketClient  from "socket.io-client";
 import { nanoid } from 'nanoid';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ export default function CreatePredbiljezba() {
   const [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
   const [predavanjaOptions, setPredavanjaOptions] = useState([]);
 
-  const socket = io('http://localhost:3000');
+  const socket = socketClient('https://horizonti-snage.azurewebsites.net/');
   const navigate = useNavigate();
 
   const receivedPsiholog = JSON.parse(localStorage.getItem('psihologID'));

@@ -3,7 +3,7 @@ import { Container, Row, Form, Button, Modal, Spinner } from 'react-bootstrap';
 import Predavanje from '../dbFiles/Predavanje';
 import { nanoid } from 'nanoid';
 import CarouselComponent from './CarouselComponent';
-import { io } from 'socket.io-client';
+import socketClient  from "socket.io-client";
 //import { useNavigate } from 'react-router-dom';
 import horizonti_velik_cropped from '../assets/media/horizonti_velik_cropped.png';
 
@@ -13,7 +13,7 @@ export default function CreatePredavanje() {
   let tip = '';
  
  // const navigate = useNavigate();
-  const socket = io('http://localhost:3000');
+  const socket = socketClient('https://horizonti-snage.azurewebsites.net/');
 
   const [predavanje, setPredavanje] = useState({
     Predavanje_ID: (Predavanje.Predavanje_ID = Predavanje_ID),

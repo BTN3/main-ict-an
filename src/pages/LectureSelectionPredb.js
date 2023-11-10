@@ -1,7 +1,7 @@
 //with searchstring
 import React, { useState, useEffect } from 'react';
 import { Table, Container, Row, Button, Form } from 'react-bootstrap';
-const io = require('socket.io-client');
+import socketClient  from "socket.io-client";
 import forbidden from '../assets/media/forbiden.jpg'
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ export default function LectureSelectionPredb() {
   const [lista, setLista] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const socket = io('http://localhost:3000');
+  const socket = socketClient('https://horizonti-snage.azurewebsites.net/');
 
   
 socket.on('getYourOwnPredbiljezbe', (data) => {

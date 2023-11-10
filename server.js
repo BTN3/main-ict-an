@@ -15,9 +15,13 @@ const fs = require('fs').promises;
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Catch-all route to serve index.html for client-side routing
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+app.get('/api/lala', (req, res) => {
+  res.send("lala");
 });
+// Catch-all route to serve index.html for client-side routing
+/*app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});*/
 
 // Import database operations
 // Import database operations
@@ -27,7 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const allowedOrigins = ['http://localhost:3000/'];
-const allowedOrigins1 = ['http://localhost:8080']; // Add the URL of your React app
+const allowedOrigins1 = ['http://localhost:8080/']; // Add the URL of your React app
 
 app.use(cors({
   origin: '*'
@@ -102,7 +106,7 @@ function sendEmail (userPsiholog) {
   
 const io = socketIo(server,{ 
     cors: {
-      origin: 'http://localhost:8080'
+      origin: 'https://horizonti-snage.azurewebsites.net/'
     }
 })
 
@@ -436,7 +440,7 @@ socket.on('updatePredavanje', async (updatedPredavanje, callback) => {
 
 });
 
-server.listen(port, () => {
+server.listen(8080, () => {
   console.log(`Listening on port: ${port}`);
 });
 

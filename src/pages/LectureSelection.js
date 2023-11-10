@@ -366,14 +366,14 @@
 // }
 import React, { useState, useEffect } from 'react';
 import { Table, Container, Row, Button, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { io } from 'socket.io-client';
+import socketClient  from "socket.io-client";
 import { useNavigate } from 'react-router-dom';
 
 export default function LectureSelection() {
   const [lista, setLista] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedLectures, setSelectedLectures] = useState([]);
-  const socket = io('http://localhost:3000');
+  const socket = socketClient('https://horizonti-snage.azurewebsites.net/');
   const navigate = useNavigate();
   const receivedPsihologID = JSON.parse(localStorage.getItem('psihologID'));
   const tokenreceived = JSON.parse(localStorage.getItem('token'));

@@ -353,7 +353,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Modal, Spinner } from 'react-bootstrap';
 import { nanoid } from 'nanoid';
 import CarouselComponent from './CarouselComponent';
-import { io } from 'socket.io-client';
+import socketClient  from "socket.io-client";
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import { target } from 'tailwindcss/stubs/defaultConfig.stub';
@@ -380,7 +380,7 @@ export default function  EventRegistration({role}) {
   let validates = true;
   const applicationDate = new Date().toLocaleString();
   const navigate = useNavigate();
-  const socket = io('http://localhost:3000');
+  const socket = socketClient('https://horizonti-snage.azurewebsites.net/');
 
   const [psiholog, setPsiholog] = useState({
     Psiholog_ID: Psiholog_ID,
