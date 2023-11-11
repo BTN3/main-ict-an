@@ -1,12 +1,13 @@
 const express = require('express');
-const http = require('https');
+const https = require('force-https');
 const socketIo = require('socket.io');
 const app = express();
-const server = http.createServer(app);
+const server = https.createServer(app);
 const cors = require('cors');
-const port = process.env.REACT_APP_PORT || 8080;
+const port = process.env.REACT_APP_PORT || 443;
 const nodemailer = require('nodemailer');
 const path = require('path');
+app.use(https);
 
 const fs = require('fs').promises;
 // const {authPage,authPred} = require('./src/middlewares')
@@ -107,17 +108,10 @@ function sendEmail (userPsiholog) {
   
 const io = socketIo(server,{ 
     cors: {
-      origin: 'https://horizonti-snage.azurewebsites.net'
+      origin: 'https://horizonti-snage12.azurewebsites.net'
     }
 })
 
-io.configure(function() {
-  // Force websocket
-  io.set('transports', ['websocket']);
-
-  // Force SSL
-  io.set('match origin protocol', true);
-});
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {
@@ -447,7 +441,7 @@ socket.on('updatePredavanje', async (updatedPredavanje, callback) => {
 
 });
 
-server.listen(8080, () => {
+server.listen(443, () => {
   console.log(`Listening on port: ${port}`);
 });
 
