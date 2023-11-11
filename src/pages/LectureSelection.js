@@ -373,7 +373,7 @@ export default function LectureSelection() {
   const [lista, setLista] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedLectures, setSelectedLectures] = useState([]);
-  const socket = socketClient('https://horizonti-snage12.azurewebsites.net/');
+  const socket = socketClient('https://horizonti-snage.azurewebsites.net');
   const navigate = useNavigate();
   const receivedPsihologID = JSON.parse(localStorage.getItem('psihologID'));
   const tokenreceived = JSON.parse(localStorage.getItem('token'));

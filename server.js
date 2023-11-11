@@ -1,5 +1,5 @@
 const express = require('express');
-const http = require('http');
+const http = require('https');
 const socketIo = require('socket.io');
 const app = express();
 const server = http.createServer(app);
@@ -107,7 +107,7 @@ function sendEmail (userPsiholog) {
   
 const io = socketIo(server,{ 
     cors: {
-      origin: 'https://horizonti-snage12.azurewebsites.net/'
+      origin: 'https://horizonti-snage.azurewebsites.net'
     }
 })
 
