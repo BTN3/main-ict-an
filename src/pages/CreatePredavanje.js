@@ -12,8 +12,8 @@ export default function CreatePredavanje() {
 //   let validates = true;
   let tip = '';
  
- // const navigate = useNavigate();
-  const socket = socketClient('https://horizonti-snage.azurewebsites.net');
+  const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+  const socket = socketClient(serverUrl);
 
   const [predavanje, setPredavanje] = useState({
     Predavanje_ID: (Predavanje.Predavanje_ID = Predavanje_ID),

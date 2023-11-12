@@ -380,7 +380,8 @@ export default function  EventRegistration({role}) {
   let validates = true;
   const applicationDate = new Date().toLocaleString();
   const navigate = useNavigate();
-  const socket = socketClient('https://horizonti-snage.azurewebsites.net');
+  const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+  const socket = socketClient(serverUrl);
 
   const [psiholog, setPsiholog] = useState({
     Psiholog_ID: Psiholog_ID,

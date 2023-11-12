@@ -4,7 +4,8 @@ const socketIo = require('socket.io');
 const app = express();
 const server = https.createServer(app);
 const cors = require('cors');
-const port = process.env.REACT_APP_PORT || 443;
+
+const PORT = process.env.PORT || 3001;
 const nodemailer = require('nodemailer');
 const path = require('path');
 app.use(https);
@@ -108,10 +109,13 @@ function sendEmail (userPsiholog) {
   
 const io = socketIo(server,{ 
     cors: {
-      origin: 'https://horizonti-snage12.azurewebsites.net'
+      origin: 'https://horzionti-snage12.azurewebsites.net'
     }
 })
-
+io.configure(function () {
+    io.set('transports', ['websocket','xhr-polling'])
+});
+  
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {
@@ -441,8 +445,8 @@ socket.on('updatePredavanje', async (updatedPredavanje, callback) => {
 
 });
 
-server.listen(443, () => {
-  console.log(`Listening on port: ${port}`);
+server.listen(PORT, () => {
+  console.log(`Listening on port: ${PORT}`);
 });
 
 

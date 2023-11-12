@@ -13,7 +13,8 @@ export default function LectureSelectionPredb() {
   const [lista, setLista] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const socket = socketClient('https://horizonti-snage.azurewebsites.net');
+  const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+  const socket = socketClient(serverUrl);
 
   
 socket.on('getYourOwnPredbiljezbe', (data) => {

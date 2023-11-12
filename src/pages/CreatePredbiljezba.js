@@ -13,7 +13,8 @@ export default function CreatePredbiljezba() {
   const [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
   const [predavanjaOptions, setPredavanjaOptions] = useState([]);
 
-  const socket = socketClient('https://horizonti-snage.azurewebsites.net');
+  const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+  const socket = socketClient(serverUrl);
   const navigate = useNavigate();
 
   const receivedPsiholog = JSON.parse(localStorage.getItem('psihologID'));
