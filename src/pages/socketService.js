@@ -1,8 +1,7 @@
 // socketService.js
 import socketClient  from "socket.io-client";
 
-const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
-const socket = socketClient(serverUrl);
+const socket = socketClient('https://horizonti-snage.azurewebsites.net');
 
 export const emitPsihologID = (psihologID) => {
   socket.emit('Psiholog_ID', psihologID);
