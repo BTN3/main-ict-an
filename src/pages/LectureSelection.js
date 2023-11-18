@@ -366,35 +366,116 @@
 // }
 import React, { useState, useEffect } from 'react';
 import { Table, Container, Row, Button, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import socketClient  from "socket.io-client";
+//import socketClient  from "socket.io-client";
 import { useNavigate } from 'react-router-dom';
 
 export default function LectureSelection() {
+ 
+  var allResultsNaziv = new Set();
+  var data = [];
+  var fetchingPredavanja = null;
+  const storedRole = localStorage.getItem('token').split("+")[1];
   const [lista, setLista] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedLectures, setSelectedLectures] = useState([]);
-  const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
-  const socket = socketClient(serverUrl);
+  const [selectedLecturesNames, setSelectedLecturesNames] = useState([]);
+ // const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+  //const socket = socketClient(serverUrl);
   const navigate = useNavigate();
-  const receivedPsihologID = JSON.parse(localStorage.getItem('psihologID'));
-  const tokenreceived = JSON.parse(localStorage.getItem('token'));
-
-  const handleDeleteButton = (predavanjeID) => {
-    socket.emit('deletePredavanje', predavanjeID);
+  const receivedPsihologID = localStorage.getItem('token').split("+")[0];
+  console.log("id"+receivedPsihologID)
+  const tokenreceived = localStorage.getItem('token');
+  const sendRequest = async (url, data) => {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data), 
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      return response.json();
+    } catch (error) {
+      console.error('Error during the request:', error);
+  
+      // Log the response content if available
+      const responseBody = await (response ? response.text() : '');
+      console.error('Response content:', responseBody);
+  
+      throw error;
+    }
   };
 
-  const handleCheckboxChange = (predavanjeID) => {
+
+  const sendGetRequest = async (url) => {
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      return response.json();
+    } catch (error) {
+      console.error('Error during the request:', error);
+  
+      // Log the response content if available
+      const responseBody = await (response ? response.text() : '');
+      console.error('Response content:', responseBody);
+  
+      throw error;
+    }
+  };
+
+
+
+  const handleDeleteButton = async(predavanjeID) => {
+
+    const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/deletePredavanje', {  //https://horizonti-snage.azurewebsites.net/insertData
+    redavanjeID:predavanjeID
+  });
+  try{
+    
+    setLista(response);
+    console.log(lista)
+    setLoading(false);
+  }
+  catch(error){
+    setLista(null);
+    setLoading(false);
+  }
+  
+   
+  
+
+
+    //socket.emit('deletePredavanje', predavanjeID);
+  };//ovjde napravi getPredavanja operaciju i 
+
+  const handleCheckboxChange = (predavanjeID, naziv) => {
     if (selectedLectures.includes(predavanjeID)) {
       setSelectedLectures(selectedLectures.filter(id => id !== predavanjeID));
     } else {
       setSelectedLectures([...selectedLectures, predavanjeID]);
+      setSelectedLecturesNames([...selectedLecturesNames,naziv]);
     }
   };
 
   const handleSendSelectedPredavanje = () => {
-    localStorage.setItem('token', JSON.stringify(tokenreceived));
-    localStorage.setItem('psihologID', JSON.stringify(receivedPsihologID));
-    localStorage.setItem('myPredavanja', JSON.stringify(selectedLectures));
+    //localStorage.setItem('token', tokenreceived);
+    //localStorage.setItem('psihologID', receivedPsihologID);
+    localStorage.setItem('myPredavanja', JSON.stringify(selectedLecturesNames));
+    localStorage.setItem('myPredavanjaIDs', JSON.stringify(selectedLectures));
     if (selectedLectures.length === 0) {
       alert('Morate odabrati barem jedno predavanje!');
       return;
@@ -402,24 +483,51 @@ export default function LectureSelection() {
     navigate('../createpredbiljezba');
   };
 
-  useEffect(() => {
-    socket.on('getPredavanja', (fetchingPredavanja) => {
-      setLista(fetchingPredavanja);
+   
+   useEffect(() => {
+    
+    async function fetchDataPredvanja() {
+      // You can await here
+      try{
+        fetchingPredavanja = await sendGetRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getPredavanja');
+        console.log("unutar metode",fetchingPredavanja)
+        
       setLoading(false);
-    });
-
-    socket.on('fetchingError', (errorMessage) => {
-      console.error('Error fetching data:', errorMessage);
+      return fetchingPredavanja;
+      }catch(error){
+        setLista(null);
       setLoading(false);
-    });
+      }
+      
+      // ...
+    }
+    async function fetchDataMyPredvanja() {
+      var result = (await fetchDataPredvanja())
+             
+      
+      data = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getYourOwnPredbiljezbe', { 
+        psihologID: receivedPsihologID
+      });
 
-    socket.emit('getPredavanja');
+      data.map(d => (
+        allResultsNaziv.add(d.naziv)
+      ))
+      
+      const presjek = result.filter(predavanje => !allResultsNaziv.has(predavanje.naziv));
+      
+  if(presjek != null){
+    setLista(presjek)
+  }
+  else{
+    setLista(fetchingPredavanja)
+  }
 
-    return () => {
-      socket.off('getPredavanja');
-      socket.off('fetchingError');
-    };
+    }
+    fetchDataMyPredvanja();
+        
+       
   }, []);
+    
 
   return (
     <>
@@ -436,7 +544,8 @@ export default function LectureSelection() {
                 <th>Broj polaznika</th>
                 <th>Slobodna mjesta</th>
                 <th>Ukupno mjesta</th>
-                <th>Brisanje predavanja:</th>
+                {storedRole === 'admin' || storedRole === 'odbor' ? (
+                <th>Brisanje predavanja:</th>):(null)}
               </tr>
             </thead>
             <tbody>
@@ -444,7 +553,7 @@ export default function LectureSelection() {
                 <tr>
                   <td colSpan="8">Loading...</td>
                 </tr>
-              ) : lista && lista.length > 0 ? (
+              ) : lista && lista.length != 0 ? (
                 lista.map((pred) => (
                   <tr
                     className={`${
@@ -478,7 +587,7 @@ export default function LectureSelection() {
                         <Form.Check
                           type="checkbox"
                           checked={selectedLectures.includes(pred.Predavanje_ID)}
-                          onChange={() => handleCheckboxChange(pred.Predavanje_ID)}
+                          onChange={() => handleCheckboxChange(pred.Predavanje_ID, pred)}
                         />
                       )}
                     </td>
@@ -489,6 +598,7 @@ export default function LectureSelection() {
                     <td>{pred.slobodnaMjesta}</td>
                     <td>{pred.ukupnoMjesta}</td>
                     <td>
+                    {(storedRole === 'admin' || storedRole === 'odbor') && pred.brojPolaznika==0 ? (
                       <Button
                         variant="danger"
                         type="delete"
@@ -496,12 +606,14 @@ export default function LectureSelection() {
                       >
                         Obriši
                       </Button>
+                      
+                    ):(<p> Nije moguće obrisati predavnje jer postoje predbilježbe za njega.</p>)}
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="8">No data available</td>
+                  <td colSpan="8">Trenutno ne postoji niti jedno predavanje ili su sva mjesta popunjena.</td>
                 </tr>
               )}
             </tbody>

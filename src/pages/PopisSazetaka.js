@@ -1,16 +1,52 @@
 
 import React, { useState, useEffect } from 'react';
-const io = require('socket.io-client');
+//const io = require('socket.io-client');
 import { Table, Form } from 'react-bootstrap';
 import DownloadLink from './DownloadLink';
 import forbidden from '../assets/media/forbiden.jpg'
 
-const storedRole = localStorage.getItem('userRole');
+
+const sendRequest = async (url) => {
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error during the request:', error);
+
+    // Log the response content if available
+    const responseBody = await (response ? response.text() : '');
+    console.error('Response content:', responseBody);
+
+    throw error;
+  }
+};
 const PopisSazetaka = () => {
+  const storedRole = localStorage.getItem('token').split("+")[1];
   const [sazetciData, setSazetciData] = useState([]);
   const [searchString, setSearchString] = useState('');
 
   useEffect(() => {
+  
+    async function fetchData() {
+      const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/sazeci');
+      console.log("sazeci",response)
+      setSazetciData(response)
+    }
+    fetchData()
+   
+  
+}, []);
+ /* useEffect(() => {
     const socket = io();
 
     socket.on('connect', () => {
@@ -26,7 +62,7 @@ const PopisSazetaka = () => {
       socket.disconnect();
     };
   }, []);
-
+*/
   // Function to filter sazetciData based on the search string
   const filteredSazetci = sazetciData.filter((sazetak) => {
     const searchStr = searchString.toLowerCase();

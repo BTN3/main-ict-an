@@ -1,6 +1,6 @@
 // socketService.js
-import socketClient  from "socket.io-client";
-
+//import socketClient  from "socket.io-client";
+/*
 const socket = socketClient('https://horizonti-snage.azurewebsites.net');
 
 export const emitPsihologID = (psihologID) => {
@@ -14,3 +14,4 @@ export const onPsihologID = (callback) => {
 };
 
 // Similarly, define functions for other socket events you need
+*/

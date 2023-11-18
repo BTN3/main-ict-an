@@ -17,7 +17,7 @@ export default function Fees() {
   return (
     <>
     <Navigation/>
-    <div>Kotizacije</div>
+    
      <Routes>
      <Route path="dataprotection" element={<DataProtection/>}></Route>
      <Route path="eventregistration" element={<EventRegistration/>}></Route>

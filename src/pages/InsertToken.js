@@ -2,7 +2,31 @@ import React, { useState } from 'react'
 import { Container, Row, Form, Button, Modal, Spinner } from 'react-bootstrap';
 import horizonti_velik_cropped from '../assets/media/horizonti_velik_cropped.png';
 import { useNavigate } from 'react-router-dom';
+const sendRequest = async (url, data) => {
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error during the request:', error);
+
+    // Log the response content if available
+    const responseBody = await (response ? response.text() : '');
+    console.error('Response content:', responseBody);
+
+    throw error;
+  }
+};
 export default function InsertToken() {
   const navigate = useNavigate();
   const [isWaitingForConfirmation, setIsWaitingForConfirmation] = useState(false);
@@ -10,28 +34,58 @@ export default function InsertToken() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 const [input,setInput] = useState('');
+const [ime,setIme] = useState('');
+const [prezime,setPrezime] = useState('');
   const handleInputToken = (e) =>{
     setInput(e.target.value);
+  }
+  const handleInputIme = (e) =>{
+    setIme(e.target.value);
+  }
+  const handleInputPrezime = (e) =>{
+    setPrezime(e.target.value);
   }
   const submitValues = async (e) => {
     e.preventDefault();
 
     const inputToken = document.getElementById('token');
+    const inputIme = document.getElementById('ime');
+    const inputPrezime = document.getElementById('prezime');
+    
    
-
-    if (inputToken.textContent === '' && input.length!== 10) {
-      alert('Ispravi unos ili ponovno kopiraj token na ovo mjesto  da bi se nastavio proces prijave na stručni skup "Horizonti snage"');
-      return;
-    }
+    const user = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getUser',
+{ psihologID: inputToken.value}
+    );
+    
 
     const confirmWindow = window.confirm(`Želite li pospremiti ovako unesene podatke?
       Token: ${input}`)
+
+
+    console.log("Postojeci user",user.recordset)
+    const userNew = user.recordset[0]
+    //console.log(user.recordset.ime == ime,inputIme.value,userNew.ime)
+    //console.log(user.recordset != null)
+    //console.log(user.recordset.prezime == prezime)
+
+    if (!(user.recordset != null &&
+    userNew.ime == inputIme.value && userNew.prezime == inputPrezime.value)) {
+      alert('Ispravi unos ili ponovno kopiraj token na ovo mjesto  da bi se nastavio proces prijave na stručni skup "Horizonti snage"');
+      
+      
+      return;
+    }
+
+    
       
     if (confirmWindow) {
       try {
         setIsWaitingForConfirmation(true);
 
-        localStorage.setItem('token', JSON.stringify(input));
+        
+
+        localStorage.setItem('token', inputToken.value + "+" + userNew.role
+        );
 
     
 
@@ -78,6 +132,26 @@ const [input,setInput] = useState('');
               </div>
             ) : (
               <Form onSubmit={submitValues}>
+                 <Form.Group>
+                  <Form.Label htmlFor="ime">Unesi ime:</Form.Label>
+                  <Form.Control
+                    type="ime"
+                    placeholder="Unesi ime"
+                    id="ime"
+                    name="ime"
+                    onChange={handleInputIme}
+                  />
+                   </Form.Group>
+                  <Form.Group>
+                  <Form.Label htmlFor="ime">Unesi prezime:</Form.Label>
+                  <Form.Control
+                    type="prezime"
+                    placeholder="Unesi token"
+                    id="prezime"
+                    name="prezime"
+                    onChange={handleInputPrezime}
+                  />
+                </Form.Group>
                 <Form.Group>
                   <Form.Label htmlFor="ime">Unesi dobiveni token:</Form.Label>
                   <Form.Control

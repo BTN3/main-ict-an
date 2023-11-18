@@ -54,64 +54,83 @@ const sendGetRequest = async (url) => {
     throw error;
   }
 };
-export default function LectureSelectionPredb() {
-  const [isCreateButtonActive, setCreateButtonActive] = useState(true);
-  const storedRole = localStorage.getItem('token').split("+")[1];
-  const psihologID = localStorage.getItem('token').split("+")[0];
+export default async function LectureSelectionPredb() {
+  
+  const storedRole = localStorage.getItem('userRole');
+  const psihologID = localStorage.getItem('psihologID') ? JSON.parse(localStorage.getItem('psihologID')) : null;
   let navigate = useNavigate();
-
+  console.log("ovo",storedRole,psihologID)
   const [lista, setLista] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   //const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
-  //const socket = socketClient(serverUrl);
+  // /const socket = socketClient(serverUrl);
 
   
 
+/*socket.on('getYourOwnPredbiljezbe', (data) => {
+  console.log('Received data:', data); // No need for JSON.parse here
+
+  try {
+    const predbiljezbeArray = JSON.parse(data);
+    setLista(predbiljezbeArray);
+    setLoading(false);
+  } catch (error) {
+    console.error('Error while processing data:', error);
+    setLoading(false);
+  }
+});*/
 const handleNavigate = () => {
   navigate('../registrationfeesaccommodation/eventregistration');
 }
- 
+  const handleGetPredbiljezbe = async () => {
+    //socket.emit('getPredbiljezbe');
+    const data = await sendGetRequest('http://localhost:8080/api/getPredbiljezbe')
 
-  const handleGetYourOwnPredbiljezbe = async() => {
-    const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getYourOwnPredbiljezbe', { 
-      psihologID: psihologID
-    });
-    setLista(response)
-    setCreateButtonActive(false)
+    try {
+      if (data && data.recordset) {
+        const predbiljezbeArray = data.recordset;
+        setLista(predbiljezbeArray);
+        setLoading(false);
+      } else {
+        console.error('Received data is in an unexpected format:', data);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error('Error while processing data:', error);
+      setLoading(false);
+    }
   };
 
-  const handleGetAllPredbiljezbe = async() => {
-    const data = await sendGetRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getPredbiljezbe')
-    setLista(data.recordset)
-    setCreateButtonActive(true)
+  const handleGetYourOwnPredbiljezbe = async (psihologID) => {
+    const response = await sendRequest('http://localhost:8080/api/getYourOwnPredbiljezbe', { 
+    psihologID: psihologID
+  });
+    //socket.emit('getYourOwnPredbiljezbe', psihologID);
+
+    console.log('Received data:', response); // No need for JSON.parse here
+
+    try {
+      const predbiljezbeArray = JSON.parse(response);
+      setLista(predbiljezbeArray);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error while processing data:', error);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    var data = null;
-    async function fetchData() {
-
-      if(storedRole == "admin" || storedRole == "odbor"){
-      data = await sendGetRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getPredbiljezbe');
-       }
-      else {
-      data = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getYourOwnPredbiljezbe', { 
-          psihologID: psihologID
-        });
-      }
+   
+  /*  socket.on('getPredbiljezbe', (data) => {
       console.log('Received data:', data);
     
       try {
-        if (data.recordset) {
+        if (data && data.recordset) {
           const predbiljezbeArray = data.recordset;
           setLista(predbiljezbeArray);
           setLoading(false);
-        } else if (data) {
-          const predbiljezbeArray = data;
-          setLista(predbiljezbeArray);
-          setLoading(false);
-          
-        }else{
+        } else {
           console.error('Received data is in an unexpected format:', data);
           setLoading(false);
         }
@@ -119,11 +138,11 @@ const handleNavigate = () => {
         console.error('Error while processing data:', error);
         setLoading(false);
       }
-}
-
-      fetchData();
-  
-  }, []);
+    });*/
+    
+    
+    
+  }, [])
 
   const filteredList = lista.filter((pred) => {
     const loweredSearchQuery = searchQuery.toLowerCase();
@@ -189,10 +208,10 @@ const handleNavigate = () => {
                         </tr>
                       ) : filteredList.length === 0 ? (
                         <tr>
-                          <td colSpan="8">Ne postoji niti jedna predbilježba.</td>
+                          <td colSpan="8">No data available.</td>
                         </tr>
                       ) : (
-                        filteredList.map((pred) => (//ovo bi trebale biti sve predb
+                        filteredList.map((pred) => (
                           <tr className="bg-warning" key={pred.Predbiljezbe_ID}>
                             <td>{pred.ime}</td>
                             <td>{pred.prezime}</td>
@@ -207,11 +226,7 @@ const handleNavigate = () => {
                       )}
                     </tbody>
                   </Table>
-                  {isCreateButtonActive ? (
-                  <Button onClick={handleGetYourOwnPredbiljezbe}>Prikaz osobnih predbilježbi</Button>
-                  ) : (
-                  <Button onClick={handleGetAllPredbiljezbe} >Prikaz svih predbilježbi</Button>
-                  )}
+                  <Button onClick={handleGetPredbiljezbe}>Prikaz predbiljezbi</Button>
                 </>
               ) : storedRole === 'user' && psihologID ? (
                 <>
@@ -235,10 +250,10 @@ const handleNavigate = () => {
                         </tr>
                       ) : filteredList.length === 0 ? (
                         <tr>
-                          <td colSpan="8">Ne postoji niti jedna predbilježba.</td>
+                          <td colSpan="8">No data available.</td>
                         </tr>
                       ) : (
-                        filteredList.map((pred) => ( //ovo je reyultat iy get zour own predb
+                        filteredList.map((pred) => (
                           <tr className="bg-warning" key={pred.Predbiljezbe_ID}>
                             <td>{pred.ime}</td>
                             <td>{pred.prezime}</td>
@@ -253,7 +268,7 @@ const handleNavigate = () => {
                       )}
                     </tbody>
                   </Table>
-                  
+                  <Button onClick={() => handleGetYourOwnPredbiljezbe(psihologID)}>Osobne predbilježbe</Button>
                 </>
               ) : null}
             </Row>

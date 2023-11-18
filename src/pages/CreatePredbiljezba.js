@@ -1,41 +1,96 @@
 //novi - 20.8. onaj sa updateom
 import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import socketClient  from "socket.io-client";
+//import socketClient  from "socket.io-client";
 import { nanoid } from 'nanoid';
 import { useNavigate } from 'react-router-dom';
 
-export default function CreatePredbiljezba() {
-  const [lista, setLista] = useState([]);
-  const predbiljezbaID = nanoid(10);
-  const applicationDate = new Date().toLocaleString();
+const sendRequest = async (url, data) => {
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-  const [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error during the request:', error);
+
+    // Log the response content if available
+    const responseBody = await (response ? response.text() : '');
+    console.error('Response content:', responseBody);
+
+    throw error;
+  }
+};
+const sendGetRequest = async (url) => {
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error during the request:', error);
+
+    // Log the response content if available
+    const responseBody = await (response ? response.text() : '');
+    console.error('Response content:', responseBody);
+
+    throw error;
+  }
+};
+export default function CreatePredbiljezba() {
+ 
+  const [lista, setLista] = useState([]);
+
+
+var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
   const [predavanjaOptions, setPredavanjaOptions] = useState([]);
 
-  const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
-  const socket = socketClient(serverUrl);
+  //const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+  //const socket = socketClient(serverUrl);
   const navigate = useNavigate();
 
-  const receivedPsiholog = JSON.parse(localStorage.getItem('psihologID'));
-  const receivedPredavanja = JSON.parse(localStorage.getItem('myPredavanja'));
-  const psihologID = receivedPsiholog;
+  const receivedPsiholog = localStorage.getItem('token');
+  console.log("predvanja",JSON.parse(localStorage.getItem('myPredavanja')));
+  var receivedPredavanja = JSON.parse(localStorage.getItem('myPredavanja'));
+  var psihologID = receivedPsiholog.split("+")[0];
   const predavanjeID = receivedPredavanja;
-
+  var fetchingPredavanja=null;
   useEffect(() => {
-    socket.emit('getPredavanja');
-    socket.on('predavanjaOptions', (options) => {
-      setPredavanjaOptions(options);
-    });
 
-    socket.on('getPredavanja', (fetchingPredavanja) => {
+
+    async function fetchData() {
+      // You can await here
+      fetchingPredavanja = await sendGetRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getPredavanja');
       setLista(fetchingPredavanja);
+    setPredavanjaOptions(predavanjaOptions);
+    receivedPredavanja.forEach((element) => {
+      console.log({ element });
+      selectedPredavanjeID.push(element.naziv)
     });
 
-    return () => {
-      socket.off('predavanjaOptions');
-      socket.off('getPredavanja');
-    };
+    }
+      // ...
+    
+    fetchData();
+    
+
   }, []);
 
   const handleCreatePredbiljezba = async () => {
@@ -43,13 +98,30 @@ export default function CreatePredbiljezba() {
     try {
       let anyConditionsMet = false; // Flag to track if any conditions are met
       const updatedPredavanjeDataArray = [];
-
+      const updatedPredavanjeID = []
+      
       for (const predID of predavanjeID) {
+          if(selectedPredavanjeID.includes(predID.naziv)){
+            updatedPredavanjeID.push(predID.Predavanje_ID)
+          }
+
+      }
+     
+      for (const predID of updatedPredavanjeID) {
+       
         const predbiljezbaID = nanoid(10);
         console.log("Creating predbiljezba for predavanjeID:", predID);
         const applicationDate = new Date().toLocaleString();
-        socket.emit('createPredbiljezba', predbiljezbaID, psihologID, applicationDate, predID);
+      
+        const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/createPredbiljezba', {  //https://horizonti-snage.azurewebsites.net/insertData
 
+          predbiljezbaID: predbiljezbaID,
+          psihologID: psihologID,
+          applicationDate: applicationDate,
+          predID: predID
+
+        });
+     
         const predavanjeData = lista.find(pred => pred.Predavanje_ID === predID);
 
         if (predavanjeData) {
@@ -64,45 +136,79 @@ export default function CreatePredbiljezba() {
         }
       }
 
-      updatedPredavanjeDataArray.forEach(updatedPredavanjeData => {
-        socket.emit('updatePredavanje', updatedPredavanjeData, (response) => {
-          if (response.success) {
-            console.log('Predavanje data updated successfully.');
-          } else {
-            console.error('Failed to update Predavanje data:', response.message);
-          }
-        });
+      updatedPredavanjeDataArray.forEach(async updatedPredavanjeData => {
+        const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/updatePredavanje',updatedPredavanjeData);
+        /*socket.emit('updatePredavanje', updatedPredavanjeData, (response) => {
+        });*/
+        if (response) {
+          console.log('Predavanje data updated successfully.');
+        } else {
+          console.error('Failed to update Predavanje data:', response.message);
+        }
       });
+
 
       if (anyConditionsMet) {
         navigate('../lectureselection');
       }
+      const user = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getUser',
+      { psihologID: psihologID}
+          );
+      
+      const infoUser = user.recordset[0];
+      const response2 = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/emailPredb', {//tu ide e-mail verification
+        predbiljezbe: selectedPredavanjeID.join(","),
+        ime: infoUser.ime,
+        prezime: infoUser.prezime,
+        email: infoUser.email
+      });
+      alert('Uspješno prijavljena predavanja!');
+
+
+      navigate('..');
     } catch (error) {
       console.error('Error while creating predbiljezba:', error);
     }
   };
 
+
+  const handleToggleElement = (element,predID) => {
+    const updatedSelection = selectedPredavanjeID.includes(element)
+      ? selectedPredavanjeID.filter((item) => item !== element)
+      : [...selectedPredavanjeID, element];
+    setSelectedPredavanjeID(updatedSelection);
+
+    console.log("nesto napravio?"+predava)
+  };
+
   return (
     <>
-      <p>Create Predbiljezba:</p>
-      <Form>
-        <Form.Group controlId="selectedPredavanjeID">
-          <Form.Label>Odabrana predavanja: </Form.Label>
-          <Form.Control
-            as="select"
-            value={selectedPredavanjeID}
-            onChange={(e) => setSelectedPredavanjeID(Array.from(e.target.selectedOptions, option => option.value))}
-            multiple
-          >
-            {predavanjaOptions.map((predavanje) => (
-              <option key={predavanje.Predavanje_ID} value={predavanje.Predavanje_ID}>
-                {predavanje.naziv}
-              </option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-        <Button variant="primary" onClick={handleCreatePredbiljezba}>Create Predbiljezba</Button>
-      </Form>
-    </>
+    <p>Create Predbiljezba:</p>
+    <Form>
+      <Form.Group controlId="selectedPredavanjeID">
+        <Form.Label>Odabrana predavanja:</Form.Label>
+        <br></br>
+        <br></br>
+        {receivedPredavanja.map((predavanje, index) => (
+          <Form.Check
+            key={index}
+            type="checkbox"
+            id={`checkbox-${index}`}
+            label={predavanje.naziv}
+            checked={selectedPredavanjeID.includes(predavanje.naziv)}
+            onChange={() => handleToggleElement(predavanje.naziv)}
+            
+          />
+          
+        ))}
+      </Form.Group>
+      <br></br>
+     
+      <Button variant="primary" onClick={handleCreatePredbiljezba}>
+        Create Predbiljezba
+      </Button>
+      
+    </Form>
+  </>
   );
 }

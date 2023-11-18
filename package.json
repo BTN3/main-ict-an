@@ -1,5 +1,6 @@
 {
   "name": "web-page-horizonti",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -46,7 +47,8 @@
     "websocket": "^1.0.34"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "react-scripts start",
+    "build":"react-scripts build"
     
   },
   "eslintConfig": {

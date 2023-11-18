@@ -49,7 +49,7 @@ function Navigation() {
           <NavDropdown title="Kotizacije i smještaj" id="collasible-nav-dropdown">
            <NavDropdown.Item href="/registrationfeesaccommodation">Kotizacije i smještaj</NavDropdown.Item>
              <NavDropdown.Divider />
-            <NavDropdown.Item href="/registrationfeesaccommodation/dataprotection">Zaštita podataka</NavDropdown.Item>
+            <NavDropdown.Item href="/registrationfeesaccommodation/dataprotection">Politika privatnosti</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="/registrationfeesaccommodation/eventregistration">Prijava na događaj</NavDropdown.Item>
             <NavDropdown.Divider />
@@ -69,10 +69,7 @@ function Navigation() {
                Stvori predavanje
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/registrationfeesaccommodation/createpredbiljezba">
-              Stvori novu predbiljezbu
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
+          
              <NavDropdown.Item href="/registrationfeesaccommodation/popissazetaka">
                Popis sažetaka
              </NavDropdown.Item>

@@ -1,37 +1,19 @@
 const express = require('express');
-const http = require('https');
-const socketIo = require('socket.io');
+const http = require('http');
+//const socketIo = require('socket.io');
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+//const io = socketIo(server);
 const cors = require('cors');
-const port = process.env.REACT_APP_PORT || 8080;
+const port = process.env.PORT || 8080;
 const nodemailer = require('nodemailer');
 const path = require('path');
 
 const fs = require('fs').promises;
-// const {authPage,authPred} = require('./src/middlewares')
+ const {authPage,authPred} = require('./src/middlewares')
 
 // Serve static files (build folder) for the React app
 app.use(express.static(path.join(__dirname, 'build')));
-app.post('/api/email', async (req, res) => {
-  const userPsiholog = req.body;
-
-  const result = await sendEmail(userPsiholog);
-
-  res.json(result);
-});
-app.post('/api/data', async (req, res) => {
-  const data = req.body;
-
-  try {
-    const result = await insertData(data);
-    res.json(result);
-  } catch (error) {
-    console.error('Error while handling insert-data request:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-});
 
 
 // Catch-all route to serve index.html for client-side routing

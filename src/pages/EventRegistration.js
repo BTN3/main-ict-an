@@ -50,6 +50,7 @@ const sendRequest = async (url, data) => {
 };
 
 export default function EventRegistration({ role }) {
+  console.log(nanoid(10))
   let Psiholog_ID = nanoid(10);
   let tokenGenerated = nanoid(15);
   let validates = true;
@@ -154,11 +155,16 @@ export default function EventRegistration({ role }) {
           };
         });
         const filesWithDetails = await Promise.all(fileDetailsPromises);
-
-        const response = await sendRequest('https://horizonti-snage.azurewebsites.net/api/data', {  //https://horizonti-snage.azurewebsites.net/insertData
+        console.log("uploaded files",filesWithDetails)
+        const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/data', {  //https://horizonti-snage.azurewebsites.net/insertData
           ...psiholog,
           uploadedFiles: filesWithDetails,
         });
+
+        const response2 = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/email', {//tu ide e-mail verification
+        ...psiholog,
+        uploadedFiles: filesWithDetails,
+      });
 
         console.log('Data inserted:', response);
         setIsWaitingForConfirmation(false);
@@ -202,7 +208,7 @@ export default function EventRegistration({ role }) {
 
       localStorage.setItem(JSON.stringify(psiholog.Psiholog_ID), psiholog.ime + psiholog.prezime + psiholog.email);
 
-      const response = await sendRequest('https://horizonti-snage.azurewebsites.net/api/email', {
+      const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/emailVerification', {//tu ide e-mail verification
         ...psiholog,
         uploadedFiles: filesWithDetails,
       });
@@ -213,6 +219,8 @@ export default function EventRegistration({ role }) {
       console.error('Error while sending email:', error);
     }
   };
+
+  
 
   return (
     <>

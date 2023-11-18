@@ -3,17 +3,45 @@ import { Container, Row, Form, Button, Modal, Spinner } from 'react-bootstrap';
 import Predavanje from '../dbFiles/Predavanje';
 import { nanoid } from 'nanoid';
 import CarouselComponent from './CarouselComponent';
-import socketClient  from "socket.io-client";
+//import socketClient  from "socket.io-client";
+import forbidden from '../assets/media/forbiden.jpg'
 //import { useNavigate } from 'react-router-dom';
 import horizonti_velik_cropped from '../assets/media/horizonti_velik_cropped.png';
+const sendRequest = async (url, data) => {
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error during the request:', error);
+
+    // Log the response content if available
+    const responseBody = await (response ? response.text() : '');
+    console.error('Response content:', responseBody);
+
+    throw error;
+  }
+};
 export default function CreatePredavanje() {
+
+  const storedRole = localStorage.getItem('token').split("+")[1];
+  const psihologID = localStorage.getItem('token').split("+")[0];
   let Predavanje_ID = nanoid(10);
 //   let validates = true;
   let tip = '';
  
-  const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
-  const socket = socketClient(serverUrl);
+ // const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+  //const socket = socketClient(serverUrl);
 
   const [predavanje, setPredavanje] = useState({
     Predavanje_ID: (Predavanje.Predavanje_ID = Predavanje_ID),
@@ -22,7 +50,9 @@ export default function CreatePredavanje() {
     opis: '',
     brojPolaznika: '',
     slobodnaMjesta: '',
-    ukupnoMjesta: ''
+    ukupnoMjesta: '',
+    mjestoOdrzavanja: '',
+    vrijemePocetka: ''
 
   });
 
@@ -55,6 +85,12 @@ export default function CreatePredavanje() {
 
   const handleInputUkupnoMjesta = (e) => {
     setPredavanje({ ...predavanje, ukupnoMjesta: e.target.value });
+  };
+  const handleInputMjestoOdrzavanja = (e) => {
+    setPredavanje({ ...predavanje, mjestoOdrzavanja: e.target.value });
+  };
+  const handleVrijemePocetka = (e) => {
+    setPredavanje({ ...predavanje, vrijemePocetka: e.target.value });
   };
 
   const submitValues = async (e) => {
@@ -91,8 +127,10 @@ export default function CreatePredavanje() {
           tip: predavanje.tip
         };
         setPredavanje(updatedPredavanje);
-        socket.emit('insertPredavanje', updatedPredavanje);
         
+       // socket.emit('insertPredavanje', updatedPredavanje);
+        const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/predavanjeI',updatedPredavanje);
+        console.log("Predavanje inserted",updatedPredavanje)
         setLoading(false); // Hide loading spinner
         alert('Uspješno stvoreno predavanje!');
         inputNaziv.value = '';
@@ -110,14 +148,14 @@ export default function CreatePredavanje() {
     }
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     socket.on('insertionError', (errorMessage) => {
       console.error('Error while inserting predavanje:', errorMessage);
       // Handle the error and show a notification to the user
     });
-  }, []);
+  }, []);*/
 
-  useEffect(() => {
+ /* useEffect(() => {
     socket.on('predavanjeInserted', (insertedPredavanje) => {
       console.log('Predavanje inserted:', insertedPredavanje);
   //    navigate('/');
@@ -127,19 +165,21 @@ export default function CreatePredavanje() {
     //  location.reload();
     });
    // socket.emit('Predavanje_ID',Predavanje_ID);
-  }, []);
+  }, []);*/
 
   return (
     <>
       <CarouselComponent />
+      {storedRole === 'user' || storedRole === 'odbor' ? (
       <Container fluid>
+      
         <Row>
           <Button variant="danger" size="md" onClick={handleShow}>
             <img width={50} height={40} src={horizonti_velik_cropped} alt="Horizonti Logo" />
             Stvaranje predavanja
           </Button>
         </Row>
-
+        
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Stvaranje predavanja za 'Horizonti snage'</Modal.Title>
@@ -265,6 +305,26 @@ export default function CreatePredavanje() {
                   onChange={handleInputUkupnoMjesta}
                 />
               </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="mjestoOdrzavanja">Mjesto održavanja:</Form.Label>
+                <Form.Control
+                  type="mjestoOdrzavanja"
+                  name="mjestoOdrzavanja"
+                  placeholder="Mjesto održavanja"
+                  id="mjestoOdrzavanja"
+                  onChange={handleInputMjestoOdrzavanja}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="ukupnoMjesta">Vrijeme početka:</Form.Label>
+                <Form.Control
+                  type="vrijemePocetka"
+                  name="vrijemePocetka"
+                  placeholder="Vrijeme pocetka"
+                  id="vrijemePocetka"
+                  onChange={handleVrijemePocetka}
+                />
+              </Form.Group>
          
               <br />
               <Button variant="primary" type="submit">
@@ -280,7 +340,12 @@ export default function CreatePredavanje() {
             </Form>
           </Modal.Body>
         </Modal>
+        
       </Container>
+       ): (  <div>
+        <img src={forbidden} style={{ width: '50px', height: '50px' }} alt='STOP' />
+        Nemate administratorske ovlasti da biste vidjeli sadržaj ove stranice.
+      </div>)}
     </>
   );
 }
