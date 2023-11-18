@@ -52,14 +52,14 @@ const [prezime,setPrezime] = useState('');
     const inputIme = document.getElementById('ime');
     const inputPrezime = document.getElementById('prezime');
     
+    const confirmWindow = window.confirm(`Želite li pospremiti ovako unesene podatke?
+      Token: ${input}`)
+
    
     const user = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getUser',
 { psihologID: inputToken.value}
     );
     
-
-    const confirmWindow = window.confirm(`Želite li pospremiti ovako unesene podatke?
-      Token: ${input}`)
 
 
     console.log("Postojeci user",user.recordset)

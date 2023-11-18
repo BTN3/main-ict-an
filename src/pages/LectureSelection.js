@@ -598,7 +598,7 @@ export default function LectureSelection() {
                     <td>{pred.slobodnaMjesta}</td>
                     <td>{pred.ukupnoMjesta}</td>
                     <td>
-                    {(storedRole === 'admin' || storedRole === 'odbor') && pred.brojPolaznika==0 ? (
+                    {(storedRole === 'admin' || storedRole === 'odbor') && pred.brojPolaznika == 0 ? (
                       <Button
                         variant="danger"
                         type="delete"
