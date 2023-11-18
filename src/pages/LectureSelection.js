@@ -607,7 +607,7 @@ export default function LectureSelection() {
                         Obriši
                       </Button>
                       
-                    ):(<p> Nije moguće obrisati predavnje jer postoje predbilježbe za njega.</p>)}
+                    ):((storedRole === 'user'?(<p> </p>):(<p> Nije moguće obrisati predavnje jer postoje predbilježbe za njega.</p>)))}
                     </td>
                   </tr>
                 ))
