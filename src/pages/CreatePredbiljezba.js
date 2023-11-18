@@ -178,7 +178,7 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
       : [...selectedPredavanjeID, element];
     setSelectedPredavanjeID(updatedSelection);
 
-    console.log("nesto napravio?"+predava)
+    
   };
 
   return (
