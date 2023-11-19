@@ -15,7 +15,7 @@ const sendRequest = async (url, data) => {
       body: JSON.stringify(data),
     });
 
-    if (!response.ok) {
+    if (response == undefined) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
@@ -39,7 +39,7 @@ const sendGetRequest = async (url) => {
       }
     });
 
-    if (!response.ok) {
+    if (response == undefined) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
@@ -112,15 +112,22 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
         const predbiljezbaID = nanoid(10);
         console.log("Creating predbiljezba for predavanjeID:", predID);
         const applicationDate = new Date().toLocaleString();
-      
+       try{
         const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/createPredbiljezba', {  //https://horizonti-snage.azurewebsites.net/insertData
+       
+       
 
           predbiljezbaID: predbiljezbaID,
           psihologID: psihologID,
           applicationDate: applicationDate,
           predID: predID
-
-        });
+        
+        }); 
+      }catch (error) {
+        // TypeError: Failed to fetch
+        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        console.log('There was an error', error);
+      }
      
         const predavanjeData = lista.find(pred => pred.Predavanje_ID === predID);
 
@@ -137,9 +144,17 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
       }
 
       updatedPredavanjeDataArray.forEach(async updatedPredavanjeData => {
+        try{
+
+        
         const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/updatePredavanje',updatedPredavanjeData);
         /*socket.emit('updatePredavanje', updatedPredavanjeData, (response) => {
         });*/
+      }catch (error) {
+        // TypeError: Failed to fetch
+        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        console.log('There was an error', error);
+      }
         if (response) {
           console.log('Predavanje data updated successfully.');
         } else {
@@ -151,17 +166,33 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
       if (anyConditionsMet) {
         navigate('../lectureselection');
       }
+
+      try{
       const user = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getUser',
       { psihologID: psihologID}
           );
-      
+      }catch (error) {
+        // TypeError: Failed to fetch
+        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        console.log('There was an error', error);
+      }
+
       const infoUser = user.recordset[0];
+      try{ 
+
+      
       const response2 = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/emailPredb', {//tu ide e-mail verification
         predbiljezbe: selectedPredavanjeID.join(","),
         ime: infoUser.ime,
         prezime: infoUser.prezime,
         email: infoUser.email
       });
+    }
+    catch (error) {
+      // TypeError: Failed to fetch
+      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      console.log('There was an error', error);
+    }
       alert('Uspješno prijavljena predavanja!');
 
 

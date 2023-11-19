@@ -17,7 +17,7 @@ const sendRequest = async (url, data) => {
       body: JSON.stringify(data),
     });
 
-    if (!response.ok) {
+    if (response == undefined) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
@@ -129,7 +129,16 @@ export default function CreatePredavanje() {
         setPredavanje(updatedPredavanje);
         
        // socket.emit('insertPredavanje', updatedPredavanje);
+       try{
         const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/predavanjeI',updatedPredavanje);
+
+       } catch (error) {
+        // TypeError: Failed to fetch
+        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        console.log('There was an error', error);
+      }
+      
+      
         console.log("Predavanje inserted",updatedPredavanje)
         setLoading(false); // Hide loading spinner
         alert('Uspješno stvoreno predavanje!');

@@ -12,7 +12,7 @@ const sendRequest = async (url, data) => {
       body: JSON.stringify(data),
     });
 
-    if (!response.ok) {
+    if (response == undefined) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
@@ -51,25 +51,34 @@ const [prezime,setPrezime] = useState('');
     const inputToken = document.getElementById('token');
     const inputIme = document.getElementById('ime');
     const inputPrezime = document.getElementById('prezime');
-    
+    var user = null
+    var userNew = null
     const confirmWindow = window.confirm(`Želite li pospremiti ovako unesene podatke?
       Token: ${input}`)
-
-   
-    const user = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getUser',
-{ psihologID: inputToken.value}
-    );
     
+    try{
+   
+     user = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getUser',
+{ psihologID: inputToken.value}
+    );}
+    catch (error) {
+      // TypeError: Failed to fetch
+      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      console.log('There was an error', error);
+    }
+
+     
 
 
-    console.log("Postojeci user",user.recordset)
-    const userNew = user.recordset[0]
+    if(user != null && user.recordset.size != 0){
+     userNew = user.recordset[0]
+    }
     //console.log(user.recordset.ime == ime,inputIme.value,userNew.ime)
     //console.log(user.recordset != null)
     //console.log(user.recordset.prezime == prezime)
 
-    if (!(user.recordset != null &&
-    userNew.ime == inputIme.value && userNew.prezime == inputPrezime.value)) {
+    if (user.recordset == null ||
+    !(userNew.ime == inputIme.value && userNew.prezime == inputPrezime.value)) {
       alert('Ispravi unos ili ponovno kopiraj token na ovo mjesto  da bi se nastavio proces prijave na stručni skup "Horizonti snage"');
       
       
@@ -82,7 +91,7 @@ const [prezime,setPrezime] = useState('');
       try {
         setIsWaitingForConfirmation(true);
 
-        
+        localStorage.clear();
 
         localStorage.setItem('token', inputToken.value + "+" + userNew.role
         );

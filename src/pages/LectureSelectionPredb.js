@@ -14,7 +14,7 @@ const sendRequest = async (url, data) => {
       body: JSON.stringify(data),
     });
 
-    if (!response.ok) {
+    if (response == undefined) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
@@ -39,7 +39,7 @@ const sendGetRequest = async (url) => {
       }
     });
 
-    if (!response.ok) {
+    if (response == undefined) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
@@ -74,17 +74,30 @@ const handleNavigate = () => {
  
 
   const handleGetYourOwnPredbiljezbe = async() => {
+
+    try{ 
     const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getYourOwnPredbiljezbe', { 
       psihologID: psihologID
     });
+    }catch (error) {
+      // TypeError: Failed to fetch
+      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      console.log('There was an error', error);
+    }
     setLista(response)
     setCreateButtonActive(false)
   };
 
   const handleGetAllPredbiljezbe = async() => {
+    try{ 
     const data = await sendGetRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getPredbiljezbe')
     setLista(data.recordset)
     setCreateButtonActive(true)
+    }catch (error) {
+      // TypeError: Failed to fetch
+      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      console.log('There was an error', error);
+    }
   };
 
   useEffect(() => {
@@ -92,12 +105,25 @@ const handleNavigate = () => {
     async function fetchData() {
 
       if(storedRole == "admin" || storedRole == "odbor"){
+        try{ 
       data = await sendGetRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getPredbiljezbe');
+        }catch (error) {
+          // TypeError: Failed to fetch
+          alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+          console.log('There was an error', error);
+        }
        }
+       
       else {
+        try{ 
       data = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getYourOwnPredbiljezbe', { 
           psihologID: psihologID
         });
+      }catch (error) {
+        // TypeError: Failed to fetch
+        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        console.log('There was an error', error);
+      }
       }
       console.log('Received data:', data);
     

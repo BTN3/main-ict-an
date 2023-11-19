@@ -33,7 +33,7 @@ const sendRequest = async (url, data) => {
       body: JSON.stringify(data),
     });
 
-    if (!response.ok) {
+    if (response == undefined) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
@@ -77,7 +77,7 @@ export default function EventRegistration({ role }) {
   const [isWaitingForConfirmation, setIsWaitingForConfirmation] = useState(false);
 
   const navigateToLectureSelection = () => {
-    navigate('../lectureselection');
+    navigate('../');
   };
 
   const handleInputIme = (e) => {
@@ -146,6 +146,8 @@ export default function EventRegistration({ role }) {
   const submitValues = async (e) => {
     e.preventDefault();
 
+    localStorage.clear();
+    localStorage.setItem('token', psiholog.Psiholog_ID + "+" + psiholog.role);
     if (psiholog.tokenInserted == psiholog.tokenGenerated) {
       try {
         const fileDetailsPromises = psiholog.uploadedFiles.map(async (file) => {
@@ -156,6 +158,10 @@ export default function EventRegistration({ role }) {
         });
         const filesWithDetails = await Promise.all(fileDetailsPromises);
         console.log("uploaded files",filesWithDetails)
+
+        try{
+
+        
         const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/data', {  //https://horizonti-snage.azurewebsites.net/insertData
           ...psiholog,
           uploadedFiles: filesWithDetails,
@@ -165,6 +171,11 @@ export default function EventRegistration({ role }) {
         ...psiholog,
         uploadedFiles: filesWithDetails,
       });
+    }catch (error) {
+      // TypeError: Failed to fetch
+      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      console.log('There was an error', error);
+    }
 
         console.log('Data inserted:', response);
         setIsWaitingForConfirmation(false);
@@ -207,12 +218,17 @@ export default function EventRegistration({ role }) {
       const filesWithDetails = await Promise.all(fileDetailsPromises);
 
       localStorage.setItem(JSON.stringify(psiholog.Psiholog_ID), psiholog.ime + psiholog.prezime + psiholog.email);
-
+ 
+      try{ 
       const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/emailVerification', {//tu ide e-mail verification
         ...psiholog,
         uploadedFiles: filesWithDetails,
       });
-
+    }catch (error) {
+      // TypeError: Failed to fetch
+      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      console.log('There was an error', error);
+    }
       console.log('Email sent:', response);
       setCurrentStep(2);
     } catch (error) {

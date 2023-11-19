@@ -395,7 +395,7 @@ export default function LectureSelection() {
         body: JSON.stringify(data), 
       });
   
-      if (!response.ok) {
+      if (response == undefined) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
   
@@ -421,7 +421,7 @@ export default function LectureSelection() {
         }
       });
   
-      if (!response.ok) {
+      if (response == undefined) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
   
@@ -504,6 +504,8 @@ export default function LectureSelection() {
     async function fetchDataMyPredvanja() {
       var result = (await fetchDataPredvanja())
              
+      try{ 
+
       
       data = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getYourOwnPredbiljezbe', { 
         psihologID: receivedPsihologID
@@ -512,7 +514,11 @@ export default function LectureSelection() {
       data.map(d => (
         allResultsNaziv.add(d.naziv)
       ))
-      
+      }catch (error) {
+        // TypeError: Failed to fetch
+        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        console.log('There was an error', error);
+      }
       const presjek = result.filter(predavanje => !allResultsNaziv.has(predavanje.naziv));
       
   if(presjek != null){

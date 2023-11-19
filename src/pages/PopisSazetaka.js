@@ -5,10 +5,10 @@ import { Table, Form } from 'react-bootstrap';
 import DownloadLink from './DownloadLink';
 import forbidden from '../assets/media/forbiden.jpg'
 
-
+var response = null
 const sendRequest = async (url) => {
   try {
-    const response = await fetch(url, {
+     response = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -31,38 +31,35 @@ const sendRequest = async (url) => {
   }
 };
 const PopisSazetaka = () => {
-  const storedRole = localStorage.getItem('token').split("+")[1];
+  const storedRole = localStorage.getItem('token')
+  if(storedRole != null){
+    storedRole.split("+")[1];
+
+  }
+  
   const [sazetciData, setSazetciData] = useState([]);
   const [searchString, setSearchString] = useState('');
 
   useEffect(() => {
   
     async function fetchData() {
-      const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/sazeci');
-      console.log("sazeci",response)
-      setSazetciData(response)
+      try {
+        const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/sazeci');
+        console.log("sazeci",response)
+        setSazetciData(response)
+      } catch (error) {
+        // TypeError: Failed to fetch
+        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        console.log('There was an error', error);
+      }
+      
+     
     }
     fetchData()
    
   
 }, []);
- /* useEffect(() => {
-    const socket = io();
 
-    socket.on('connect', () => {
-      console.log('Connected to server:', socket.id);
-      socket.emit('fetchSazetci');
-    });
-
-    socket.on('sazetciData', (fetchedSazetciData) => {
-      setSazetciData(fetchedSazetciData);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-*/
   // Function to filter sazetciData based on the search string
   const filteredSazetci = sazetciData.filter((sazetak) => {
     const searchStr = searchString.toLowerCase();
@@ -73,57 +70,7 @@ const PopisSazetaka = () => {
     );
   });
 
-//   return (
-//     <div className="container mt-5">
-//       {storedRole === 'admin' && (
-//         <>
-//           <h1>Popis Sažetaka</h1>
-//           <Form.Group controlId="search">
-//             <Form.Label>Search</Form.Label>
-//             <Form.Control
-//               type="text"
-//               placeholder="Enter search string"
-//               value={searchString}
-//               onChange={(e) => setSearchString(e.target.value)}
-//             />
-//           </Form.Group>
-//           <Table striped bordered hover>
-//         <thead>
-//           <tr>
-//             <th>Ime</th>
-//             <th>Prezime</th>
-//             <th>Email</th>
-//             <th>Oblik sudjelovanja</th>
-//             <th>Files</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {filteredSazetci.map((sazetak) => (
-//             <tr key={sazetak.SažetakID}>
-//               <td>{sazetak.ime}</td>
-//               <td>{sazetak.prezime}</td>
-//               <td>{sazetak.email}</td>
-//               <td>{sazetak.Oblik_sudjelovanja}</td>
-//               <td>
-//                 {Array.isArray(sazetak.FileData) ? (
-//                   sazetak.FileData.map((fileData, index) => (
-//                     <DownloadLink key={index} fileData={fileData} fileName={sazetak.FileName}
-//                    />
-//                   ))
-//                 ) : (
-//                   <DownloadLink fileData={sazetak.FileData} fileName={sazetak.FileName} />
-//                 )}
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </Table>
-//       </>
-//       )}
-//     </div>
-      
-//   );
-// };
+
 return (
   <div className="container mt-5">
     {storedRole === 'admin' || storedRole==='odbor'  ? (
