@@ -25,9 +25,11 @@ export default function DataProtection() {
     <h3>Prikupljanje informacija</h3>
     <p>
         Koje informacije prikupljamo:
-        Prikupljamo određene podatke kako bismo poboljšali vaše iskustvo na našoj web stranici.
+        {/* Prikupljamo određene podatke kako bismo poboljšali vaše iskustvo na našoj web stranici.
         To može uključivati informacije o vašem pregledniku, IP adresi, aktivnostima na stranici i slično.
-        Ne prikupljamo osobne podatke bez vašeg izričitog pristanka.
+        Ne prikupljamo osobne podatke bez vašeg izričitog pristanka. */}
+        Trenutno ne prikupljamo informacije o vašim navikama pretraživanja ove web stranice/aplikacije. 
+        Sve podatke koje unosite, unosite isključivo u svrhu prijave na Konferenciju. 
     </p>
 </section>
 

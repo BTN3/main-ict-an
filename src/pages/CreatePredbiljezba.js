@@ -218,7 +218,7 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
 
   return (
     <>
-    <p>Create Predbiljezba:</p>
+    <p>Stvori predbilježbu:</p>
     <Form>
       <Form.Group controlId="selectedPredavanjeID">
         <Form.Label>Odabrana predavanja:</Form.Label>
