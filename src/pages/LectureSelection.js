@@ -383,7 +383,7 @@ export default function LectureSelection() {
   //const socket = socketClient(serverUrl);
   const navigate = useNavigate();
   const receivedPsihologID = localStorage.getItem('token').split("+")[0];
-  console.log("id"+receivedPsihologID)
+  
   const tokenreceived = localStorage.getItem('token');
   const sendRequest = async (url, data) => {
     try {
@@ -465,6 +465,7 @@ export default function LectureSelection() {
   const handleCheckboxChange = (predavanjeID, naziv) => {
     if (selectedLectures.includes(predavanjeID)) {
       setSelectedLectures(selectedLectures.filter(id => id !== predavanjeID));
+      setSelectedLecturesNames(selectedLecturesNames.filter(pred => pred !== naziv));
     } else {
       setSelectedLectures([...selectedLectures, predavanjeID]);
       setSelectedLecturesNames([...selectedLecturesNames,naziv]);

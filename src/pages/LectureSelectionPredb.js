@@ -74,9 +74,9 @@ const handleNavigate = () => {
  
 
   const handleGetYourOwnPredbiljezbe = async() => {
-
+  var response = null
     try{ 
-    const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getYourOwnPredbiljezbe', { 
+     response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getYourOwnPredbiljezbe', { 
       psihologID: psihologID
     });
     }catch (error) {
@@ -150,8 +150,9 @@ const handleNavigate = () => {
       fetchData();
   
   }, []);
-
-  const filteredList = lista.filter((pred) => {
+  var filteredList = []
+  if(lista != null){
+  filteredList = lista.filter((pred) => {
     const loweredSearchQuery = searchQuery.toLowerCase();
     return (
       pred.naziv.toLowerCase().includes(loweredSearchQuery) ||
@@ -161,6 +162,7 @@ const handleNavigate = () => {
       pred.Vrijeme_predbiljezbe.toLowerCase().includes(loweredSearchQuery)
     );
   });
+}
 
   return (
     <>

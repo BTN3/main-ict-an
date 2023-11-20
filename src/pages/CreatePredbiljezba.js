@@ -61,6 +61,8 @@ export default function CreatePredbiljezba() {
 
 var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
   const [predavanjaOptions, setPredavanjaOptions] = useState([]);
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
+
 
   //const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
   //const socket = socketClient(serverUrl);
@@ -94,6 +96,7 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
   }, []);
 
   const handleCreatePredbiljezba = async () => {
+    setButtonDisabled(true)
     console.log("handleCreatePredbiljezba called"); // Add this line
     try {
       let anyConditionsMet = false; // Flag to track if any conditions are met
@@ -166,9 +169,9 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
       if (anyConditionsMet) {
         navigate('../lectureselection');
       }
-
+      var user = null
       try{
-      const user = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getUser',
+      user = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getUser',
       { psihologID: psihologID}
           );
       }catch (error) {
@@ -194,9 +197,10 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
       console.log('There was an error', error);
     }
       alert('Uspješno prijavljena predavanja!');
+      setButtonDisabled(false)
 
 
-      navigate('..');
+      navigate('../');
     } catch (error) {
       console.error('Error while creating predbiljezba:', error);
     }
@@ -235,7 +239,7 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
       </Form.Group>
       <br></br>
      
-      <Button variant="primary" onClick={handleCreatePredbiljezba}>
+      <Button variant="primary" onClick={handleCreatePredbiljezba} disabled={isButtonDisabled}>
         Create Predbiljezba
       </Button>
       

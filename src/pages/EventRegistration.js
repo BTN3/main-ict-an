@@ -75,6 +75,8 @@ export default function EventRegistration({ role }) {
   const [show, setShow] = useState(true);
   const [currentStep, setCurrentStep] = useState(0);
   const [isWaitingForConfirmation, setIsWaitingForConfirmation] = useState(false);
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
+
 
   const navigateToLectureSelection = () => {
     navigate('../');
@@ -145,7 +147,7 @@ export default function EventRegistration({ role }) {
 
   const submitValues = async (e) => {
     e.preventDefault();
-
+    setButtonDisabled(true)
     localStorage.clear();
     localStorage.setItem('token', psiholog.Psiholog_ID + "+" + psiholog.role);
     if (psiholog.tokenInserted == psiholog.tokenGenerated) {
@@ -177,9 +179,10 @@ export default function EventRegistration({ role }) {
       console.log('There was an error', error);
     }
 
-        console.log('Data inserted:', response);
+     
         setIsWaitingForConfirmation(false);
         alert('Uspješno pospremljeni prijavni podaci!');
+        setButtonDisabled(false)
         navigateToLectureSelection();
       } catch (error) {
         console.error('Error while inserting data:', error);
@@ -229,7 +232,7 @@ export default function EventRegistration({ role }) {
       alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
       console.log('There was an error', error);
     }
-      console.log('Email sent:', response);
+    
       setCurrentStep(2);
     } catch (error) {
       console.error('Error while sending email:', error);
@@ -296,7 +299,7 @@ export default function EventRegistration({ role }) {
                 <Button variant="secondary" onClick={() => setShow(false)}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={submitValues}>
+                <Button variant="primary" onClick={submitValues} disabled={isButtonDisabled}>
                   Submit
                 </Button>
               </Modal.Footer>

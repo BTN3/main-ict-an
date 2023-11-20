@@ -35,6 +35,7 @@ const sendRequest = async (url, data) => {
 export default function CreatePredavanje() {
 
   const storedRole = localStorage.getItem('token').split("+")[1];
+  console.log("stored role",storedRole)
   const psihologID = localStorage.getItem('token').split("+")[0];
   let Predavanje_ID = nanoid(10);
 //   let validates = true;
@@ -179,7 +180,7 @@ export default function CreatePredavanje() {
   return (
     <>
       <CarouselComponent />
-      {storedRole === 'user' || storedRole === 'odbor' ? (
+      {storedRole === 'admin' || storedRole === 'odbor' ? (
       <Container fluid>
       
         <Row>

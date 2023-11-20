@@ -77,7 +77,7 @@ const [prezime,setPrezime] = useState('');
     //console.log(user.recordset != null)
     //console.log(user.recordset.prezime == prezime)
 
-    if (user.recordset == null ||
+    if (userNew == null ||
     !(userNew.ime == inputIme.value && userNew.prezime == inputPrezime.value)) {
       alert('Ispravi unos ili ponovno kopiraj token na ovo mjesto  da bi se nastavio proces prijave na stručni skup "Horizonti snage"');
       
