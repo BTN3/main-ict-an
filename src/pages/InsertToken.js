@@ -52,7 +52,7 @@ const [prezime,setPrezime] = useState('');
     const inputIme = document.getElementById('ime');
     const inputPrezime = document.getElementById('prezime');
     var user = null
-    var userNew = null
+    var   userNew = null
     const confirmWindow = window.confirm(`Želite li pospremiti ovako unesene podatke?
       Token: ${input}`)
     
@@ -75,15 +75,23 @@ const [prezime,setPrezime] = useState('');
     }
     //console.log(user.recordset.ime == ime,inputIme.value,userNew.ime)
     //console.log(user.recordset != null)
-    //console.log(user.recordset.prezime == prezime)
-
-    if (userNew == null ||
-    !(userNew.ime == inputIme.value && userNew.prezime == inputPrezime.value)) {
+    //console.log(user.recordset.prezime == prezim““e)
+   
+    if (userNew == null){
       alert('Ispravi unos ili ponovno kopiraj token na ovo mjesto  da bi se nastavio proces prijave na stručni skup "Horizonti snage"');
-      
-      
+      console.log("user iz baze je null")
       return;
     }
+     
+    else if(!(userNew.ime == inputIme.value && userNew.prezime == inputPrezime.value)) {
+      alert('Ispravi unos ili ponovno kopiraj token na ovo mjesto  da bi se nastavio proces prijave na stručni skup "Horizonti snage"');
+      console.log("Uneseno ime:",inputIme.value," pravoIme:",userNew.ime, "Uneseno prezime:",inputPrezime.value," pravo prezime:",userNew.prezime)
+      console.log("je li user null:",userNew)
+      return
+      }
+
+    
+    
 
     
       
