@@ -7,17 +7,19 @@ import Navigation from '../pages/Navigation';
 import CarouselComponent from './CarouselComponent'
 import Footer from './Footer';
 import PozvaniPredavaci from './PozvaniPredavaci';
+import Organizatori from './Organizatori';
 export default function About() {
   return (
     <>
    <Navigation/>
-   <CarouselComponent/>
+  
    <div>Ovo je o nama stranica!</div>
    <Routes>
    
    <Route path="introductionspeech" element={<IntroductionSpeech/>}></Route>
    <Route path="organizingcomettee" element={<ProgramOrganizingComittee/>}></Route>
    <Route path="pozvanipredavaci" element={<PozvaniPredavaci/>}></Route>
+   <Route path="organizacija" element={<Organizatori/>}></Route>
  
   
    </Routes>

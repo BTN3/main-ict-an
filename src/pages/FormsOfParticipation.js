@@ -25,19 +25,19 @@ export default function FormsOfParticipation() {
     'Out of the box',
   ];
   const listDescription = [
-    'Interaktivno učenje i poučavanje sudionika o odabranoj temi, kojim se kod njih razvija neka vještina ili osjetljivost za neki problem.',
-    'Prikazi provedenih aktivnosti u nastavi, školskih projekata, preventivnih programa, programa za rad s darovitima, raznih tematskih aktivnosti...',
-    'Prikazi provedenih istraživanja (npr. akcijskih i/ili razvojnih) i njihovih rezultata',
+    'Interaktivno učenje i poučavanje sudionika o odabranoj temi, kojim se kod njih razvija neka vještina ili osjetljivost za neki problem. Predviđeno vrijeme trajanja jest do 60 minuta.',
+    'Prikazi provedenih aktivnosti u nastavi, školskih projekata, preventivnih programa, programa za rad s darovitima, raznih tematskih aktivnosti. Predviđeno vrijeme trajanja jest do 15 minuta.',
+    'Prikazi provedenih istraživanja (npr. akcijskih i/ili razvojnih) i njihovih rezultata. Predviđeno vrijeme trajanja jest do 15 minuta.',
     'Prezentacije različitih tema, koje omogućuju intenzivniju interakciju autora s drugim sudionicima tijekom trajanja poster-sekcije. Posteri trebaju biti vertikalne orijentacije, dimenzija 90 cm (širina) x 120 cm (visina).',
-    'Rasprava više stručnjaka o nekoj temi aktualnoj za školsku psihologiju. Voditelj/ica prijavljuje temu okruglog stola i vodi njegovu prijavu i organizaciju.',
-    'Događaj na kojem sudionici imaju izlaganja i raspravu o zajedničkoj temi. Voditelj simpozija predlaže temu i bira sudionike te određuje trajanje pojedinačnih izlaganja koje je najčešće 10-15 minuta.',
-    'Kratko inspirativno i dinamično predavanje o nekoj aktualnoj temi vezanoj uz područje psihologije.',
-    'Prikazi korištenja novih, inovativnih i kreativnih tehnika u radu, npr. igre, storytelling, larp...',
+    'Rasprava više stručnjaka o nekoj temi aktualnoj za školsku psihologiju. Voditelj/ica prijavljuje temu okruglog stola i vodi njegovu prijavu i organizaciju. Predviđeno vrijeme trajanja jest do 60 minuta.',
+    'Događaj na kojem sudionici imaju izlaganja i raspravu o zajedničkoj temi. Voditelj simpozija predlaže temu i bira sudionike te određuje trajanje pojedinačnih izlaganja koje je najčešće 10-15 minuta u ukupnom trajanju do 90 minuta.',
+    'Kratko inspirativno i dinamično predavanje o nekoj aktualnoj temi vezanoj uz područje psihologije. Predviđeno vrijeme trajanja do 18 minuta.',
+    'Prikazi korištenja novih, inovativnih i kreativnih tehnika u radu, npr. igre, storytelling, larp...Predviđeno vrijeme trajanja do 15 minuta.',
   ];
 
   const currentDate = new Date();
-  const examDate = new Date('2023-07-29'); // Replace with your desired exam date
-  const examDate2 = new Date('2023-07-28');
+  const examDate = new Date('2023-11-22'); // Replace with your desired exam date
+  const examDate2 = new Date('2023-11-11');
   const timeDifference = Math.abs(examDate - currentDate);
   const newDaysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
   const newHoursRemaining = Math.ceil(timeDifference / (1000 * 60 * 60));

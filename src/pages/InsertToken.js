@@ -169,7 +169,7 @@ const [prezime,setPrezime] = useState('');
                   <Form.Label htmlFor="ime">Unesi prezime:</Form.Label>
                   <Form.Control
                     type="prezime"
-                    placeholder="Unesi token"
+                    placeholder="Unesi prezime"
                     id="prezime"
                     name="prezime"
                     onChange={handleInputPrezime}

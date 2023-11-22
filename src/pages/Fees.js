@@ -17,7 +17,18 @@ export default function Fees() {
   return (
     <>
     <Navigation/>
-    
+    <div><h4>Cijena kotizacije:</h4>
+      
+    <pre><b> Rana kotizacija:</b> do 31. prosinca 2023. – 30 € </pre>
+    <pre><b> Srednja kotizacija:</b> od 1. - 31. siječnja 2024. - 40 €  </pre>
+    <pre><b> Kasna kotizacija:</b> od 1. veljače do 20. veljače 2024. - 50€  </pre>
+    <pre> Umirovljenici i studenti diplomskog studija su oslobođeni plaćanja kotizacije,
+           uz prethodnu prijavu do 20. veljače 2024.g. 
+           Svi pasivni sudionici moraju se prijaviti do 20. veljače. </pre>  
+
+  
+
+    </div>
      <Routes>
      <Route path="dataprotection" element={<DataProtection/>}></Route>
      <Route path="eventregistration" element={<EventRegistration/>}></Route>

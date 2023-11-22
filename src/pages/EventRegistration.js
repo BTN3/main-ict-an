@@ -5,6 +5,7 @@ import CarouselComponent from './CarouselComponent';
 // import socketClient  from "socket.io-client";
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
+import applyPhoto from '../assets/media/preuzmi.jpeg'
 
 
 const getFileDetails = async (file) => {
@@ -28,7 +29,7 @@ const sendRequest = async (url, data) => {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify(data),
     });
@@ -179,7 +180,7 @@ export default function EventRegistration({ role }) {
       });
     }catch (error) {
       // TypeError: Failed to fetch
-      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
       console.log('There was an error', error);
     }
 
@@ -233,7 +234,7 @@ export default function EventRegistration({ role }) {
       });
     }catch (error) {
       // TypeError: Failed to fetch
-      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
       console.log('There was an error', error);
     }
     
@@ -252,9 +253,11 @@ export default function EventRegistration({ role }) {
         <Row>
           <Modal show={show} onHide={() => setShow(false)} dialogClassName="custom-modal">
             <Modal.Header closeButton>
+              
               <Modal.Title style={{ fontSize: '14px' }}>Prijava na konferenciju 'Horizonti snage'</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+            <img src={applyPhoto} alt='photo' style={{left:'100px', position:'relative'}}/>
               {currentStep === 0 && <Step1 chooseParticipantType={handleParticipantType} />}
               
               
@@ -354,7 +357,7 @@ function Step2({
 }) {
   return (
     <div>
-      <h3>Enter Details</h3>
+      <h3>Unesite detalje:</h3>
       <Form.Group>
         <Form.Label htmlFor="ime">Ime:</Form.Label>
         <Form.Control id="ime" name="ime" type="text" placeholder="Unesi ime" onChange={handleInputIme} />
@@ -479,7 +482,7 @@ function Step2({
   }) {
     return (
       <div>
-        <h3>Enter Details</h3>
+        <h3>Unesite detalje:</h3>
         <Form.Group>
           <Form.Label htmlFor="token">Token:</Form.Label>
           <Form.Control id="token" name="token" type="text" placeholder="Unesite token dobiven e-mailom" onChange={handleToken} />
