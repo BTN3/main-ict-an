@@ -28,6 +28,7 @@ const sendRequest = async (url, data) => {
   }
 };
 export default function InsertToken() {
+
   const navigate = useNavigate();
   const [isWaitingForConfirmation, setIsWaitingForConfirmation] = useState(false);
   const [show, setShow] = useState(false);
@@ -46,11 +47,13 @@ const [prezime,setPrezime] = useState('');
     setPrezime(e.target.value);
   }
   const submitValues = async (e) => {
+
     e.preventDefault();
 
+  
     const inputToken = document.getElementById('token');
-    const inputIme = document.getElementById('ime');
-    const inputPrezime = document.getElementById('prezime');
+    var inputIme = document.getElementById('ime');
+    var inputPrezime = document.getElementById('prezime');
     var user = null
     var   userNew = null
     const confirmWindow = window.confirm(`Želite li pospremiti ovako unesene podatke?
@@ -76,16 +79,19 @@ const [prezime,setPrezime] = useState('');
     //console.log(user.recordset.ime == ime,inputIme.value,userNew.ime)
     //console.log(user.recordset != null)
     //console.log(user.recordset.prezime == prezim““e)
-   
+    inputPrezime = inputPrezime.value
+    inputPrezime = inputPrezime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
+    inputIme = inputIme.value
+    inputIme = inputIme.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
     if (userNew == null){
       alert('Ispravi unos ili ponovno kopiraj token na ovo mjesto  da bi se nastavio proces prijave na stručni skup "Horizonti snage"');
       console.log("user iz baze je null")
       return;
     }
-     
-    else if(!(userNew.ime == inputIme.value && userNew.prezime == inputPrezime.value)) {
+  
+    else if(!(userNew.ime == inputIme && userNew.prezime == inputPrezime)) {
       alert('Ispravi unos ili ponovno kopiraj token na ovo mjesto  da bi se nastavio proces prijave na stručni skup "Horizonti snage"');
-      console.log("Uneseno ime:",inputIme.value," pravoIme:",userNew.ime, "Uneseno prezime:",inputPrezime.value," pravo prezime:",userNew.prezime)
+      console.log("Uneseno ime:",inputIme," pravoIme:",userNew.ime, "Uneseno prezime:",inputPrezime," pravo prezime:",userNew.prezime)
       console.log("je li user null:",userNew)
       return
       }

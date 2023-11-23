@@ -50,7 +50,7 @@ const sendRequest = async (url, data) => {
 };
 
 export default function EventRegistration({ role }) {
-  console.log(nanoid(10))
+  
   let Psiholog_ID = nanoid(10);
   let tokenGenerated = nanoid(15);
   let validates = true;
@@ -83,7 +83,9 @@ export default function EventRegistration({ role }) {
   };
 
   const handleInputIme = (e) => {
-    setPsiholog({ ...psiholog, ime: e.target.value });
+    var ime = e.target.value
+    ime = ime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
+    setPsiholog({ ...psiholog, ime: ime });
   };
 
   const handleToken = (e) => {
@@ -93,7 +95,9 @@ export default function EventRegistration({ role }) {
   };
 
   const handleInputPrezime = (e) => {
-    setPsiholog({ ...psiholog, prezime: e.target.value });
+    var prezime = e.target.value
+    prezime = prezime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
+    setPsiholog({ ...psiholog, prezime: prezime });
   };
 
   const handleInputEmail = (e) => {
