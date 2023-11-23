@@ -131,7 +131,7 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
         }); 
       }catch (error) {
         // TypeError: Failed to fetch
-        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
         console.log('There was an error', error);
       }
      
@@ -158,7 +158,7 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
         });*/
       }catch (error) {
         // TypeError: Failed to fetch
-        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
         console.log('There was an error', error);
       }
         if (response) {
@@ -179,7 +179,7 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
           );
       }catch (error) {
         // TypeError: Failed to fetch
-        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
         console.log('There was an error', error);
       }
 
@@ -196,7 +196,7 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
     }
     catch (error) {
       // TypeError: Failed to fetch
-      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
       console.log('There was an error', error);
     }
       alert('Uspješno prijavljena predavanja!');
@@ -221,10 +221,10 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
 
   return (
     <>
-    <p>Stvori predbilježbu:</p>
+    <p>Vaša predbilježba na predavanja</p>
     <Form>
       <Form.Group controlId="selectedPredavanjeID">
-        <Form.Label>Odabrana predavanja:</Form.Label>
+        <Form.Label>Predavanja koja ste odabrali:</Form.Label>
         <br></br>
         <br></br>
         {receivedPredavanja.map((predavanje, index) => (
@@ -243,7 +243,7 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
       <br></br>
      
       <Button variant="primary" onClick={handleCreatePredbiljezba} disabled={isButtonDisabled}>
-        Create Predbiljezba
+        Stvorite predbilježbu
       </Button>
       
     </Form>

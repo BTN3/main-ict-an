@@ -49,7 +49,7 @@ const PopisSazetaka = () => {
         setSazetciData(response)
       } catch (error) {
         // TypeError: Failed to fetch
-        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
         console.log('There was an error', error);
       }
       

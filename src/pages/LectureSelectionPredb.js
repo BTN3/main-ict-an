@@ -114,7 +114,7 @@ const handleNavigate = () => {
       data = await sendGetRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/getPredbiljezbe');
         }catch (error) {
           // TypeError: Failed to fetch
-          alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+          alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
           console.log('There was an error', error);
         }
        }
@@ -126,7 +126,7 @@ const handleNavigate = () => {
         });
       }catch (error) {
         // TypeError: Failed to fetch
-        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
         console.log('There was an error', error);
       }
       }

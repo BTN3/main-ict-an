@@ -5,6 +5,7 @@ import { faFacebookF, faTwitter, faGoogle, faInstagram, faLinkedin } from '@fort
 import horizonti_velik_cropped from '../assets/media/horizonti_velik_cropped.png';
 import komoraPhoto from '../assets/media/image.png'
 
+
 export default function Footer() {
   return (
     <footer   style={{ backgroundColor: 'hsla(0, 0%, 0%, 0.8)' }} className='text-white'>
@@ -36,6 +37,7 @@ export default function Footer() {
                 <a href='https://linkedin.com' className='me-4 text-reset'>
                   <FontAwesomeIcon icon={faLinkedin} />
                 </a>
+               
               </div>
             </Col>
           </Row>
