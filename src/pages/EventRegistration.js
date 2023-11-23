@@ -6,6 +6,7 @@ import CarouselComponent from './CarouselComponent';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import applyPhoto from '../assets/media/preuzmi.jpeg'
+import prijavaSazetaka from '../assets/documents/Prijava_sazetaka.pdf'
 
 
 const getFileDetails = async (file) => {
@@ -257,7 +258,7 @@ export default function EventRegistration({ role }) {
               <Modal.Title style={{ fontSize: '14px' }}>Prijava na konferenciju 'Horizonti snage'</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            <img src={applyPhoto} alt='photo' style={{left:'100px', position:'relative'}}/>
+            <img src={applyPhoto} alt='photo' style={{width:'100%', height:'100%', position:'relative'}}/>
               {currentStep === 0 && <Step1 chooseParticipantType={handleParticipantType} />}
               
               
@@ -372,6 +373,7 @@ function Step2({
       </Form.Group>
       {participantType === 'Aktivni sudionik' && (
         <Form.Group>
+          <div><a href={prijavaSazetaka}>Prijavni obrazac za prijavu sažetaka</a></div>
           <Form.Label htmlFor="sazetci">Sažetci:</Form.Label>
           <Form.Control id="sazetci" type="file" accept=".docx, .pdf, .xlsx" multiple onChange={uploadFile} />
         </Form.Group>

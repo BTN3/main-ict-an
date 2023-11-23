@@ -11,23 +11,22 @@ import CreatePredavanje from './CreatePredavanje'
 import CreatePredbiljezba from './CreatePredbiljezba'
 import InsertToken from './InsertToken'
 import PopisSazetaka from './PopisSazetaka'
+import '../FeesStyle.css'
 
 export default function Fees() {
  
   return (
     <>
     <Navigation/>
-    <div><h4>Cijena kotizacije:</h4>
-      
-    <pre><b> Rana kotizacija:</b> do 31. prosinca 2023. – 30 € </pre>
-    <pre><b> Srednja kotizacija:</b> od 1. - 31. siječnja 2024. - 40 €  </pre>
-    <pre><b> Kasna kotizacija:</b> od 1. veljače do 20. veljače 2024. - 50€  </pre>
-    <pre> Umirovljenici i studenti diplomskog studija su oslobođeni plaćanja kotizacije,
-           uz prethodnu prijavu do 20. veljače 2024.g. 
-           Svi pasivni sudionici moraju se prijaviti do 20. veljače. </pre>  
-
   
-
+    <div className="custom-div">
+      <h4>Cijena kotizacije:</h4>
+      <p><b><span style={{ color: 'red' }}>Rana kotizacija:</span></b> do 31. prosinca 2023. – 30 € </p>
+      <p><b><span style={{ color: 'blue' }}>Srednja kotizacija:</span></b> od 1. - 31. siječnja 2024. - 40 € </p>
+      <p><b><span style={{ color: 'green' }}>Kasna kotizacija:</span></b> od 1. veljače do 20. veljače 2024. - 50€ </p>
+      <p> Umirovljenici i studenti diplomskog studija su oslobođeni plaćanja kotizacije,
+         uz prethodnu prijavu do 20. veljače 2024.g. 
+         Svi pasivni sudionici moraju se prijaviti do 20. veljače. </p>
     </div>
      <Routes>
      <Route path="dataprotection" element={<DataProtection/>}></Route>
