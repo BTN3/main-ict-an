@@ -5,7 +5,7 @@ import CarouselComponent from './CarouselComponent';
 // import socketClient  from "socket.io-client";
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
-import applyPhoto from '../assets/media/preuzmi.jpeg'
+import applyPhoto from '../assets/media/horizonti_velik_cropped.png'
 import prijavaSazetaka from '../assets/documents/Prijava_sazetaka.pdf'
 
 

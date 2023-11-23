@@ -1,11 +1,12 @@
 import React from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
+import '../FeesStyle.css'
 
 const PozvaniPredavaciCard = ({ title, description, photo, cv }) => {
   return (
     <Row className='mb-4'>
       <Col md={2}>
-        <div style={{
+        <div  style={{
           width: '100%',
           borderRadius: '50%',
           overflow: 'hidden',
@@ -33,7 +34,7 @@ const PozvaniPredavaciCard = ({ title, description, photo, cv }) => {
       </Col>
       <Col md={10}>
         <Card>
-          <Card.Body>
+          <Card.Body className='custom-div' style={{color:'white'}}>
             <Card.Title>{title}</Card.Title>
             <Card.Text>{description}</Card.Text>
             <Card.Text className='text-muted'>

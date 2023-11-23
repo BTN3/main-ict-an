@@ -25,7 +25,7 @@ function Navigation() {
     >
       <Navbar.Brand href="/">
         <Logo alt="" width="30" height="30" className="d-inline-block align-top" type="file" />
-        Horizonti
+        Horizonti snage 
       </Navbar.Brand>
       <Navbar.Toggle onClick={toggleMenu} aria-controls="responsive-navbar-nav" className="menu">
         <img

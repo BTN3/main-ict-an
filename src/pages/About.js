@@ -2,9 +2,7 @@ import React from 'react'
 import { Routes,Route } from 'react-router-dom';
 import ProgramOrganizingComittee from './ProgramOrganizingComittee';
 import IntroductionSpeech from './IntroductionSpeech';
-import ThePlaceOfEvent from './ThePlaceOfEvent';
 import Navigation from '../pages/Navigation';
-import CarouselComponent from './CarouselComponent'
 import Footer from './Footer';
 import PozvaniPredavaci from './PozvaniPredavaci';
 import Organizatori from './Organizatori';
@@ -13,7 +11,6 @@ export default function About() {
     <>
    <Navigation/>
   
-<<<<<<< Updated upstream
    <div className="custom-div">
       <h4>Tko smo?</h4>
       <p><b><span style={{ color: 'red' }}>Članovi programsko - organizacijskog odbora:</span></b> Snježana Kovač, Mislav Čupić, Ivana Delač, Natalia Dujić, Ivana Čorić, Aleksandra Huić, Gordana Kuterovac Jagodić, Anita Lauri Korajlija, Nada Kegalj,  Zvončica Kučanda</p>
@@ -24,9 +21,6 @@ export default function About() {
       <br/>
       <br/>
       <br/>
-=======
-   
->>>>>>> Stashed changes
    <Routes>
    
    <Route path="introductionspeech" element={<IntroductionSpeech/>}></Route>
