@@ -31,9 +31,9 @@ const sendRequest = async (url) => {
   }
 };
 const PopisSazetaka = () => {
-  const storedRole = localStorage.getItem('token')
+  var storedRole = localStorage.getItem('token')
   if(storedRole != null){
-    storedRole.split("+")[1];
+    storedRole = storedRole.split("+")[1];
 
   }
   

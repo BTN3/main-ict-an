@@ -33,10 +33,15 @@ const sendRequest = async (url, data) => {
   }
 };
 export default function CreatePredavanje() {
+ 
+  var storedRole = null
+  if(localStorage.getItem('token')!= null)
+    storedRole = localStorage.getItem('token').split("+")[1];
+  if(storedRole != null){
+   storedRole =  storedRole.split("+")[1];
 
-  const storedRole = localStorage.getItem('token').split("+")[1];
-  console.log("stored role",storedRole)
-  const psihologID = localStorage.getItem('token').split("+")[0];
+  }
+
   let Predavanje_ID = nanoid(10);
 //   let validates = true;
   let tip = '';

@@ -374,7 +374,11 @@ export default function LectureSelection() {
   var allResultsNaziv = new Set();
   var data = [];
   var fetchingPredavanja = null;
-  const storedRole = localStorage.getItem('token').split("+")[1];
+  var storedRole = null
+  if(localStorage.getItem('token')){
+      storedRole = localStorage.getItem('token').split("+")[1];
+  }
+  
   const [lista, setLista] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedLectures, setSelectedLectures] = useState([]);
@@ -382,9 +386,15 @@ export default function LectureSelection() {
  // const serverUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
   //const socket = socketClient(serverUrl);
   const navigate = useNavigate();
-  const receivedPsihologID = localStorage.getItem('token').split("+")[0];
+
+  var receivedPsihologID = null
   
-  const tokenreceived = localStorage.getItem('token');
+  if(localStorage.getItem('token')){
+    receivedPsihologID = localStorage.getItem('token').split("+")[0];
+  }
+ 
+  
+  
   const sendRequest = async (url, data) => {
     try {
       const response = await fetch(url, {

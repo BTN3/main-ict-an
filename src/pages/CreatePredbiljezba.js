@@ -68,9 +68,12 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
   //const socket = socketClient(serverUrl);
   const navigate = useNavigate();
 
-  const receivedPsiholog = localStorage.getItem('token');
+  var receivedPsiholog = null
   console.log("predvanja",JSON.parse(localStorage.getItem('myPredavanja')));
   var receivedPredavanja = JSON.parse(localStorage.getItem('myPredavanja'));
+  if(localStorage.getItem('token')){
+    receivedPsiholog = localStorage.getItem('token')
+  }
   var psihologID = receivedPsiholog.split("+")[0];
   const predavanjeID = receivedPredavanja;
   var fetchingPredavanja=null;

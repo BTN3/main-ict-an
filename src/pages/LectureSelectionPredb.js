@@ -56,8 +56,13 @@ const sendGetRequest = async (url) => {
 };
 export default function LectureSelectionPredb() {
   const [isCreateButtonActive, setCreateButtonActive] = useState(true);
-  const storedRole = localStorage.getItem('token').split("+")[1];
-  const psihologID = localStorage.getItem('token').split("+")[0];
+  var storedRole = null
+  var psihologID = null
+  if(localStorage.getItem('token') != null){
+    storedRole = localStorage.getItem('token').split("+")[1];
+    psihologID = localStorage.getItem('token').split("+")[0];
+  }
+
   let navigate = useNavigate();
 
   const [lista, setLista] = useState([]);
