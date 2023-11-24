@@ -50,19 +50,17 @@ function Navigation() {
             <NavDropdown.Item href="/about/organizacija">Organizatori</NavDropdown.Item>
           </NavDropdown>
           {/* Add more Nav.Link or NavDropdown items as needed */}
-          <NavDropdown title="Kotizacije i smještaj" id="collasible-nav-dropdown">
-           <NavDropdown.Item href="/registrationfeesaccommodation">Kotizacije i smještaj</NavDropdown.Item>
+          <NavDropdown title="Kotizacije i oblici sudjelovanja" id="collasible-nav-dropdown">
+           <NavDropdown.Item href="/registrationfeesaccommodation">Kotizacije i oblici sudjelovanja</NavDropdown.Item>
              <NavDropdown.Divider />
             <NavDropdown.Item href="/registrationfeesaccommodation/dataprotection">Politika privatnosti</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="/registrationfeesaccommodation/eventregistration">Prijava na događaj</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="/registrationfeesaccommodation/formsofparticipation">
             Oblici sudjelovanja
              </NavDropdown.Item>
              <NavDropdown.Divider />
              <NavDropdown.Item href="/registrationfeesaccommodation/inserttoken">
-               Token - prijava predavanja
+               Token - prijava na predavanja
              </NavDropdown.Item>
              <NavDropdown.Divider />
              <NavDropdown.Item href="/registrationfeesaccommodation/lectureselectionpredb">

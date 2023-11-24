@@ -21,12 +21,12 @@ export default function Fees() {
   
     <div className="custom-div">
       <h4>Cijena kotizacije:</h4>
-      <p><b><span style={{ color: 'red' }}>Rana kotizacija:</span></b> do 31. prosinca 2023. – 30 € </p>
-      <p><b><span style={{ color: 'blue' }}>Srednja kotizacija:</span></b> od 1. - 31. siječnja 2024. - 40 € </p>
-      <p><b><span style={{ color: 'green' }}>Kasna kotizacija:</span></b> od 1. veljače do 20. veljače 2024. - 50€ </p>
+      <p><b><span style={{ color: 'lightgreen' }}>Rana kotizacija:</span></b> do 31. prosinca 2023. – 30 € </p>
+      <p><b><span style={{ color: 'orange' }}>Srednja kotizacija:</span></b> od 1. - 31. siječnja 2024. - 40 € </p>
+      <p><b><span style={{ color: 'purple' }}>Kasna kotizacija:</span></b> od 1. veljače do 20. veljače 2024. - 50€ </p>
       <p> Umirovljenici i studenti diplomskog studija su oslobođeni plaćanja kotizacije,
          uz prethodnu prijavu do 20. veljače 2024.g. 
-         Svi pasivni sudionici moraju se prijaviti do 20. veljače. </p>
+         Svi pasivni sudionici moraju se prijaviti do 20. veljače 2024.g. </p>
     </div>
      <Routes>
      <Route path="dataprotection" element={<DataProtection/>}></Route>

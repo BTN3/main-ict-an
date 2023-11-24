@@ -48,7 +48,7 @@ const createPsiholog = async (Psiholog) => {
         .input('Sazetci_ID', sql.VarChar(200), Sazetci_ID)
         .input('Psiholog_ID', sql.VarChar(200), Psiholog_ID)
         .input('FileName', sql.NVarChar(255), FileName)
-        .input('FileType', sql.NVarChar(50), FileType)
+        .input('FileType', sql.NVarChar(sql.MAX), FileType)
         .input('FileData', sql.VarBinary(sql.MAX), Buffer.from(FileData, 'hex'))
         .input('OblikSudjelovanja', sql.NVarChar(50), OblikSudjelovanja) // Include OblikSudjelovanja
         .query(query);
