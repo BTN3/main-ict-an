@@ -35,12 +35,15 @@ const sendRequest = async (url, data) => {
 export default function CreatePredavanje() {
  
   var storedRole = null
+  
   if(localStorage.getItem('token')!= null)
-    storedRole = localStorage.getItem('token').split("+")[1];
+    storedRole = localStorage.getItem('token')
+    
   if(storedRole != null){
    storedRole =  storedRole.split("+")[1];
 
   }
+  
 
   let Predavanje_ID = nanoid(10);
 //   let validates = true;
