@@ -8,7 +8,7 @@ import '../App.css';
 import applyPhoto from '../assets/media/horizonti_velik_cropped.png'
 import prijavaSazetaka from '../assets/documents/Prijava_sazetaka.pdf'
 
-
+//chat gpt
 const getFileDetails = async (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -16,7 +16,10 @@ const getFileDetails = async (file) => {
       const buffer = event.target.result;
       const name = file.name;
       const type = file.type;
-      resolve({ name, type, content: buffer });
+      const content = btoa(
+        new Uint8Array(buffer).reduce((data, byte) => data + String.fromCharCode(byte), '')
+      );
+      resolve({ name, type, content });
     };
     reader.onerror = (error) => {
       reject(error);
@@ -24,13 +27,39 @@ const getFileDetails = async (file) => {
     reader.readAsArrayBuffer(file);
   });
 };
+//moj i dorin kod
+// const getFileDetails = async (file) => {
+//   return new Promise((resolve, reject) => {
+//     const reader = new FileReader();
+//     reader.onload = (event) => {
+//       const buffer = event.target.result;
+//       console.log(buffer);
+//       const name = file.name;
+//       const type = file.type;
+//       resolve({ name, type, content: buffer });
+//     };
+//     reader.onerror = (error) => {
+//       reject(error);
+//     };
+//     reader.readAsArrayBuffer(file);
+//   });
+// };
 
+
+
+
+
+
+
+
+//dorin i moj kod
 const sendRequest = async (url, data) => {
   try {
+    console.log(data.uploadedFiles[0].file.content)
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     });
@@ -50,6 +79,57 @@ const sendRequest = async (url, data) => {
     throw error;
   }
 };
+//prijedlog chata
+// const sendRequest = async (url, data) => {
+//   try {
+//     const formData = new FormData();
+//     formData.append('file', data.FileData, data.FileName); // Assuming FileData is the ArrayBuffer and FileName is the name
+
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       body: formData,
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+
+//     // Log response content (JSON)
+//     const responseBody = await response.json();
+//     console.log('Response content:', responseBody);
+
+//     return responseBody;
+//   } catch (error) {
+//     console.error('Error during the request:', error);
+//     throw error;
+//   }
+// };
+
+// const sendRequest = async (url, data) => {
+//   try {
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(data),
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+
+//     // Log response content (JSON)
+//     const responseBody = await response.json();
+//     console.log('Response content:', responseBody);
+
+//     return responseBody;
+//   } catch (error) {
+//     console.error('Error during the request:', error);
+//     throw error;
+//   }
+// };
+
 
 export default function EventRegistration({ role }) {
   
@@ -158,12 +238,23 @@ export default function EventRegistration({ role }) {
     localStorage.setItem('token', psiholog.Psiholog_ID + "+" + psiholog.role);
     if (psiholog.tokenInserted == psiholog.tokenGenerated) {
       try {
+        //chatgpt
         const fileDetailsPromises = psiholog.uploadedFiles.map(async (file) => {
           const fileDetails = await getFileDetails(file);
           return {
             file: fileDetails,
           };
         });
+        //moj i dorin - msm da su isti
+        // const fileDetailsPromises = psiholog.uploadedFiles.map(async (file) => {
+        //   const fileDetails = await getFileDetails(file);
+        //   console.log('Podaci koji se šalju:', psiholog);
+        //   console.log("file",file)
+
+        //   return {
+        //     file: fileDetails,
+        //   };
+        // });
         const filesWithDetails = await Promise.all(fileDetailsPromises);
         console.log("uploaded files",filesWithDetails)
 
@@ -179,6 +270,7 @@ export default function EventRegistration({ role }) {
         ...psiholog,
         uploadedFiles: filesWithDetails,
       });
+     
     }catch (error) {
       // TypeError: Failed to fetch
       alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
@@ -198,7 +290,49 @@ export default function EventRegistration({ role }) {
     
     }
   };
-
+  // const submitValues = async (e) => {
+  //   e.preventDefault();
+  //   setButtonDisabled(true);
+  //   localStorage.clear();
+  //   localStorage.setItem('token', psiholog.Psiholog_ID + '+' + psiholog.role);
+  
+  //   if (psiholog.tokenInserted === psiholog.tokenGenerated) {
+  //     try {
+  //       const fileDetailsPromises = psiholog.uploadedFiles.map(async (file) => {
+  //         const fileDetails = await getFileDetails(file);
+  //         return fileDetails; // Promijenjeno: Vratite samo informacije o datotekama
+  //       });
+  
+  //       const filesWithDetails = await Promise.all(fileDetailsPromises);
+  
+  //       // Slanje podataka na server
+  //       try {
+  //         const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND + '/api/data', {
+  //           ...psiholog,
+  //           uploadedFiles: filesWithDetails, // Poslati content datoteka
+  //         });
+  
+  //         const response2 = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND + '/api/email', {
+  //           ...psiholog,
+  //           uploadedFiles: filesWithDetails, // Poslati content datoteka
+  //         });
+  
+  //         setIsWaitingForConfirmation(false);
+  //         alert('Uspješno pospremljeni prijavni podaci!');
+  //         setButtonDisabled(false);
+  //         navigateToLectureSelection();
+  //       } catch (error) {
+  //         alert('Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.');
+  //         console.error('There was an error:', error);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error while inserting data:', error);
+  //     }
+  //   } else {
+  //     alert('Uneseni token se ne podudara s poslanim na e-mail. Molimo provjerite unesene podatke');
+  //   }
+  // };
+  
   const sendEmail = async (e) => {
     e.preventDefault();
 
@@ -375,7 +509,12 @@ function Step2({
         <Form.Group>
           <div><a href={prijavaSazetaka}>Prijavni obrazac za prijavu sažetaka</a></div>
           <Form.Label htmlFor="sazetci">Sažetci:</Form.Label>
-          <Form.Control id="sazetci" type="file" accept=".docx, .pdf, .xlsx" multiple onChange={uploadFile} />
+          <Form.Control id="sazetci" type="file" accept=".docx, .pdf, .xlsx"  multiple
+  onChange={(e) => {
+    // Dodajte ovdje console.log kako biste provjerili koje datoteke se dobivaju
+    console.log("Selected files:", e.target.files); 
+    uploadFile(e);
+  }} />
         </Form.Group>
       )}
       {uploadedFiles.length > 0 && (
