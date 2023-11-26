@@ -52,61 +52,12 @@ const getFileDetails = async (file) => {
 
 
 
-//dorin i moj kod
-const sendRequest = async (url, data) => {
-  try {
-    console.log(data.uploadedFiles[0].file.content)
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
 
-    if (response == undefined) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
 
-    return response.json();
-  } catch (error) {
-    console.error('Error during the request:', error);
-
-    // Log the response content if available
-    const responseBody = await (response ? response.text() : '');
-    console.error('Response content:', responseBody);
-
-    throw error;
-  }
-};
-//prijedlog chata
+//dorin i moj kod - taj radi za aktivnog
 // const sendRequest = async (url, data) => {
 //   try {
-//     const formData = new FormData();
-//     formData.append('file', data.FileData, data.FileName); // Assuming FileData is the ArrayBuffer and FileName is the name
-
-//     const response = await fetch(url, {
-//       method: 'POST',
-//       body: formData,
-//     });
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-
-//     // Log response content (JSON)
-//     const responseBody = await response.json();
-//     console.log('Response content:', responseBody);
-
-//     return responseBody;
-//   } catch (error) {
-//     console.error('Error during the request:', error);
-//     throw error;
-//   }
-// };
-
-// const sendRequest = async (url, data) => {
-//   try {
+//     console.log(data.uploadedFiles[0].file.content)
 //     const response = await fetch(url, {
 //       method: 'POST',
 //       headers: {
@@ -115,20 +66,54 @@ const sendRequest = async (url, data) => {
 //       body: JSON.stringify(data),
 //     });
 
-//     if (!response.ok) {
+//     if (response == undefined) {
 //       throw new Error(`HTTP error! Status: ${response.status}`);
 //     }
 
-//     // Log response content (JSON)
-//     const responseBody = await response.json();
-//     console.log('Response content:', responseBody);
-
-//     return responseBody;
+//     return response.json();
 //   } catch (error) {
 //     console.error('Error during the request:', error);
+
+//     // Log the response content if available
+//     const responseBody = await (response ? response.text() : '');
+//     console.error('Response content:', responseBody);
+
 //     throw error;
 //   }
 // };
+
+//CHAT GPT
+const sendRequest = async (url, data) => {
+  try {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    };
+
+    // Provjera tipa sudionika - ako je pasivni, uklonimo uploadedFiles iz tijela zahtjeva
+    if (data.participantType === 'Pasivni sudionik') {
+      delete requestOptions.body.uploadedFiles;
+    }
+
+    const response = await fetch(url, requestOptions);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error during the request:', error);
+
+    const responseBody = await response?.text();
+    console.error('Response content:', responseBody);
+
+    throw error;
+  }
+};
 
 
 export default function EventRegistration({ role }) {
@@ -195,11 +180,44 @@ export default function EventRegistration({ role }) {
     localStorage.setItem('userRole', role);
     setPsiholog({ ...psiholog, email, role });
   };
-
+//moj kod
+  // const handleParticipantType = (type) => {
+  //   setPsiholog({ ...psiholog, participantType: type, date: applicationDate });
+  //   setCurrentStep(1);
+  // };
+  //predloženi kod chat gpt
   const handleParticipantType = (type) => {
-    setPsiholog({ ...psiholog, participantType: type, date: applicationDate });
+    const updatedPsiholog = {
+      ...psiholog,
+      participantType: type,
+      date: applicationDate,
+    };
+  
+    if (type === 'Pasivni sudionik') {
+      // Prilagodi za pasivne sudionike
+      const { Psiholog_ID, tokenGenerated, ime, prezime, email } = updatedPsiholog;
+      setPsiholog({
+        Psiholog_ID,
+        tokenGenerated,
+        tokenInserted: null,
+        ime,
+        prezime,
+        email,
+        date: applicationDate,
+        participantType: type,
+        uploadedFiles: [], // Postavljamo prazan niz za datoteke za pasivne sudionike
+        Sazetci_IDs: [], // Prazan niz za Sazetci_IDs
+        oblikSudjelovanja: [], // Prazan niz za oblikSudjelovanja
+        role: 'user', // Ovo se može prilagoditi ako je potrebno
+      });
+    } else {
+      // Ostaje isto za aktivne sudionike
+      setPsiholog(updatedPsiholog);
+    }
+  
     setCurrentStep(1);
   };
+  
 
   const handleFileUpload = (e) => {
     const newFiles = Array.from(e.target.files);
@@ -236,42 +254,47 @@ export default function EventRegistration({ role }) {
     setButtonDisabled(true)
     localStorage.clear();
     localStorage.setItem('token', psiholog.Psiholog_ID + "+" + psiholog.role);
-    if (psiholog.tokenInserted == psiholog.tokenGenerated) {
+   const url= process.env.REACT_APP_HOSTNAME_BACKEND+'/api/data'
+    // if (psiholog.tokenInserted == psiholog.tokenGenerated) {
+    //   try {
+    //     //chatgpt
+    //     const fileDetailsPromises = psiholog.uploadedFiles.map(async (file) => {
+    //       const fileDetails = await getFileDetails(file);
+    //       return {
+    //         file: fileDetails,
+    //       };
+    //     });
+        
+    //     const filesWithDetails = await Promise.all(fileDetailsPromises);
+    //     console.log("uploaded files",filesWithDetails)
+    if (psiholog.tokenInserted === psiholog.tokenGenerated) {
       try {
-        //chatgpt
-        const fileDetailsPromises = psiholog.uploadedFiles.map(async (file) => {
-          const fileDetails = await getFileDetails(file);
-          return {
-            file: fileDetails,
-          };
-        });
-        //moj i dorin - msm da su isti
-        // const fileDetailsPromises = psiholog.uploadedFiles.map(async (file) => {
-        //   const fileDetails = await getFileDetails(file);
-        //   console.log('Podaci koji se šalju:', psiholog);
-        //   console.log("file",file)
-
-        //   return {
-        //     file: fileDetails,
-        //   };
-        // });
-        const filesWithDetails = await Promise.all(fileDetailsPromises);
-        console.log("uploaded files",filesWithDetails)
-
+        var filesWithDetails;
+  
+        if (psiholog.participantType === 'Aktivni sudionik') {
+          // Prilagodba za aktivnog sudionika
+          const fileDetailsPromises = psiholog.uploadedFiles.map(async (file) => {
+            const fileDetails = await getFileDetails(file);
+            return {file: fileDetails,
+            };
+          });
+  
+           filesWithDetails = await Promise.all(fileDetailsPromises);
+        }  
+       
         try{
 
         
-        const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/data', {  //https://horizonti-snage.azurewebsites.net/insertData
+          const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/data', {  //https://horizonti-snage.azurewebsites.net/insertData
+            ...psiholog,
+            uploadedFiles: filesWithDetails,
+          });
+  
+          const response2 = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/email', {//tu ide e-mail verification
           ...psiholog,
           uploadedFiles: filesWithDetails,
         });
-
-        const response2 = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/email', {//tu ide e-mail verification
-        ...psiholog,
-        uploadedFiles: filesWithDetails,
-      });
-     
-    }catch (error) {
+      }catch (error) {
       // TypeError: Failed to fetch
       alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
       console.log('There was an error', error);
