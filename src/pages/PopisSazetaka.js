@@ -30,16 +30,21 @@ const sendRequest = async (url) => {
 };
 
 const PopisSazetaka = () => {
-  const storedRole = localStorage.getItem('token');
-  const [sazetciData, setSazetciData] = useState([]);
-  const [searchString, setSearchString] = useState('');
+ 
+  
 
+  var storedRole = localStorage.getItem('token')
+  if(storedRole != null){
+    storedRole = storedRole.split("+")[1];
+    const [sazetciData, setSazetciData] = useState([]);
+    const [searchString, setSearchString] = useState('');
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND + '/api/sazeci');
         console.log('sazeci', response);
         setSazetciData(response);
+       
       } catch (error) {
         // TypeError: Failed to fetch
         alert(
@@ -61,7 +66,6 @@ const PopisSazetaka = () => {
       sazetak.Oblik_sudjelovanja.toLowerCase().includes(searchStr)
     );
   });
-
   return (
     <div className="container mt-5">
       {storedRole === 'admin' || storedRole === 'odbor' ? (
@@ -94,14 +98,14 @@ const PopisSazetaka = () => {
                   <td>{sazetak.email}</td>
                   <td>{sazetak.Oblik_sudjelovanja}</td>
                   <td>
-                    {Array.isArray(sazetak.FileData) ? (
-                      sazetak.FileData.map((fileData, index) => (
-                        <DownloadLink key={index} fileData={fileData.content} fileName={sazetak.FileName} />
-                      ))
-                    ) : (
-                      <DownloadLink fileData={sazetak.FileData.content} fileName={sazetak.FileName} />
-                    )}
-                  </td>
+  {Array.isArray(sazetak.FileData) ? (
+    sazetak.FileData.map((fileData, index) => (
+      <DownloadLink key={index} fileData={fileData} fileName={sazetak.FileName} />
+    ))
+  ) : (
+    <DownloadLink fileData={sazetak.FileData} fileName={sazetak.FileName} />
+  )}
+</td>
                 </tr>
               ))}
             </tbody>
@@ -113,15 +117,76 @@ const PopisSazetaka = () => {
             src={forbiden}
             alt="forbidden"
             style={{ width: '50px', height: '50px', backgroundColor: 'transparent', opacity: 0.9 }}
-          ></img>
+          />
           Nemate pravo na pristup sadržaju ove stranice.
         </div>
       )}
     </div>
   );
 };
+}
+export default PopisSazetaka;   
+//   return (
+//     <div className="container mt-5">
+//       {storedRole === 'admin' || storedRole === 'odbor' ? (
+//         <>
+//           <h1>Popis Sažetaka</h1>
+//           <Form.Group controlId="search">
+//             <Form.Label>Search</Form.Label>
+//             <Form.Control
+//               type="text"
+//               placeholder="Enter search string"
+//               value={searchString}
+//               onChange={(e) => setSearchString(e.target.value)}
+//             />
+//           </Form.Group>
+//           <Table striped bordered hover>
+//             <thead>
+//               <tr>
+//                 <th>Ime</th>
+//                 <th>Prezime</th>
+//                 <th>Email</th>
+//                 <th>Oblik sudjelovanja</th>
+//                 <th>Files</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {filteredSazetci.map((sazetak) => (
+//                 <tr key={sazetak.SažetakID}>
+//                   <td>{sazetak.ime}</td>
+//                   <td>{sazetak.prezime}</td>
+//                   <td>{sazetak.email}</td>
+//                   <td>{sazetak.Oblik_sudjelovanja}</td>
+//                   <td>
+//   {Array.isArray(sazetak.fileData) ? (
+//     sazetak.fileData.map((fileData, index) => (
+//       <DownloadLink key={index} fileData={sazetak.fileData} fileName={sazetak.FileName} />
+//     ))
+//   ) : (
+//     <DownloadLink fileData={sazetak.fileData} fileName={sazetak.FileName} />
+//   )}
+// </td>
 
-export default PopisSazetaka;
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </Table>
+//         </>
+//       ) : (
+//         <div>
+//           <img
+//             src={forbiden}
+//             alt="forbidden"
+//             style={{ width: '50px', height: '50px', backgroundColor: 'transparent', opacity: 0.9 }}
+//           ></img>
+//           Nemate pravo na pristup sadržaju ove stranice.
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+// }
+// export default PopisSazetaka;
 
 //OVO JE MOJ KOD
 // import React, { useState, useEffect } from 'react';
@@ -156,9 +221,9 @@ export default PopisSazetaka;
 //   }
 // };
 // const PopisSazetaka = () => {
-//   var storedRole = localStorage.getItem('token')
-//   if(storedRole != null){
-//     storedRole = storedRole.split("+")[1];
+  // var storedRole = localStorage.getItem('token')
+  // if(storedRole != null){
+  //   storedRole = storedRole.split("+")[1];
 
 //   }
   
@@ -227,15 +292,15 @@ export default PopisSazetaka;
 //                 <td>{sazetak.prezime}</td>
 //                 <td>{sazetak.email}</td>
 //                 <td>{sazetak.Oblik_sudjelovanja}</td>
-//                 <td>
-//                   {Array.isArray(sazetak.FileData) ? (
-//                     sazetak.FileData.map((fileData, index) => (
-//                       <DownloadLink key={index} fileData={fileData} fileName={sazetak.FileName} />
-//                     ))
-//                   ) : (
-//                     <DownloadLink fileData={sazetak.FileData} fileName={sazetak.FileName} />
-//                   )}
-//                 </td>
+                // <td>
+                //   {Array.isArray(sazetak.FileData) ? (
+                //     sazetak.FileData.map((fileData, index) => (
+                //       <DownloadLink key={index} fileData={fileData} fileName={sazetak.FileName} />
+                //     ))
+                //   ) : (
+                //     <DownloadLink fileData={sazetak.FileData} fileName={sazetak.FileName} />
+                //   )}
+                // </td>
 //               </tr>
 //             ))}
 //           </tbody>
@@ -248,3 +313,4 @@ export default PopisSazetaka;
 // );
 // }
 // export default PopisSazetaka;
+      
