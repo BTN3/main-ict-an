@@ -452,7 +452,7 @@ export default function LectureSelection() {
   const handleDeleteButton = async(predavanjeID) => {
 
     const response = await sendRequest(process.env.REACT_APP_HOSTNAME_BACKEND+'/api/deletePredavanje', {  //https://horizonti-snage.azurewebsites.net/insertData
-    redavanjeID:predavanjeID
+    predavanjeID
   });
   try{
     
