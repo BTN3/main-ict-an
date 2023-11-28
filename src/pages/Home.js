@@ -1,35 +1,46 @@
-import React from 'react'
-import Navigation from './Navigation'
-import Footer from './Footer'
-import CarouselComponent from './CarouselComponent'
+import React from 'react';
+import Navigation from './Navigation';
+import Footer from './Footer';
+import { Card, CardGroup, Carousel } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import nekaFotka from '../assets/media/brain-mind-psychology-idea.jpg'
+import CarouselComponent from './CarouselComponent';
 
 
-// import './App.css';
-// import {Routes,Route} from 'react-router-dom'
-// import About from './pages/About';
-// import Psiholog from './pages/Psiholog';
-// import NotFoundPage from './pages/NotFoundPage';
-// import Fees from './pages/Fees';
+
+// Primjer komponente Card za prikaz
+const CustomCard = ({ image, text, date }) => (
+  <Card>
+    <Card.Img variant="top" src={nekaFotka} />
+    <Card.Body>
+      <Card.Text>{text}</Card.Text>
+      <Card.Text>
+        <small className="text-muted">{date}</small>
+      </Card.Text>
+    </Card.Body>
+  </Card>
+);
 
 export default function Home() {
+  // Podaci za kartice
+  const cardData = [
+    // Podaci za tri reda kartica...
+  ];
+
   return (
     <>
-     <Navigation/>
-     <CarouselComponent/>   
-    <div>This is HOME page.</div>
-    <Footer/>
-      {/* <Routes>
-        <Route path="/navigation" element={<Navigation/>}/>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/about/*" element={<About/>}/>
-        <Route path="/registrationfeesaccommodation/*" element={<Fees/>}/>
-        <Route path="/psiholozi"/>
-        <Route path=":id" element={<Psiholog/>}/>
-        <Route path="*" element={<NotFoundPage />} />
-        </Routes> */}
+      <Navigation />
+
     
-   
- </>
-    
-  )
+        <h2>Dobrodošli na našu novu web stranicu!</h2>
+        
+        
+          <CarouselComponent/>
+        
+
+     
+      <Footer />
+    </>
+  );
 }
+

@@ -41,10 +41,10 @@ const [prezime,setPrezime] = useState('');
     setInput(e.target.value);
   }
   const handleInputIme = (e) =>{
-    setIme(e.target.value);
+    setIme(e.target.value.trim());
   }
   const handleInputPrezime = (e) =>{
-    setPrezime(e.target.value);
+    setPrezime(e.target.value.trim());
   }
   const submitValues = async (e) => {
 
@@ -66,7 +66,7 @@ const [prezime,setPrezime] = useState('');
     );}
     catch (error) {
       // TypeError: Failed to fetch
-      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
       console.log('There was an error', error);
     }
 
@@ -136,21 +136,21 @@ const [prezime,setPrezime] = useState('');
     <>
     <Container fluid>
         <Row>
-          <Button variant="outline-warning" size="md" onClick={handleShow}>
+          <Button  style={{marginBottom:'20px'}} variant="outline-warning" size="md" onClick={handleShow}>
             <img width={50} height={40} src={horizonti_velik_cropped} />
             Prijava na predavanja
           </Button>
         </Row>
 
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
+          <Modal.Header  closeButton>
             <Modal.Title>Prijava na predavanja</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {isWaitingForConfirmation ? (
               <div className="spinner-container">
                 <Spinner animation="border" role="status">
-                  <span className="visually-hidden">Loading...</span>
+                  <span className="visually-hidden">Učitavanje...</span>
                 </Spinner>
               </div>
             ) : (

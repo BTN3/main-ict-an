@@ -13,14 +13,32 @@ export default function About() {
   
    <div className="custom-div">
       <h4>Tko smo?</h4>
-      <p><b><span style={{ color: 'red' }}>Članovi programsko - organizacijskog odbora:</span></b> Snježana Kovač, Mislav Čupić, Ivana Delač, Natalia Dujić, Ivana Čorić, Aleksandra Huić, Gordana Kuterovac Jagodić, Anita Lauri Korajlija, Nada Kegalj,  Zvončica Kučanda</p>
-      <p><b><span style={{ color: 'blue' }}>2. Konferencija "Horizonti snage"</span></b> - ove godine nastavljamo sa produkcijom novih ideja i najavljujemo generalnu temu - zajedništvo, budući da nas samo predan rad, zajedništvo i ustrajnost u pronošenju ideje o važnosti psihologije u školi mogu dovesti u kvalitetnije i bolje razdoblje školstva</p>
-      <p style={ {color:'lightgray'}}><b>Posebna zahvala na doprinosu u izradi web stranice i aplikacije za Horizonte snage upućujem svojim bivšim učenicima, a sadašnjim velikim prijateljicama i prijateljima: Dori Medvarić, bez koje NIKAD ne bih toliko ustrajao i vjerovao u uspjeh ovog projekta, i Karlu Stjepanoviću, koji mi je pomogao da krenem u izradu ovog projekta, jer sam bio oduševljen njegovim oduševljenjem u projektiranju programskih projekata.</b></p>
+      <p>
+  <b>
+    <span style={{ color: 'lightgreen' }}>Članovi programsko - organizacijskog odbora:</span>
+  </b>
+</p>
+<ul>
+  <li>Ivana Čorić</li>
+  <li>Mislav Čupić</li>
+  <li>Ivana Delač</li>
+  <li>Natalia Dujić</li>
+  <li>Aleksandra Huić</li>
+  <li>Nada Kegalj</li>
+  <li>Snježana Kovač</li>
+  <li>Zvončica Kučanda</li>
+  <li>Gordana Kuterovac Jagodić</li>
+  <li>Antonija Vrdoljak</li>
+ 
+ 
+
+</ul>
+      <p><b><span style={{ color: 'orange' }}>2. Konferencija "Horizonti snage"</span></b> - ove godine nastavljamo sa produkcijom novih ideja i najavljujemo generalnu temu - zajedništvo, budući da nas samo predan rad, zajedništvo i ustrajnost u pronošenju ideje o važnosti psihologije u školi mogu dovesti u kvalitetnije i bolje razdoblje školstva</p>
+     
       </div>
       <br/>
       <br/>
-      <br/>
-      <br/>
+   
    <Routes>
    
    <Route path="introductionspeech" element={<IntroductionSpeech/>}></Route>

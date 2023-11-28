@@ -70,12 +70,12 @@ const PopisSazetaka = () => {
     <div className="container mt-5">
       {storedRole === 'admin' || storedRole === 'odbor' ? (
         <>
-          <h1>Popis Sažetaka</h1>
+          <h1 style={{color:'orange'}}>Popis sažetaka</h1>
           <Form.Group controlId="search">
-            <Form.Label>Search</Form.Label>
+            <Form.Label>Pretraga po različitim kriterijima...</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter search string"
+              placeholder="Pretraži po imenu, prezimenu..."
               value={searchString}
               onChange={(e) => setSearchString(e.target.value)}
             />
@@ -87,7 +87,7 @@ const PopisSazetaka = () => {
                 <th>Prezime</th>
                 <th>Email</th>
                 <th>Oblik sudjelovanja</th>
-                <th>Files</th>
+                <th>Sažetci</th>
               </tr>
             </thead>
             <tbody>

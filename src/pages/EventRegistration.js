@@ -150,8 +150,8 @@ export default function EventRegistration({ role }) {
   };
 
   const handleInputIme = (e) => {
-    var ime = e.target.value
-    ime = ime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
+    var ime = e.target.value.trim()
+     ime = ime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
     setPsiholog({ ...psiholog, ime: ime });
   };
 
@@ -162,13 +162,13 @@ export default function EventRegistration({ role }) {
   };
 
   const handleInputPrezime = (e) => {
-    var prezime = e.target.value
-    prezime = prezime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
+    var prezime = e.target.value.trim()
+     prezime = prezime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
     setPsiholog({ ...psiholog, prezime: prezime });
   };
 
   const handleInputEmail = (e) => {
-    const email = e.target.value;
+    const email = e.target.value.trim();
     let role = 'user';
 
     if (email === process.env.REACT_APP_ADMIN_MAIL) {
@@ -462,20 +462,20 @@ export default function EventRegistration({ role }) {
             {currentStep === 2 && (
               <Modal.Footer>
                 <Button variant="secondary" onClick={() => setShow(false)}>
-                  Close
+                  Zatvori
                 </Button>
                 <Button variant="primary" onClick={submitValues} disabled={isButtonDisabled}>
-                  Submit
+                  Pošalji
                 </Button>
               </Modal.Footer>
             )}
             {currentStep === 1 && (
               <Modal.Footer>
                 <Button variant="secondary" onClick={() => setShow(false)}>
-                  Close
+                  Zatvori
                 </Button>
                 <Button variant="primary" onClick={sendEmail}>
-                  Next
+                  Sljedeće
                 </Button>
               </Modal.Footer>
             )}
@@ -542,7 +542,7 @@ function Step2({
       )}
       {uploadedFiles.length > 0 && (
         <div>
-          <h5>Uploaded Files:</h5>
+          <h5>Učitane datoteke:</h5>
           <ul>
             {uploadedFiles.map((file, index) => (
               <li key={index}>
@@ -629,7 +629,7 @@ function Step2({
                     {/* Add radio buttons for other 'Oblik sudjelovanja' options here */}
                   </div>
                 </Form.Group>
-                <button onClick={() => removeFile(index)}>Remove</button>
+                <button onClick={() => removeFile(index)}>Ukloni</button>
               </li>
             ))}
           </ul>

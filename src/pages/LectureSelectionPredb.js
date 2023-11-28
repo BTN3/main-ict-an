@@ -64,7 +64,6 @@ export default function LectureSelectionPredb() {
   }
 
   let navigate = useNavigate();
-
   const [lista, setLista] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -86,7 +85,7 @@ const handleNavigate = () => {
     });
     }catch (error) {
       // TypeError: Failed to fetch
-      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
       console.log('There was an error', error);
     }
     setLista(response)
@@ -100,7 +99,7 @@ const handleNavigate = () => {
     setCreateButtonActive(true)
     }catch (error) {
       // TypeError: Failed to fetch
-      alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+      alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
       console.log('There was an error', error);
     }
   };
@@ -130,7 +129,7 @@ const handleNavigate = () => {
         console.log('There was an error', error);
       }
       }
-      console.log('Received data:', data);
+      // console.log('Received data:', data);
     
       try {
         if (data.recordset) {
@@ -213,6 +212,8 @@ const handleNavigate = () => {
                         <th>Tip: </th>
                         <th>Opis: </th>
                         <th>Vrijeme predbilježbe</th>
+                        <th>Mjesto održavanja</th>
+                        <th>Vrijeme održavanja</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -235,15 +236,17 @@ const handleNavigate = () => {
                             <td>{pred.tip}</td>
                             <td>{pred.opis}</td>
                             <td>{pred.Vrijeme_predbiljezbe}</td>
+                            <td>{pred.mjestoOdrzavanja}</td>
+                            <td>{pred.vrijemeOdrzavanja}</td>
                           </tr>
                         ))
                       )}
                     </tbody>
                   </Table>
                   {isCreateButtonActive ? (
-                  <Button onClick={handleGetYourOwnPredbiljezbe}>Prikaz osobnih predbilježbi</Button>
+                  <Button onClick={handleGetYourOwnPredbiljezbe} style={{marginBottom:'20px'}}>Prikaz osobnih predbilježbi</Button>
                   ) : (
-                  <Button onClick={handleGetAllPredbiljezbe} >Prikaz svih predbilježbi</Button>
+                  <Button onClick={handleGetAllPredbiljezbe} style={{marginBottom:'20px'}} >Prikaz svih predbilježbi</Button>
                   )}
                 </>
               ) : storedRole === 'user' && psihologID ? (
@@ -259,6 +262,9 @@ const handleNavigate = () => {
                         <th>Tip: </th>
                         <th>Opis: </th>
                         <th>Vrijeme predbilježbe</th>
+                        <th>Mjesto održavanja</th>
+                        <th>Vrijeme održavanja</th>
+                        
                       </tr>
                     </thead>
                     <tbody>
@@ -281,6 +287,8 @@ const handleNavigate = () => {
                             <td>{pred.tip}</td>
                             <td>{pred.opis}</td>
                             <td>{pred.Vrijeme_predbiljezbe}</td>
+                            <td>{pred.mjestoOdrzavanja}</td>
+                            <td>{pred.vrijemeOdrzavanja}</td>
                           </tr>
                         ))
                       )}

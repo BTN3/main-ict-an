@@ -3,14 +3,32 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import Logo from './Logo';
 import '../App.css';
 import HamburgerIcon from '../assets/media/hamburger-icon.png';
+import { useNavigate } from 'react-router-dom';
+import logoKomora from '../assets/media/image.png'
 
 function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
+  // const [btn,setBtn] = useState(false);
+  const navigate = useNavigate();
+ 
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  // const handleButtonLogin = () => {
+  //   if( setBtn(!btn))
+  //  {
+  //  localStorage.removeItem('token');
+  //  localStorage.removeItem('myPredavanja');
+  //  localStorage.removeItem('myPredavanjaIDs')
+    
+
+  //  }
+  //  else{
+  //   navigate('../registrationfeesaccommodation/inserttoken')
+  //  }
+  // };
   const showPrijavaLink = true; // Change this based on your condition
 
   return (
@@ -61,7 +79,7 @@ function Navigation() {
              <NavDropdown.Divider />
              <NavDropdown.Item href="/registrationfeesaccommodation/inserttoken">
                Token - prijava na predavanja
-             </NavDropdown.Item>
+             </NavDropdown.Item>                                                                      
              <NavDropdown.Divider />
              <NavDropdown.Item href="/registrationfeesaccommodation/lectureselectionpredb">
                Predbilježbe
@@ -86,13 +104,23 @@ function Navigation() {
               href="/registrationfeesaccommodation/eventregistration"
               className={`nav-link ${menuOpen ? 'nav-link-open' : ''}`}
             >
-              Prijava
+              Prijava na konferenciju
             </Nav.Link>
           </Nav>
         )}
+        {!menuOpen && (
+ <img
+ src={logoKomora}
+ alt='fotka'
+ style={{ width: '100px', height: '100px', marginLeft: 'auto' }}
+ className="ml-auto d-none d-lg-block"
+
+/>
+)}
       </Navbar.Collapse>
     </Navbar>
   );
 }
 
 export default Navigation;
+

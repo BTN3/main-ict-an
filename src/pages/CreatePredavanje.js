@@ -7,6 +7,7 @@ import CarouselComponent from './CarouselComponent';
 import forbidden from '../assets/media/forbiden.jpg'
 //import { useNavigate } from 'react-router-dom';
 import horizonti_velik_cropped from '../assets/media/horizonti_velik_cropped.png';
+import ReactDatetime from 'react-datetime';
 const sendRequest = async (url, data) => {
   try {
     const response = await fetch(url, {
@@ -33,7 +34,7 @@ const sendRequest = async (url, data) => {
   }
 };
 export default function CreatePredavanje() {
- 
+  // const applicationDate = new Date().toLocaleString();
   var storedRole = null
   
   if(localStorage.getItem('token')!= null)
@@ -98,8 +99,10 @@ export default function CreatePredavanje() {
   const handleInputMjestoOdrzavanja = (e) => {
     setPredavanje({ ...predavanje, mjestoOdrzavanja: e.target.value });
   };
-  const handleVrijemePocetka = (e) => {
-    setPredavanje({ ...predavanje, vrijemePocetka: e.target.value });
+ 
+  const handleVrijemePocetka = (value) => {
+    const formattedDate = value.format('DD.MM.YYYY HH:mm');
+    setPredavanje({ ...predavanje, vrijemePocetka: formattedDate });
   };
 
   const submitValues = async (e) => {
@@ -112,6 +115,8 @@ export default function CreatePredavanje() {
     const inputBrojPolaznika = document.getElementById('brojPolaznika');
     const inputSlobodnaMjesta = document.getElementById('slobodnaMjesta');
     const inputUkupnoMjesta = document.getElementById('ukupnoMjesta');
+    const inputMjestoOdrzavanja = document.getElementById('mjestoOdrzavanja');
+    const inputVrijemePocetka = document.getElementById('vrijemePocetka')
 
     if (predavanje.naziv === '' || predavanje.tip === '' || predavanje.opis === ''|| predavanje.brojPolaznika==='' || predavanje.slobodnaMjesta==='' || predavanje.ukupnoMjesta==='') {
       alert('Ispuni sva polja da bi se nastavio proces stvaranja predavanja');
@@ -126,6 +131,8 @@ export default function CreatePredavanje() {
       Broj polaznika: ${predavanje.brojPolaznika},
       Slobodna mjesta: ${predavanje.slobodnaMjesta},
       Ukupno mjesta: ${predavanje.ukupnoMjesta}
+      Mjesto održavanja: ${predavanje.mjestoOdrzavanja},
+      Vrijeme održavanja: ${predavanje.vrijemePocetka}
       `);
 
     if (confirmWindow) {
@@ -157,6 +164,9 @@ export default function CreatePredavanje() {
         inputBrojPolaznika.value = '';
         inputSlobodnaMjesta.value = '';
         inputUkupnoMjesta.value = '';
+        inputMjestoOdrzavanja = '';
+        inputVrijemePocetka = '';
+        
       } catch (err) {
         console.log(err);
         setLoading(false); // Hide loading spinner
@@ -192,7 +202,7 @@ export default function CreatePredavanje() {
       <Container fluid>
       
         <Row>
-          <Button variant="danger" size="md" onClick={handleShow}>
+          <Button variant="danger" size="md" onClick={handleShow} style={{marginTop:'20px', marginBottom:'20px'}}>
             <img width={50} height={40} src={horizonti_velik_cropped} alt="Horizonti Logo" />
             Stvaranje predavanja
           </Button>
@@ -334,15 +344,14 @@ export default function CreatePredavanje() {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label htmlFor="ukupnoMjesta">Vrijeme početka:</Form.Label>
-                <Form.Control
-                  type="vrijemePocetka"
-                  name="vrijemePocetka"
-                  placeholder="Vrijeme pocetka"
-                  id="vrijemePocetka"
-                  onChange={handleVrijemePocetka}
-                />
-              </Form.Group>
+  <Form.Label htmlFor="vrijemePocetka">Vrijeme početka:</Form.Label>
+  <ReactDatetime
+    inputProps={{ id: 'vrijemePocetka' }}
+    onChange={(value) => handleVrijemePocetka(value)}
+    dateFormat="DD.MM.YYYY HH:mm"
+    timeFormat="HH:mm"
+  />
+</Form.Group>
          
               <br />
               <Button variant="primary" type="submit">

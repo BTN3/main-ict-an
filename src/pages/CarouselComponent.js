@@ -80,8 +80,8 @@ function CarouselComponent() {
             alt="Mental Health"
           />
           <Carousel.Caption>
-            <h3>Mental Health</h3>
-            <p>Bla</p>
+            {/* <h3>Mental Health</h3>
+            <p>Bla</p> */}
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
