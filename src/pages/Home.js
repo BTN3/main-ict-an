@@ -146,7 +146,7 @@ export default function Home() {
             <div className="sectionContent">
               <img src={appImg} style={{width:'100%', height:'100%'}} alt='photo' />
 
-              <p style={{textAlign:'justify'}}><a href='https://horizonti-snage.azurewebsites.net/registrationfeesaccomodation/eventregistration'>Prijavi se</a> na 2. konferenciju školskih psihologa "Horizonti snage" na sljedeći način.
+              <p style={{textAlign:'justify'}}><a href='https://horizonti-snage.azurewebsites.net/registrationfeesaccommodation/eventregistration'>Prijavi se</a> na 2. konferenciju školskih psihologa "Horizonti snage" na sljedeći način.
               </p><ol>
                 <li>Svi sudionici prijavljuju se prvo kao pasivni sudionici Konferencije</li>
                 <li>Aktivni sudionici se mogu ponovno prijaviti kao aktivni sudionici prilaganjem svojeg sažetka na način definiran u postupku aktivne prijave.</li>
