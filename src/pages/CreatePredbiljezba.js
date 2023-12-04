@@ -242,8 +242,8 @@ var [selectedPredavanjeID, setSelectedPredavanjeID] = useState([]);
       </Form.Group>
       <br></br>
      
-      <Button variant="primary" onClick={handleCreatePredbiljezba} disabled={isButtonDisabled}>
-        Stvorite predbilježbu
+      <Button variant="outline-dark" onClick={handleCreatePredbiljezba} disabled={isButtonDisabled}>
+        Potvrdite predbilježbe
       </Button>
       
     </Form>

@@ -64,7 +64,7 @@ const PozvaniPredavaciCard = ({ title, subtitle, description, photo, cv }) => {
     <Row className='mb-4'>
       <Col md={12}>
         <Card>
-          <Card.Body className='custom-div' style={{ color: 'white' }}>
+          <Card.Body className='custom-div' style={{ color: 'white', textAlign:'justify' }}>
             <Row>
               <Col md={3}>
                 <div
@@ -74,6 +74,7 @@ const PozvaniPredavaciCard = ({ title, subtitle, description, photo, cv }) => {
                     overflow: 'hidden',
                     position: 'relative',
                     paddingTop: '100%',
+                    textAlign:'justify'
                   }}
                 >
                   <img

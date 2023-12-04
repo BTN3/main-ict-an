@@ -502,7 +502,7 @@ export default function EventRegistration({ role }) {
                 <Button variant="secondary" onClick={() => setShow(false)}>
                   Zatvori
                 </Button>
-                <Button variant="primary" onClick={submitValues} disabled={isButtonDisabled}>
+                <Button variant="outline-dark" onClick={submitValues} disabled={isButtonDisabled}>
                   Pošalji
                 </Button>
               </Modal.Footer>
@@ -512,7 +512,7 @@ export default function EventRegistration({ role }) {
                 <Button variant="secondary" onClick={() => setShow(false)}>
                   Zatvori
                 </Button>
-                <Button variant="primary" onClick={sendEmail}>
+                <Button variant="outline-dark" onClick={sendEmail}>
                   Sljedeće
                 </Button>
               </Modal.Footer>
@@ -528,11 +528,11 @@ function Step1({ chooseParticipantType }) {
   return (
     <Container className="text-center mt-5">
       <h6 color='dark-blue'>Odaberi tip sudjelovanja na konferenciji 'Horizonti snage': </h6>
-      <Button onClick={() => chooseParticipantType('Aktivni sudionik')} variant="outline-primary">
+      <Button onClick={() => chooseParticipantType('Aktivni sudionik')} variant="outline-dark">
         Aktivni sudionik
       </Button>
       <hr />
-      <Button onClick={() => chooseParticipantType('Pasivni sudionik')} variant="outline-primary">
+      <Button onClick={() => chooseParticipantType('Pasivni sudionik')} variant="outline-dark">
         Pasivni sudionik
       </Button>
     </Container>

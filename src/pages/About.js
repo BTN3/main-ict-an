@@ -6,6 +6,7 @@ import Navigation from '../pages/Navigation';
 import Footer from './Footer';
 import PozvaniPredavaci from './PozvaniPredavaci';
 import Organizatori from './Organizatori';
+import Fotografije from './Fotografije'
 export default function About() {
   return (
     <>
@@ -46,6 +47,7 @@ export default function About() {
    <Route path="organizingcomettee" element={<ProgramOrganizingComittee/>}></Route>
    <Route path="pozvanipredavaci" element={<PozvaniPredavaci/>}></Route>
    <Route path="organizacija" element={<Organizatori/>}></Route>
+   <Route path="photos" element={<Fotografije/>}></Route>
  
   
    </Routes>

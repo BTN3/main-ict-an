@@ -4,7 +4,7 @@ import Predavanje from '../dbFiles/Predavanje';
 import { nanoid } from 'nanoid';
 import CarouselComponent from './CarouselComponent';
 //import socketClient  from "socket.io-client";
-import forbidden from '../assets/media/forbiden.jpg'
+import forbidden from '../assets/media/red-stop-hand-sign-130999030.jpg'
 //import { useNavigate } from 'react-router-dom';
 import horizonti_velik_cropped from '../assets/media/horizonti_velik_cropped.png';
 import ReactDatetime from 'react-datetime';
@@ -197,12 +197,12 @@ export default function CreatePredavanje() {
 
   return (
     <>
-      <CarouselComponent />
+      
       {storedRole === 'admin' || storedRole === 'odbor' ? (
       <Container fluid>
       
         <Row>
-          <Button variant="danger" size="md" onClick={handleShow} style={{marginTop:'20px', marginBottom:'20px'}}>
+          <Button variant="outline-dark" size="md" onClick={handleShow} style={{marginTop:'20px', marginBottom:'20px'}}>
             <img width={50} height={40} src={horizonti_velik_cropped} alt="Horizonti Logo" />
             Stvaranje predavanja
           </Button>
@@ -369,8 +369,8 @@ export default function CreatePredavanje() {
         </Modal>
         
       </Container>
-       ): (  <div>
-        <img src={forbidden} style={{ width: '50px', height: '50px' }} alt='STOP' />
+       ): (  <div style={{backgroundColor:'gray',color:'white'}}>
+        <img src={forbidden} style={{ width: '350px', height: '350px' }} alt='STOP' />
         Nemate administratorske ovlasti da biste vidjeli sadržaj ove stranice.
       </div>)}
     </>

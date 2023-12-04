@@ -66,6 +66,8 @@ function Navigation() {
             <NavDropdown.Item href="/about/pozvanipredavaci">Pozvani predavači</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="/about/organizacija">Organizatori</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="/about/photos">Fotografije</NavDropdown.Item>
           </NavDropdown>
           {/* Add more Nav.Link or NavDropdown items as needed */}
           <NavDropdown title="Kotizacije i oblici sudjelovanja" id="collasible-nav-dropdown">

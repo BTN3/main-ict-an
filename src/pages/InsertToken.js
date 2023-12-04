@@ -136,7 +136,7 @@ const [prezime,setPrezime] = useState('');
     <>
     <Container fluid>
         <Row>
-          <Button  style={{marginBottom:'20px'}} variant="outline-warning" size="md" onClick={handleShow}>
+          <Button  style={{marginBottom:'20px'}} variant="outline-dark" size="md" onClick={handleShow}>
             <img width={50} height={40} src={horizonti_velik_cropped} />
             Prijava na predavanja
           </Button>
@@ -187,7 +187,7 @@ const [prezime,setPrezime] = useState('');
                 </Form.Group>
                 
                 <br />
-                <Button variant="primary" type="submit">
+                <Button variant="outline-dark" type="submit">
                  Prijava na predavanja
                 </Button>
               </Form>

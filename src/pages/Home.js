@@ -5,6 +5,7 @@ import Footer from './Footer'
 import { Button,Form } from 'react-bootstrap';
 import appImg from '../assets/media/application.jpg'
 import komunikacija from '../assets/media/komunikacija.webp'
+import CarouselComponent from './CarouselComponent';
 export default function Home() {
   // const [emailData, setEmailData] = useState({
   //   to: 'horizontisnage@gmail.com',
@@ -66,6 +67,7 @@ export default function Home() {
   return (
     <div>
       <Navigation />
+     
       <div className="grid-container" style={{minHeight:'100vh', minWidth:'100vw'}}>
         <div className={`grid-item ${selectedButton === 'Važno' ? 'selected' : ''}`}>
           <Button className='btnHome' variant='outline-dark' style={{width:'300px', height:'50px'}}  onClick={() => handleButtonClick('Važno')}>Važno</Button>

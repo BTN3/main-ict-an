@@ -624,7 +624,7 @@ export default function LectureSelection() {
                         Obriši
                       </Button>
                       
-                    ):((storedRole === 'user'?(<p> </p>):(<p> Nije moguće obrisati predavnje jer postoje predbilježbe za njega.</p>)))}
+                    ):((storedRole === 'user'?(<p> </p>):(<p> Nije moguće obrisati aktivnost jer postoje predbilježbe na istu!.</p>)))}
                     </td>
                   </tr>
                 ))
@@ -635,8 +635,8 @@ export default function LectureSelection() {
               )}
             </tbody>
           </Table>
-          <Button onClick={() => handleSendSelectedPredavanje()} variant="success">
-            Posalji odabrana predavanja
+          <Button onClick={() => handleSendSelectedPredavanje()} variant="outline-dark">
+            Sljedeći korak
           </Button>
         </Row>
       </Container>
