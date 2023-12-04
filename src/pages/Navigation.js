@@ -42,7 +42,7 @@ function Navigation() {
       className={`modern-navbar sticky-top ${menuOpen ? 'expanded' : ''}`}
     >
       <Navbar.Brand href="/">
-        <Logo alt="" width="30" height="30" className="d-inline-block align-top" type="file" />
+        <Logo alt="" width="30" height="30" className="d-inline-block align-top" type="file"  />
         Horizonti snage 
       </Navbar.Brand>
       <Navbar.Toggle onClick={toggleMenu} aria-controls="responsive-navbar-nav" className="menu">
@@ -61,7 +61,7 @@ function Navigation() {
           <NavDropdown title="O nama" id="collapsible-nav-dropdown">
             <NavDropdown.Item href="/about">O nama</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/about/introductionspeech">Pozdravni govor</NavDropdown.Item>
+            <NavDropdown.Item href="/about/introductionspeech">Pozivno pismo</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="/about/pozvanipredavaci">Pozvani predavači</NavDropdown.Item>
             <NavDropdown.Divider />
@@ -77,18 +77,18 @@ function Navigation() {
             Oblici sudjelovanja
              </NavDropdown.Item>
              <NavDropdown.Divider />
-             <NavDropdown.Item href="/registrationfeesaccommodation/inserttoken">
+             {/* <NavDropdown.Item href="/registrationfeesaccommodation/inserttoken">
                Token - prijava na predavanja
              </NavDropdown.Item>                                                                      
-             <NavDropdown.Divider />
-             <NavDropdown.Item href="/registrationfeesaccommodation/lectureselectionpredb">
+             <NavDropdown.Divider /> */}
+             {/* <NavDropdown.Item href="/registrationfeesaccommodation/lectureselectionpredb">
                Predbilježbe
              </NavDropdown.Item>
-             <NavDropdown.Divider />
-            <NavDropdown.Item href="/registrationfeesaccommodation/createpredavanje">
+             <NavDropdown.Divider /> */}
+            {/* <NavDropdown.Item href="/registrationfeesaccommodation/createpredavanje">
                Stvori predavanje
             </NavDropdown.Item>
-            <NavDropdown.Divider />
+            <NavDropdown.Divider /> */}
           
              <NavDropdown.Item href="/registrationfeesaccommodation/popissazetaka">
                Popis sažetaka

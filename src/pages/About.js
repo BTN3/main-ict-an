@@ -9,6 +9,7 @@ import Organizatori from './Organizatori';
 export default function About() {
   return (
     <>
+    <div style={{minHeight:'100vh'}}>
    <Navigation/>
   
    <div className="custom-div">
@@ -48,7 +49,9 @@ export default function About() {
  
   
    </Routes>
+  
    <Footer/>
+   </div>
     </>
   )
 }

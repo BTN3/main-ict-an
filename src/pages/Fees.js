@@ -17,6 +17,7 @@ export default function Fees() {
  
   return (
     <>
+     <div style={{minHeight:'100vh'}}>
     <Navigation/>
   
     <div className="custom-div">
@@ -39,6 +40,8 @@ export default function Fees() {
      <Route path="inserttoken" element={<InsertToken/>}></Route>
      <Route path="popissazetaka" element={<PopisSazetaka/>}></Route>
      </Routes>
+    
+     </div>
      <Footer/>
      </>
   )

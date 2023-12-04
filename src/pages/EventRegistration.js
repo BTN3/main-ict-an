@@ -149,9 +149,28 @@ export default function EventRegistration({ role }) {
     navigate('../');
   };
 
+  // const handleInputIme = (e) => {
+  //   var ime = e.target.value.trim()
+  //    ime = ime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
+  //   setPsiholog({ ...psiholog, ime: ime });
+  // };
+
   const handleInputIme = (e) => {
-    var ime = e.target.value.trim()
-     ime = ime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
+    let ime = e.target.value.trim();
+    
+    if (!ime) {
+      console.log('Molimo unesite ime.');
+      return;
+    }
+  
+    // Provjera sadrži li unos brojeve ili posebne znakove
+    if (/[\d!@#$%^&*()_+=[\]{};':"\\|,.<>/?-]/.test(ime)) {
+      alert('Unos ne smije sadržavati brojeve ili posebne znakove.');
+      return;
+    }
+  
+    // Ako je sve u redu, pretvara prvo slovo u veliko i postavlja stanje
+    ime = ime.charAt(0).toUpperCase() + ime.slice(1).toLowerCase();
     setPsiholog({ ...psiholog, ime: ime });
   };
 
@@ -161,11 +180,30 @@ export default function EventRegistration({ role }) {
     setPsiholog({ ...psiholog, tokenInserted: e.target.value });
   };
 
+  // const handleInputPrezime = (e) => {
+  //   var prezime = e.target.value.trim()
+  //    prezime = prezime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
+  //   setPsiholog({ ...psiholog, prezime: prezime });
+  // };
   const handleInputPrezime = (e) => {
-    var prezime = e.target.value.trim()
-     prezime = prezime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
+    let prezime = e.target.value.trim();
+    
+    if (!prezime) {
+      console.log('Molimo unesite prezime.');
+      return;
+    }
+  
+    // Provjera sadrži li unos brojeve ili posebne znakove
+    if (/[\d!@#$%^&*()_+=[\]{};':"\\|,.<>/?-]/.test(prezime)) {
+      alert('Unos ne smije sadržavati brojeve ili posebne znakove.');
+      return;
+    }
+  
+    // Ako je sve u redu, pretvara prvo slovo u veliko i postavlja stanje
+    prezime = prezime.charAt(0).toUpperCase() + prezime.slice(1).toLowerCase();
     setPsiholog({ ...psiholog, prezime: prezime });
   };
+
 
   const handleInputEmail = (e) => {
     const email = e.target.value.trim();

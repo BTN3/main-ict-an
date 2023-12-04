@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Form } from 'react-bootstrap';
 import DownloadLink from './DownloadLink';
-import forbiden from '../assets/media/forbiden.jpg';
+import forbiden from '../assets/media/red-stop-hand-sign-130999030.jpg';
 
 const sendRequest = async (url) => {
   try {
@@ -34,6 +34,18 @@ const PopisSazetaka = () => {
   
 
   var storedRole = localStorage.getItem('token')
+  if (storedRole === null) {
+    return (
+      <div style={{backgroundColor:'gray',color:'white'}}>
+        <img
+          src={forbiden}
+          alt="forbidden"
+          style={{ width: '350px', height: '350px', backgroundColor: 'transparent', opacity: 0.9 }}
+        />
+       Nemate pravo na pristup sadržaju ove stranice.
+      </div>
+    );
+  }
   if(storedRole != null){
     storedRole = storedRole.split("+")[1];
     const [sazetciData, setSazetciData] = useState([]);
@@ -107,7 +119,7 @@ const PopisSazetaka = () => {
   )}
 </td>
                 </tr>
-              ))}
+                ))}
             </tbody>
           </Table>
         </>
@@ -122,7 +134,7 @@ const PopisSazetaka = () => {
         </div>
       )}
     </div>
-  );
+   );
 };
 }
 export default PopisSazetaka;   

@@ -1,0 +1,57 @@
+/* HomeStyle.css */
+
+/* Stilizacija grid-a */
+
+.grid-container {
+    /* display: flex;
+    justify-content: space-between; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Podesi širinu svakog itema */
+    gap: 20px; /* Opcionalni razmak između itema */
+    background-color: gainsboro;
+  }
+  
+  /* Stilizacija grid buttona */
+  .grid-item {
+    width: 25%; /* Širina svakog buttona */
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    min-width: 100%;
+   
+  }
+  .btnHome {
+    color:white;
+  }
+  @media (max-width: 768px) {
+    .grid-item {
+      width: 50%; /* Možeš prilagoditi širinu za manje ekrane */
+    }
+  }
+  /* Stilizacija selektiranog buttona */
+  .selected {
+    background-color: #f0f0f0;
+    
+  }
+  
+  /* Stilizacija sekcije ispod buttona */
+  .sectionContent {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+  }
+  
+  
+  /* Dodaj media query za manje ekrane */
+  @media screen and (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr); /* Prikazuje 2 itema u jednom redu */
+    }
+  }
+  
+  /* Dodatni media query za još manje ekrane ako želiš prikazivati samo 1 item */
+  @media screen and (max-width: 480px) {
+    .grid-container {
+      grid-template-columns: repeat(1, 1fr); /* Prikazuje samo 1 item u jednom redu */
+    }
+  }

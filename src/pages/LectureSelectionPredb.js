@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Container, Row, Button, Form } from 'react-bootstrap';
 //import socketClient  from "socket.io-client";
-import forbidden from '../assets/media/forbiden.jpg'
+import forbidden from '../assets/media/red-stop-hand-sign-130999030.jpg'
 import { useNavigate } from 'react-router-dom';
 const sendRequest = async (url, data) => {
   try {
@@ -172,8 +172,8 @@ const handleNavigate = () => {
     <>
       {storedRole === null || psihologID === null ? (
         // <div><img src={forbiden} style={{width:'50px', height:'50p'}} alt='STOP'></img>You must login to see this page. You have not permission to enter this page. Go to ${handleNavigate} </div>
-        <div>
-    <img src={forbidden} style={{ width: '50px', height: '50px' }} alt='STOP' />
+        <div style={{backgroundColor:'gray', color:'white'}}>
+    <img src={forbidden} style={{ width: '350px', height: '350px' }} alt='STOP' />
     Morate se prijaviti kao sudionik da biste vidjeli sadržaj ove stranice. Nemate pravo pristupa sadržaju ove stranice!{' '}
     <span onClick={() => navigate('../eventregistration')}style={{color: 'blue'}}>
       Prijavi se!
