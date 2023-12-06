@@ -61,7 +61,7 @@ function Navigation() {
           <NavDropdown title="O nama" id="collapsible-nav-dropdown">
             <NavDropdown.Item href="/about">O nama</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/about/introductionspeech">Pozivno pismo</NavDropdown.Item>
+            <NavDropdown.Item href="/about/introductionspeech">Dobrodošlica</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="/about/pozvanipredavaci">Pozvani predavači</NavDropdown.Item>
             <NavDropdown.Divider />
@@ -71,9 +71,8 @@ function Navigation() {
           </NavDropdown>
           {/* Add more Nav.Link or NavDropdown items as needed */}
           <NavDropdown title="Kotizacije i oblici sudjelovanja" id="collasible-nav-dropdown">
-           <NavDropdown.Item href="/registrationfeesaccommodation">Kotizacije i oblici sudjelovanja</NavDropdown.Item>
-             <NavDropdown.Divider />
-            <NavDropdown.Item href="/registrationfeesaccommodation/dataprotection">Politika privatnosti</NavDropdown.Item>
+           <NavDropdown.Item href="/registrationfeesaccommodation">Kotizacija i uplata</NavDropdown.Item>
+            
             <NavDropdown.Divider />
             <NavDropdown.Item href="/registrationfeesaccommodation/formsofparticipation">
             Oblici sudjelovanja
@@ -91,10 +90,12 @@ function Navigation() {
                Stvori predavanje
             </NavDropdown.Item>
             <NavDropdown.Divider /> */}
-          
+{/*           
              <NavDropdown.Item href="/registrationfeesaccommodation/popissazetaka">
                Popis sažetaka
              </NavDropdown.Item>
+             <NavDropdown.Divider /> */}
+            <NavDropdown.Item href="/registrationfeesaccommodation/dataprotection">Politika privatnosti</NavDropdown.Item>
            </NavDropdown>
 
         </Nav>

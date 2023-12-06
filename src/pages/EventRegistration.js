@@ -6,7 +6,9 @@ import CarouselComponent from './CarouselComponent';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import applyPhoto from '../assets/media/horizonti_velik_cropped.png'
-import prijavaSazetaka from '../assets/documents/Prijava_sazetaka.pdf'
+import sazetakUputa from '../assets/documents/Upute_sazetak.pdf'
+import simpozijUputa from '../assets/documents/Upute_simpozij.pdf'
+import Cookies from 'js-cookie';
 
 //chat gpt
 const getFileDetails = async (file) => {
@@ -568,7 +570,8 @@ function Step2({
       </Form.Group>
       {participantType === 'Aktivni sudionik' && (
         <Form.Group>
-          <div><a href={prijavaSazetaka}>Prijavni obrazac za prijavu sažetaka</a></div>
+          <div><a href={sazetakUputa}>Uputa za prijavu sažetaka</a></div>
+          <div><a href={simpozijUputa}>Uputa za prijavu simpozija</a></div>
           <Form.Label htmlFor="sazetci">Sažetci:</Form.Label>
           <Form.Control id="sazetci" type="file" accept=".docx, .pdf, .xlsx"  multiple
   onChange={(e) => {

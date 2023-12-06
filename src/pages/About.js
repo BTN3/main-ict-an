@@ -35,7 +35,7 @@ export default function About() {
  
 
 </ul>
-      <p><b><span style={{ color: 'orange' }}>2. Konferencija "Horizonti snage"</span></b> - ove godine nastavljamo sa produkcijom novih ideja i najavljujemo generalnu temu - zajedništvo, budući da nas samo predan rad, zajedništvo i ustrajnost u pronošenju ideje o važnosti psihologije u školi mogu dovesti u kvalitetnije i bolje razdoblje školstva</p>
+      {/* <p><b><span style={{ color: 'orange' }}>2. Konferencija "Horizonti snage"</span></b> - ove godine nastavljamo sa produkcijom novih ideja i najavljujemo generalnu temu - zajedništvo, budući da nas samo predan rad, zajedništvo i ustrajnost u pronošenju ideje o važnosti psihologije u školi mogu dovesti u kvalitetnije i bolje razdoblje školstva</p> */}
      
       </div>
       <br/>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navigation from './Navigation';
+import photoHor from '../assets/media/90763d09-7baf-4f59-bd71-f57fdc7e9d74.jpeg'
 import '../HomeStyle.css'; // Pretpostavljam da ćeš dodati stilizaciju
 import Footer from './Footer'
 import { Button,Form } from 'react-bootstrap';
@@ -65,30 +66,53 @@ export default function Home() {
   // };
 
   return (
-    <div>
+    <div  >
       <Navigation />
      
-      <div className="grid-container" style={{minHeight:'100vh', minWidth:'100vw'}}>
-        <div className={`grid-item ${selectedButton === 'Važno' ? 'selected' : ''}`}>
+      <div className="grid-container" style={{minHeight:'100vh', minWidth:'100vw', backgroundImage: `url(${photoHor})`,opacity:'0.7', backgroundRepeat:'no-repeat',
+  backgroundImage: `url(${photoHor})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center'}}>
+      {/* <img src={photoHor}  alt='photo' className='background-image'/> */}
+        {/* <div className={`grid-item ${selectedButton === 'Važno' ? 'selected' : ''}`}>
           <Button className='btnHome' variant='outline-dark' style={{width:'300px', height:'50px'}}  onClick={() => handleButtonClick('Važno')}>Važno</Button>
           {selectedButton === 'Važno' && (
             <div className="sectionContent">
               <p>Ovdje ide tekst za Važno.</p>
             </div>
           )}
+        </div> */}
+        <div className={`grid-item ${selectedButton === 'O aplikaciji za prijavu' ? 'selected' : ''}`}>
+          <Button variant='outline-light' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('O aplikaciji za prijavu')}>Vijesti</Button>
+          {selectedButton === 'O aplikaciji za prijavu' && (
+            <div className="sectionContent">
+              <img src={appImg} style={{width:'100%', height:'100%'}} alt='photo' />
+
+              <p style={{textAlign:'justify'}}><a href='https://horizonti-snage.azurewebsites.net/registrationfeesaccommodation/eventregistration'>Prijavi se</a> na 2. konferenciju školskih psihologa "Horizonti snage" na sljedeći način.
+              </p><ol>
+                <li>Svi sudionici prijavljuju se prvo kao pasivni sudionici Konferencije</li>
+                <li>Aktivni sudionici se mogu ponovno prijaviti kao aktivni sudionici prilaganjem svojeg sažetka na način definiran u postupku aktivne prijave.</li>
+                <li>Naknadno će biti moguće odabrati i aktivnosti s ograničenim sudjelovanjem, poput radionica i drugih aktivnosti!</li></ol>
+            </div>
+          )}
         </div>
         
         <div className={`grid-item ${selectedButton === 'Vijesti' ? 'selected' : ''}`}>
-          <Button variant='outline-dark' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('Vijesti')}>Vijesti</Button>
+          <Button variant='outline-light' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('Vijesti')}>Važno</Button>
           {selectedButton === 'Vijesti' && (
             <div className="sectionContent">
-              <p>Ovdje ide tekst za Vijesti.</p>
+              <p>Važni datumi:</p>
+              <ul>
+ <li>Rok za prijavu sažetaka: 31.12.2023.</li>
+ <li>Rana prijava (rana kotizacija): do 31.12.2023.</li>
+ <li>Srednja prijava (srednja kotizacija):  od 1.1. -  31.01.2024.</li>
+ <li>Kasna prijava (kasna kotizacija): od  1.2. - 20.2.2024.</li></ul>
             </div>
           )}
         </div>
         {/* Dodaj ostale buttone */}
         <div className={`grid-item ${selectedButton === 'Kontaktirajte nas' ? 'selected' : ''}`}>
-          <Button variant='outline-dark' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('Kontaktirajte nas')}>Kontakt</Button>
+          <Button variant='outline-light' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('Kontaktirajte nas')}>Kontakt</Button>
           {selectedButton === 'Kontaktirajte nas' && (
            
            <div className="sectionContent">
@@ -140,22 +164,9 @@ export default function Home() {
             </div>
           )}
         </div>
-        <div className={`grid-item ${selectedButton === 'O aplikaciji za prijavu' ? 'selected' : ''}`}>
-          <Button variant='outline-dark' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('O aplikaciji za prijavu')}>O aplikaciji</Button>
-          {selectedButton === 'O aplikaciji za prijavu' && (
-            <div className="sectionContent">
-              <img src={appImg} style={{width:'100%', height:'100%'}} alt='photo' />
-
-              <p style={{textAlign:'justify'}}><a href='https://horizonti-snage.azurewebsites.net/registrationfeesaccommodation/eventregistration'>Prijavi se</a> na 2. konferenciju školskih psihologa "Horizonti snage" na sljedeći način.
-              </p><ol>
-                <li>Svi sudionici prijavljuju se prvo kao pasivni sudionici Konferencije</li>
-                <li>Aktivni sudionici se mogu ponovno prijaviti kao aktivni sudionici prilaganjem svojeg sažetka na način definiran u postupku aktivne prijave.</li>
-                <li>Naknadno će biti moguće odabrati i aktivnosti s ograničenim sudjelovanjem, poput radionica i drugih aktivnosti!</li></ol>
-            </div>
-          )}
         </div>
         
-      </div>
+      
      
       <Footer/>
     </div>
