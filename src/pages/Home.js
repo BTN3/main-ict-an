@@ -101,13 +101,13 @@ export default function Home() {
           <Button variant='outline-light' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('Vijesti')}>Važno</Button>
           {selectedButton === 'Vijesti' && (
             <>
-            <div className="sectionContent">
-              <p>Važni datumi:</p>
-              <ul>
- <li>Rok za prijavu sažetaka: 31.12.2023.</li>
- <li>Rana prijava (rana kotizacija): do 31.12.2023.</li>
- <li>Srednja prijava (srednja kotizacija):  od 1.1. -  31.01.2024.</li>
- <li>Kasna prijava (kasna kotizacija): od  1.2. - 20.2.2024.</li></ul>
+            <div className="sectionContent" style={{textAlign:'justify'}}>
+              <p style={{textAlign:'center'}}>Važni datumi:</p>
+             
+ <p >Rok za prijavu sažetaka: 31.12.2023.</p>
+ <p>Rana prijava (rana kotizacija): do 31.12.2023.</p>
+ <p>Srednja prijava (srednja kotizacija):  od 1.1. -  31.01.2024.</p>
+ <p>Kasna prijava (kasna kotizacija): od  1.2. - 20.2.2024.</p>
  
             </div>
             <hr/>

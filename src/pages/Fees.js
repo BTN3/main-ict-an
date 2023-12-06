@@ -46,7 +46,7 @@ export default function Fees() {
       </Routes>
     <div className="custom-div">
       
-    <h4>Informacije o uplati:</h4>
+    <h4>Način uplate kotizacije:</h4>
   <h4><span style={{color:'orange'}}>Tvrtka: </span>HERMINA USLUGE d.o.o.</h4>
   <h5><span style={{color:'orange'}}>Kontakt osoba: </span>Nevena Bebek</h5>
   <p><span style={{color:'orange'}}>E-mail:</span> <a href='MAILTO:info@hermina-usluge.hr'>info@hermina-usluge.hr</a> </p>
