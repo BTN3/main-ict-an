@@ -39,7 +39,7 @@ export default function DataProtection() {
         Kako dijelimo vaše podatke:
         Vaše podatke nećemo prodavati, iznajmljivati ili dijeliti s trećim stranama bez vašeg pristanka,
         osim ako to nije neophodno za pružanje usluga koje tražite ili ako to zahtijeva zakon. Podatke koje sami unosite služe isključivo u svrhu prijave na Konferenciju.
-        Unosom podataka pristajete na to da Vas sa e-mail adrese <em> <a href='horizontisnage@gmail.com'/></em> kontaktiramo u svrhu verifikacije i potvrde sudjelovanja te prijave na aktivnosti s ograničenim brojem polaznika.
+        Unosom podataka pristajete na to da Vas sa e-mail adrese <b> <a href='MAILTO:horizontisnage@gmail.com'>horizontisnage@gmail.com</a></b> kontaktiramo u svrhu verifikacije i potvrde sudjelovanja te prijave na aktivnosti s ograničenim brojem polaznika.
         Ukoliko imate bilo kakve prigovore na nešto što je objavljeno na web stranici, molimo da nam se javite kako bismo što hitnije maknuli eventualni sadržaj za koji niste dali izričit pristanak.
     </p>
 </section>
@@ -59,7 +59,7 @@ export default function DataProtection() {
     <p>
         Vaša prava:
         Imate pravo zatražiti pristup, ispravak, brisanje ili ograničavanje korištenja vaših osobnih podataka unatoč tome što ste sami kontrolirate unos podataka.
-        Također imate pravo prigovora na način na koji obrađujemo vaše podatke, ukoliko postoji ikakav prigovor molimo obratite se na <em> <a href='horizontisnage@gmail.com'/></em>, a mi ćemo se potruditi u što moguće kraćem roku odgovoriti na vašu primjedbu ili upit.
+        Također imate pravo prigovora na način na koji obrađujemo vaše podatke, ukoliko postoji ikakav prigovor molimo obratite se na <b> <a href='MAILTO:horizontisnage@gmail.com'>horizontisnage@gmail.com</a></b>, a mi ćemo se potruditi u što moguće kraćem roku odgovoriti na vašu primjedbu ili upit.
     </p>
 </section>
 

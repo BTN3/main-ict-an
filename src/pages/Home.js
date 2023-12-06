@@ -88,7 +88,7 @@ export default function Home() {
             <div className="sectionContent">
               <img src={appImg} style={{width:'100%', height:'100%'}} alt='photo' />
 
-              <p style={{textAlign:'justify'}}><a href='https://horizonti-snage.azurewebsites.net/registrationfeesaccommodation/eventregistration'>Prijavi se</a> na 2. konferenciju školskih psihologa "Horizonti snage" na sljedeći način.
+              <p style={{textAlign:'justify'}}><a href='https://horizonti-snage.azurewebsites.net/registrationfeesaccommodation/eventregistration' >Prijavi se</a> na 2. konferenciju školskih psihologa "Horizonti snage" na sljedeći način.
               </p><ol>
                 <li>Svi sudionici prijavljuju se prvo kao pasivni sudionici Konferencije</li>
                 <li>Aktivni sudionici se mogu ponovno prijaviti kao aktivni sudionici prilaganjem svojeg sažetka na način definiran u postupku aktivne prijave.</li>
@@ -100,6 +100,7 @@ export default function Home() {
         <div className={`grid-item ${selectedButton === 'Vijesti' ? 'selected' : ''}`}>
           <Button variant='outline-light' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('Vijesti')}>Važno</Button>
           {selectedButton === 'Vijesti' && (
+            <>
             <div className="sectionContent">
               <p>Važni datumi:</p>
               <ul>
@@ -107,8 +108,15 @@ export default function Home() {
  <li>Rana prijava (rana kotizacija): do 31.12.2023.</li>
  <li>Srednja prijava (srednja kotizacija):  od 1.1. -  31.01.2024.</li>
  <li>Kasna prijava (kasna kotizacija): od  1.2. - 20.2.2024.</li></ul>
+ 
             </div>
+            <hr/>
+         <div>Ova web stranica sadrži neke funkcionalnosti koje nisu podržane na Firefox pregledniku te vas stoga upozoravamo da postupak za prijavu neće dobro raditi na navedenom pregledniku.
+         U tu svrhu poželjno je koristiti druge preglednike.
+       </div>
+       </>
           )}
+         
         </div>
         {/* Dodaj ostale buttone */}
         <div className={`grid-item ${selectedButton === 'Kontaktirajte nas' ? 'selected' : ''}`}>
