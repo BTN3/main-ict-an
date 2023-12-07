@@ -5,6 +5,7 @@ import CV_Mojca from '../assets/documents/CV_Mojca_Jurišević.pdf'
 import photoNina from '../assets/media/Nina Pavlin - Bernardić.png'
 import CV_Nina from '../assets/documents/CV_Pavlin-Bernardić - sažetak predavanja.pdf'
 import photoAnita from '../assets/media/hpk.JPG'
+import profilePhoto from '../assets/media/profile-icon-design-free-vector.jpg'
 
 
 export default function PozvaniPredavaci() {
@@ -20,6 +21,16 @@ export default function PozvaniPredavaci() {
             photo={photoMojca}
             cv={CV_Mojca}
           />}
+
+         {isTrue && <PozvaniPredavaciCard
+            title='Naslov rada'
+            subtitle='dr.sc.Iris Marušić'
+            description='Iris Marušić je znanstvena savjetnica u Centru za istraživanje i razvoj obrazovanja Instituta za društvena istraživanja u Zagrebu. U središtu njezinih istraživačkih interesa su profesionalna dobrobit učitelja i nastavnika, učiteljska motivacija te uloga ličnosti u obrazovanju.  Trenutačno vodi projekt Hrvatske zaklade za znanost posvećen istraživanju individualnih odrednica dobrobiti učitelja na početku karijere. Uz istraživački rad, Iris Marušić je i edukatorica u programu razvoja socio-emocionalnih kompetencija i svijesti o različitosti kod učitelja koji  je dio međunarodnih Erasmus projekata.  
+
+            Rezultate svojih istraživanja objavila  je u pedesetak znanstvenih radova, nekoliko poglavlja u knjigama, studija te stručnih članaka. Sudjelovala je s priopćenjima na šezdesetak međunarodnih i domaćih skupova. Bila je članica radnih skupina za  izradu ključnih nacionalnih strateških dokumenata u području obrazovanja te članica  Razreda za školsku psihologiju Hrvatske psihološke komore.  '
+            photo={profilePhoto}
+          
+          />}
         
           {isTrue && <PozvaniPredavaciCard
             title='„Škola kao sigurno mjesto: Osnaživanje školskih psihologa za podršku djeci žrtvama obiteljskog zlostavljanja“ '
@@ -27,7 +38,7 @@ export default function PozvaniPredavaci() {
             description='Anita Lauri Korajlija 1994. godine upisala je studij psihologije na Odsjeku za psihologiju Filozofskog fakulteta u Zagrebu. Diplomirala je 1999. godine te iste godine upisala je poslijediplomski studij psihologije, završivši ga uspješnom obranom magisterija 2004. godine. U ožujku 2010. godine obranila je doktorsku disertaciju s temom „Perfekcionizam i anksiozna osjetljivost kao rizični faktori za razvoj anksioznih smetnji: Kvantitativna i kvalitativna studija“ pod mentorstvom prof. dr. Nataše Jokić-Begić. Nakon diplome sudjelovala je na više stručnih i znanstvenih programa izobrazbe iz područja kliničke procjene, kognitivno-bihevioralne terapije, psihotraumatologije te skrbi temeljene na informiranosti o traumi za što je prošla i edukaciju za trenere.
             Na Odsjeku za psihologiju Filozofskog fakulteta od akademske godine 2023./2024. obnaša ulogu pročelnice Odsjeka.
             U preddiplomskim, diplomskim, specijalističkim i doktorskim programima studija psihologije sudjeluje u nastavi na više kolegija. Pod njenim mentorstvom obranjen je veći broj diplomskih, specijalističkih i doktorskih radova na Odsjeku za psihologiju Filozofskog fakulteta i Hrvatskih studija.
-            Bila je višegodišnja voditeljica je Savjetovališta Filozofskog fakulteta za studente u Zagrebu, te u njemu radi i kao savjetovateljica. Dugogodišnja je vanjska je suradnica Savjetovališta za žene Autonomne ženske kuće i Centra za žene žrtve rata Rosa. 
+            Bila je višegodišnja voditeljica Savjetovališta Filozofskog fakulteta za studente u Zagrebu te u njemu radi i kao savjetovateljica. Dugogodišnja je vanjska suradnica Savjetovališta za žene Autonomne ženske kuće i Centra za žene žrtve rata Rosa. 
             Surađivala je na više stručnih projekata, održala je predavanja i radionice na stručnim skupovima psihologa, liječnika i farmaceuta, na edukacijama međusektorske suradnje u razumijevanju i suzbijanju nasilja nad ženama i djecom te za širu javnost.
             Tajnica je međunarodnog udruženja za istraživanje stresa i anksioznosti (STAR Society) te članica Upravnog odbora Hrvatske psihološke komore.
             '            

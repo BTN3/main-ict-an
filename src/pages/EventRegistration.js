@@ -6,8 +6,8 @@ import CarouselComponent from './CarouselComponent';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import applyPhoto from '../assets/media/horizonti_velik_cropped.png'
-import sazetakUputa from '../assets/documents/Upute_sazetak.pdf'
-import simpozijUputa from '../assets/documents/Upute_simpozij.pdf'
+import sazetakUputa from '../assets/documents/Uputa_sazetak.pdf'
+import simpozijUputa from '../assets/documents/Uputa_simpozij.pdf'
 import Cookies from 'js-cookie';
 
 //chat gpt
