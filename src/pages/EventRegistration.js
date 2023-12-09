@@ -157,6 +157,25 @@ export default function EventRegistration({ role }) {
   //   setPsiholog({ ...psiholog, ime: ime });
   // };
 
+  // const handleInputIme = (e) => {
+  //   let ime = e.target.value.trim();
+    
+  //   if (!ime) {
+  //     console.log('Molimo unesite ime.');
+  //     return;
+  //   }
+  
+  //   // Provjera sadrži li unos brojeve ili posebne znakove
+  //   if (/[\d!@#$%^&*()_+=[\]{};':"\\|,.<>/?-]/.test(ime)) {
+  //     alert('Unos ne smije sadržavati brojeve ili posebne znakove.');
+  //     return;
+  //   }
+  
+  //   // Ako je sve u redu, pretvara prvo slovo u veliko i postavlja stanje
+  //   ime = ime.charAt(0).toUpperCase() + ime.slice(1).toLowerCase();
+  //   setPsiholog({ ...psiholog, ime: ime });
+  // };
+
   const handleInputIme = (e) => {
     let ime = e.target.value.trim();
     
@@ -171,11 +190,14 @@ export default function EventRegistration({ role }) {
       return;
     }
   
-    // Ako je sve u redu, pretvara prvo slovo u veliko i postavlja stanje
-    ime = ime.charAt(0).toUpperCase() + ime.slice(1).toLowerCase();
+    // Razdvajamo riječi i pretvaramo svako prvo slovo u veliko
+    ime = ime
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+    
     setPsiholog({ ...psiholog, ime: ime });
   };
-
   const handleToken = (e) => {
     const targetID = e.target.value;
     const savedID = localStorage.getItem(psiholog.ime + psiholog.prezime + psiholog.email);
@@ -187,6 +209,24 @@ export default function EventRegistration({ role }) {
   //    prezime = prezime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
   //   setPsiholog({ ...psiholog, prezime: prezime });
   // };
+  // const handleInputPrezime = (e) => {
+  //   let prezime = e.target.value.trim();
+    
+  //   if (!prezime) {
+  //     console.log('Molimo unesite prezime.');
+  //     return;
+  //   }
+  
+  //   // Provjera sadrži li unos brojeve ili posebne znakove
+  //   if (/[\d!@#$%^&*()_+=[\]{};':"\\|,.<>/?-]/.test(prezime)) {
+  //     alert('Unos ne smije sadržavati brojeve ili posebne znakove.');
+  //     return;
+  //   }
+  
+  //   // Ako je sve u redu, pretvara prvo slovo u veliko i postavlja stanje
+  //   prezime = prezime.charAt(0).toUpperCase() + prezime.slice(1).toLowerCase();
+  //   setPsiholog({ ...psiholog, prezime: prezime });
+  // };
   const handleInputPrezime = (e) => {
     let prezime = e.target.value.trim();
     
@@ -195,18 +235,21 @@ export default function EventRegistration({ role }) {
       return;
     }
   
-    // Provjera sadrži li unos brojeve ili posebne znakove
-    if (/[\d!@#$%^&*()_+=[\]{};':"\\|,.<>/?-]/.test(prezime)) {
-      alert('Unos ne smije sadržavati brojeve ili posebne znakove.');
+    // Provjera sadrži li unos brojeve ili neželjene znakove
+    if (!/^[a-zA-Z\u00C0-\u017F\s-]*$/.test(prezime)) {
+      alert('Unos ne smije sadržavati brojeve ili neželjene znakove osim slova, dijakritičkih znakova, razmaka i znaka "-".');
       return;
     }
   
-    // Ako je sve u redu, pretvara prvo slovo u veliko i postavlja stanje
-    prezime = prezime.charAt(0).toUpperCase() + prezime.slice(1).toLowerCase();
+    // Razdvajamo riječi i pretvaramo svako prvo slovo u veliko
+    prezime = prezime
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+    
     setPsiholog({ ...psiholog, prezime: prezime });
   };
-
-
+  
   const handleInputEmail = (e) => {
     const email = e.target.value.trim();
     let role = 'user';
@@ -599,6 +642,16 @@ function Step2({
                       label="Predavanje"
                       value="Predavanje"
                       checked={oblikSudjelovanja[index] === 'Predavanje'}
+                      onChange={(e) => handleOblikSudjelovanjaChange(index, e.target.value)}
+                    />
+
+                      <Form.Check
+                      type="radio"
+                      name={`oblikSudjelovanja_${index}`}
+                      id={`oblikSudjelovanja_${index}_poster`}
+                      label="Poster"
+                      value="Poster"
+                      checked={oblikSudjelovanja[index] === 'Poster'}
                       onChange={(e) => handleOblikSudjelovanjaChange(index, e.target.value)}
                     />
                       <Form.Check

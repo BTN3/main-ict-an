@@ -16,7 +16,7 @@ export default function Footer() {
               <img width={40} height={30} src={horizonti_velik_cropped} alt='logo' />
               <h6 className='mb-0 ms-3'>Horizonti snage</h6>
               <p className='mt-2'>
-                'Horizonti snage predstavljaju svoju drugu konferenciju s temom zajedništva. Prve smo godine krenuli sa različitim idejama, a ove godine ih nastavljamo razvijati zajedno!'
+                'Horizonti snage predstavljaju svoju drugu konferenciju s temom zajedništva. Prve smo godine krenuli s različitim idejama, a ove godine ih nastavljamo razvijati zajedno!'
               </p>
             </Col>
             <Col md='6' lg='7' className='text-center text-md-right'>

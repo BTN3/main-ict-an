@@ -114,6 +114,7 @@ export default function Home() {
          <div>Ova web stranica sadrži neke funkcionalnosti koje nisu podržane na Firefox pregledniku te vas stoga upozoravamo da postupak za prijavu neće dobro raditi na navedenom pregledniku.
          U tu svrhu poželjno je koristiti druge preglednike.
        </div>
+       
        </>
           )}
          
