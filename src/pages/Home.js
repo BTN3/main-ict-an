@@ -5,7 +5,7 @@ import '../HomeStyle.css'; // Pretpostavljam da ćeš dodati stilizaciju
 import Footer from './Footer'
 import { Button,Form } from 'react-bootstrap';
 import appImg from '../assets/media/application.jpg'
-import komunikacija from '../assets/media/komunikacija.webp'
+import komunikacija from '../assets/media/komunikacija.jpeg'
 import CarouselComponent from './CarouselComponent';
 export default function Home() {
   // const [emailData, setEmailData] = useState({
@@ -83,7 +83,7 @@ export default function Home() {
           )}
         </div> */}
         <div className={`grid-item ${selectedButton === 'O aplikaciji za prijavu' ? 'selected' : ''}`}>
-          <Button variant='outline-light' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('O aplikaciji za prijavu')}>Vijesti</Button>
+          <Button className='btnHome' variant='outline-light' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('O aplikaciji za prijavu')}>Vijesti</Button>
           {selectedButton === 'O aplikaciji za prijavu' && (
             <div className="sectionContent">
               <img src={appImg} style={{width:'100%', height:'100%'}} alt='photo' />
@@ -98,7 +98,7 @@ export default function Home() {
         </div>
         
         <div className={`grid-item ${selectedButton === 'Vijesti' ? 'selected' : ''}`}>
-          <Button variant='outline-light' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('Vijesti')}>Važno</Button>
+          <Button variant='outline-light' className='btnHome' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('Vijesti')}>Važno</Button>
           {selectedButton === 'Vijesti' && (
             <>
             <div className="sectionContent" style={{textAlign:'justify'}}>
@@ -121,7 +121,7 @@ export default function Home() {
         </div>
         {/* Dodaj ostale buttone */}
         <div className={`grid-item ${selectedButton === 'Kontaktirajte nas' ? 'selected' : ''}`}>
-          <Button variant='outline-light' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('Kontaktirajte nas')}>Kontakt</Button>
+          <Button className='btnHome' variant='outline-light' style={{width:'300px', height:'50px'}} onClick={() => handleButtonClick('Kontaktirajte nas')}>Kontakt</Button>
           {selectedButton === 'Kontaktirajte nas' && (
            
            <div className="sectionContent">

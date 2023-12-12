@@ -1,0 +1,33 @@
+/* Stilovi za različite boje kružića */
+.green-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: lightgreen;
+    margin-right: 10px;
+  }
+  
+  .orange-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: orange;
+    margin-right: 10px;
+  }
+  
+  .purple-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: purple;
+    margin-right: 10px;
+  }
+  
+  .yellow-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: yellow;
+    margin-right: 10px;
+  }
+  

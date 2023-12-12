@@ -11,7 +11,8 @@
     background-color: gainsboro;
     position: relative; /* Omogućava pozicioniranje sadržaja unutar njega */
     min-height: 100vh;
-    min-width: 100vw, 
+    min-width: 100vw; 
+   
   }
   
   /* Stilizacija grid buttona */
@@ -21,11 +22,18 @@
     padding: 10px;
     box-sizing: border-box;
     min-width: 100%;
+  
    
   }
+
   .btnHome {
     color:white;
+
+    
   }
+
+
+
   @media (max-width: 768px) {
     .grid-item {
       width: 50%; /* Možeš prilagoditi širinu za manje ekrane */

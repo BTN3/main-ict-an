@@ -6,6 +6,7 @@ import HamburgerIcon from '../assets/media/hamburger-icon.png';
 import { useNavigate } from 'react-router-dom';
 import logoKomora from '../assets/media/image.png'
 
+
 function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   // const [btn,setBtn] = useState(false);
@@ -56,7 +57,8 @@ function Navigation() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className={`mr-auto ${menuOpen ? 'nav-open' : ''}`}>
           <Nav.Link href="/" className={`nav-link ${menuOpen ? 'nav-link-open' : ''}`}>
-            Naslovna
+            <div className='green-circle'>Naslovna</div>
+            
           </Nav.Link>
           <NavDropdown title="O nama" id="collapsible-nav-dropdown">
             <NavDropdown.Item href="/about">O nama</NavDropdown.Item>

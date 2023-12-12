@@ -177,7 +177,7 @@ export default function EventRegistration({ role }) {
   // };
 
   const handleInputIme = (e) => {
-    let ime = e.target.value.trim();
+    var ime = e.target.value.trim().normalize('NFKD').replace(/[^\w\s.-_\/]/g, '');
     
     if (!ime) {
       console.log('Molimo unesite ime.');
@@ -228,7 +228,7 @@ export default function EventRegistration({ role }) {
   //   setPsiholog({ ...psiholog, prezime: prezime });
   // };
   const handleInputPrezime = (e) => {
-    let prezime = e.target.value.trim();
+    var prezime = e.target.value.trim().normalize('NFKD').replace(/[^\w\s.-_\/]/g, '');
     
     if (!prezime) {
       console.log('Molimo unesite prezime.');
