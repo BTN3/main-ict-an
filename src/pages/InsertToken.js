@@ -41,10 +41,47 @@ const [prezime,setPrezime] = useState('');
     setInput(e.target.value);
   }
   const handleInputIme = (e) =>{
-    setIme(e.target.value.trim());
+var ime = e.target.value.trim().normalize('NFKD').replace(/[^\w\s.-_\/]|(?![šž])\p{Mark}/gu, '');
+if (!ime) {
+  console.log('Molimo unesite ime.');
+  return;
+}
+
+// Provjera sadrži li unos brojeve ili posebne znakove
+if (/[\d!@#$%^&*()_+=[\]{};':"\\|,.<>/?-]/.test(ime)) {
+  alert('Unos ne smije sadržavati brojeve ili posebne znakove.');
+  return;
+}
+
+// Razdvajamo riječi i pretvaramo svako prvo slovo u veliko
+ime = ime
+  .split(' ')
+  .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+  .join(' ');
+
+    setIme(ime);
+
   }
   const handleInputPrezime = (e) =>{
-    setPrezime(e.target.value.trim());
+    var prezime = e.target.value.trim().normalize('NFKD').replace(/[^\w\s.-_\/]|(?![šž])\p{Mark}/gu, '');
+   
+    if (!prezime) {
+      console.log('Molimo unesite prezime.');
+      return;
+    }
+  
+    // Provjera sadrži li unos brojeve ili neželjene znakove
+    if (!/^[a-zA-Z\u00C0-\u017F\s-]*$/.test(prezime)) {
+      alert('Unos ne smije sadržavati brojeve ili neželjene znakove osim slova, dijakritičkih znakova, razmaka i znaka "-".');
+      return;
+    }
+  
+    // Razdvajamo riječi i pretvaramo svako prvo slovo u veliko
+    prezime = prezime
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+      setPrezime(prezime);
   }
   const submitValues = async (e) => {
 
@@ -80,9 +117,48 @@ const [prezime,setPrezime] = useState('');
     //console.log(user.recordset != null)
     //console.log(user.recordset.prezime == prezim““e)
     inputPrezime = inputPrezime.value
-    inputPrezime = inputPrezime.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
+    inputPrezime = inputPrezime.trim().normalize('NFKD').replace(/[^\w\s.-_\/]|(?![šž])\p{Mark}/gu, '');
+    
     inputIme = inputIme.value
-    inputIme = inputIme.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '')
+    inputIme = inputIme.trim().normalize('NFKD').replace(/[^\w\s.-_\/]|(?![šž])\p{Mark}/gu, '');
+
+   
+    
+    // if (!inputIme) {
+    //   console.log('Molimo unesite ime.');
+    //   return;
+    // }
+  
+    // // Provjera sadrži li unos brojeve ili posebne znakove
+    // if (/[\d!@#$%^&*()_+=[\]{};':"\\|,.<>/?-]/.test(inputIme)) {
+    //   alert('Unos ne smije sadržavati brojeve ili posebne znakove.');
+    //   return;
+    // }
+  
+    // // Razdvajamo riječi i pretvaramo svako prvo slovo u veliko
+    // inputIme = inputIme
+    //   .split(' ')
+    //   .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    //   .join(' ');
+
+    //   if (!inputPrezime) {
+    //     console.log('Molimo unesite prezime.');
+    //     return;
+    //   }
+    
+    //   // Provjera sadrži li unos brojeve ili neželjene znakove
+    //   if (!/^[a-zA-Z\u00C0-\u017F\s-]*$/.test(inputPrezime)) {
+    //     alert('Unos ne smije sadržavati brojeve ili neželjene znakove osim slova, dijakritičkih znakova, razmaka i znaka "-".');
+    //     return;
+    //   }
+      
+      
+    //   // Razdvajamo riječi i pretvaramo svako prvo slovo u veliko
+    //   inputPrezime = inputPrezime
+    //     .split(' ')
+    //     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    //     .join(' ');
+
     if (userNew == null){
       alert('Ispravi unos ili ponovno kopiraj token na ovo mjesto  da bi se nastavio proces prijave na stručni skup "Horizonti snage"');
       console.log("user iz baze je null")
@@ -90,6 +166,7 @@ const [prezime,setPrezime] = useState('');
     }
   
     else if(!(userNew.ime == inputIme && userNew.prezime == inputPrezime)) {
+     
       alert('Ispravi unos ili ponovno kopiraj token na ovo mjesto  da bi se nastavio proces prijave na stručni skup "Horizonti snage"');
       console.log("Uneseno ime:",inputIme," pravoIme:",userNew.ime, "Uneseno prezime:",inputPrezime," pravo prezime:",userNew.prezime)
       console.log("je li user null:",userNew)
@@ -103,6 +180,7 @@ const [prezime,setPrezime] = useState('');
       
     if (confirmWindow) {
       try {
+        
         setIsWaitingForConfirmation(true);
 
         localStorage.clear();
