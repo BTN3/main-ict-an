@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Navigation from './Navigation';
-import photoHor from '../assets/media/90763d09-7baf-4f59-bd71-f57fdc7e9d74.jpeg'
+// import photoHor from '../assets/media/90763d09-7baf-4f59-bd71-f57fdc7e9d74.jpeg'
 import '../HomeStyle.css'; // Pretpostavljam da ćeš dodati stilizaciju
 import Footer from './Footer'
-import { Button,Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import appImg from '../assets/media/application.jpg'
+import christmas from '../assets/media/SRETAN.png'
 import komunikacija from '../assets/media/komunikacija.jpeg'
-import CarouselComponent from './CarouselComponent';
+// import CarouselComponent from './CarouselComponent';
 export default function Home() {
   // const [emailData, setEmailData] = useState({
   //   to: 'horizontisnage@gmail.com',
@@ -69,8 +70,9 @@ export default function Home() {
     <div  >
       <Navigation />
      
-      <div className="grid-container" style={{minHeight:'100vh', minWidth:'100vw', backgroundImage: `url(${photoHor})`,opacity:'0.7', backgroundRepeat:'no-repeat',
-  backgroundImage: `url(${photoHor})`,
+      <div className="grid-container" style={{minHeight:'100vh', minWidth:'100vw', backgroundImage: `url(${christmas})`,opacity:'0.7', backgroundRepeat:'no-repeat',
+  backgroundImage: `url(${christmas
+  })`,
   backgroundSize: 'cover',
   backgroundPosition: 'center'}}>
       {/* <img src={photoHor}  alt='photo' className='background-image'/> */}

@@ -60,11 +60,13 @@ export default function Fees() {
   <p><span style={{color:'orange'}}>Poziv na broj:</span> 2226-2023</p>
   <p><span style={{color:'orange'}}>Svrha uplate/Opis plaćanja: </span>Kotizacija za 2. konferenciju školskih psihologa</p>
   <p>Prilikom uplate potrebno je navesti ime i prezime sudionika, te naziv institucije.</p>
+  <div style={{border:'2px solid white',padding:'5px'}}>  <p style={{color:'lightgreen', fontSize:'14pt'}}><p style={{color:'red', fontSize:'18pt'}}>VAŽNO!</p>Ako vam je potreban R1 RAČUN ILI eRAČUN kao dokaz poslodavcu da ste izvršili uplatu s osobnog računa (radi refundacije troška), molimo javiti se s upitom na mail <a href='MAILTO:info@hermina-usluge.hr'>info@hermina-usluge.hr</a> </p>
+</div>
 </div>
 
     <div className="custom-div">
       <h4>Izjava o odricanju od odgovornosti za uplate:</h4>
-      <div>Ovaj sustav naplate koristi usluge treće strane (agencije HERMINA d.o.o.) za obradu kotizacija. Molimo imajte na umu da Hrvatska psihološka komora kao organizator ne provodi izravnu naplatu kotizacija ili upravlja financijskim transakcijama. Sve transakcije, obrada plaćanja i sigurnosne mjere vezane uz plaćanje obavljaju se putem usluga agencije HERMINA d.o.o. Svi upiti, pritužbe ili pitanja vezana uz naplatu trebaju biti usmjerena prema njihovoj službi za korisnike.</div>
+      <div>Ovaj sustav prijave koristi usluge treće strane (agencije HERMINA d.o.o.) za obradu kotizacija. Molimo imajte na umu da Hrvatska psihološka komora kao organizator ne provodi izravnu naplatu kotizacija ili upravlja financijskim transakcijama. Sve transakcije, obrada plaćanja i sigurnosne mjere vezane uz plaćanje obavljaju se putem usluga agencije HERMINA d.o.o. Svi upiti, pritužbe ili pitanja vezana uz naplatu trebaju biti usmjerena prema njihovoj službi za korisnike.</div>
    
 
       

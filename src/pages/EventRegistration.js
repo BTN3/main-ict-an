@@ -177,7 +177,7 @@ export default function EventRegistration({ role }) {
   // };
 
   const handleInputIme = (e) => {
-    var ime = e.target.value.trim().normalize('NFKD').replace(/[^\w\s.-_\/]/g, '');
+    var ime = e.target.value.trim().normalize('NFD').replace(/[^\w\s.-_\/]/g, '');
     
     if (!ime) {
       console.log('Molimo unesite ime.');
