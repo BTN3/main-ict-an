@@ -14,7 +14,12 @@
     min-width: 100vw; 
    
   }
-  
+  @media screen and (max-width: 600px) {
+    .grid-container {
+      background-size: contain;
+      background-position: center;
+    }
+  }
   /* Stilizacija grid buttona */
   .grid-item {
     width: 25%; /* Širina svakog buttona */

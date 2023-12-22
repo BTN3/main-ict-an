@@ -5,7 +5,7 @@ import '../HomeStyle.css'; // Pretpostavljam da ćeš dodati stilizaciju
 import Footer from './Footer'
 import { Button } from 'react-bootstrap';
 import appImg from '../assets/media/application.jpg'
-import christmas from '../assets/media/SRETAN.png'
+import christmas from '../assets/media/kuglica2.jpg'
 import komunikacija from '../assets/media/komunikacija.jpeg'
 // import CarouselComponent from './CarouselComponent';
 export default function Home() {
@@ -67,14 +67,44 @@ export default function Home() {
   // };
 
   return (
-    <div  >
+    <div>
       <Navigation />
      
-      <div className="grid-container" style={{minHeight:'100vh', minWidth:'100vw', backgroundImage: `url(${christmas})`,opacity:'0.7', backgroundRepeat:'no-repeat',
+      {/* <div className="grid-container" style={{minHeight:'100vh', minWidth:'100vw', backgroundImage: `url(${christmas})`,opacity:'0.7', backgroundRepeat:'no-repeat',
   backgroundImage: `url(${christmas
   })`,
   backgroundSize: 'cover',
-  backgroundPosition: 'center'}}>
+  backgroundPosition: 'center'}}> */}
+  <div
+    className="grid-container"
+    style={{
+      position: 'relative',
+      minHeight: '100vh',
+      minWidth: '100vw',
+      backgroundImage: `url(${christmas})`,
+      opacity: '0.7',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}
+  >
+    <div
+      style={{
+        position: 'absolute',
+        bottom: 0,
+        width: '100vw',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', /* Prozirna crna pozadina */
+        padding: '20px',
+        color: 'lightgrey', /* Ljubičasta boja */
+        textAlign: 'center',
+        boxSizing: 'border-box',
+      }}
+    >
+      <p style={{ margin: 0 ,fontSize: '24px'}}>
+      <span style={{color:'lightgreen'}} > Sretan Božić i uspješnu 2024. godinu žele vam članovi programsko - organizacijskog odbora Konferencije</span>
+      </p>
+    </div>
+  
       {/* <img src={photoHor}  alt='photo' className='background-image'/> */}
         {/* <div className={`grid-item ${selectedButton === 'Važno' ? 'selected' : ''}`}>
           <Button className='btnHome' variant='outline-dark' style={{width:'300px', height:'50px'}}  onClick={() => handleButtonClick('Važno')}>Važno</Button>
