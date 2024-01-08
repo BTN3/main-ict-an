@@ -12,6 +12,7 @@ import CreatePredbiljezba from './CreatePredbiljezba'
 import InsertToken from './InsertToken'
 import PopisSazetaka from './PopisSazetaka'
 import '../FeesStyle.css'
+import '../AboutStyle.css'
 
 export default function Fees() {
  
@@ -24,8 +25,33 @@ export default function Fees() {
   <Route path="eventregistration" element={<EventRegistration/>}></Route>
   <Route path="formsofparticipation" element={<FormsOfParticipation/>}></Route>
   </Routes>
+  <div style={{border:'2px solid black', padding:'10px'}}>
+    <h4><span style={{color:'red'}}>  VAŽNO!</span>   Informacije o smještaju sudionika:</h4>
+    <p>
+   <p>Za sudionike 2. konferencije školskih psihologa osiguran je smještaj u hotelu International kojeg sudionici sami rezerviraju i plaćaju.</p>
+   <p>CIJENA: Classic soba za jednu osobu 95.00 EUR</p>
+Classic soba za dvije osobe 105.00 EUR
+<ul className="styled-list">
+<li>Cijene smještaja izražene su po smještajnoj jedinici za jednu noć</li>
+<li>Uključuju buffet doručak</li>
+<li>Cijene uključuju boravišnu pristojbu, koja se naplaćuje dodatno u visini utvrđenoj pozitivnim propisima</li>
+<li>Vrijeme prijave u hotel: od 15h, vrijeme odjave: do 11h</li>
+<li>Nadoplata za ranu prijavu/kasnu odjavu iznosi 10.00 EUR po sobi po satu</li> 
+<li>Uključuju besplatno korištenje Hotelske saune i Fitness centra</li>
+<li>Uključuju besplatno korištenje brzog interneta u sobama</li>
+<li>Uključuju uslugu nošenja prtljage in/out</li>
+<li>Uključuju PDV</li>
+</ul>
+Otkaz pojedinačne rezervacije:
+<p>- do 7 dana prije dolaska – bez naknade</p>
+<p>- od 7 – 0 dana prije dolaska / no show – 100 % iznosa rezervacije.</p>
+</p>
+    </div>
     <div className="custom-div">
+    <h4>Rok za prijavu sažetaka:</h4>
+    <p style={{fontSize:'15pt'}}><b><span style={{ color: 'lightgreen' }}><span style={{color:'red'}}>NOVO! </span>Rok za prijavu sažetaka:</span></b> 15.siječnja 2024. </p>
       <h4>Cijena kotizacije:</h4>
+   
       <p><b><span style={{ color: 'lightgreen' }}>Rana kotizacija:</span></b> do 31. prosinca 2023. – 30 € </p>
       <p><b><span style={{ color: 'orange' }}>Srednja kotizacija:</span></b> od 1. - 31. siječnja 2024. - 40 € </p>
       <p><b><span style={{ color: 'purple' }}>Kasna kotizacija:</span></b> od 1. veljače do 20. veljače 2024. - 50€ </p>
