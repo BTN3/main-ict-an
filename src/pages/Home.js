@@ -243,7 +243,9 @@ export default function Home() {
           padding: '20px',
         }}
       >
+            
         <div style={{ color: 'lightgrey', textAlign: 'center' }}>
+        <div style={{ letterSpacing:'2px', fontSize:'10pt' }}>Filozofski fakultet u Zagrebu, 29. veljače i 1. ožujka 2024.</div>
           <p style={{ margin: 0, fontSize: '24px' }}>
             <span style={{ color: 'lightgreen' }}>
               <b>
@@ -264,6 +266,7 @@ export default function Home() {
               se možete informirati o smještaju i pogodnostima koje omogućujemo sudionicima Konferencije!
             </span>
           </p>
+        
         </div>
 
         <div className="sectionContent">

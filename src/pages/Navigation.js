@@ -46,6 +46,8 @@ function Navigation() {
         <Logo alt="" width="30" height="30" className="d-inline-block align-top" type="file"  />
         Horizonti snage 
       </Navbar.Brand>
+      
+     
       <Navbar.Toggle onClick={toggleMenu} aria-controls="responsive-navbar-nav" className="menu">
         <img
           src={HamburgerIcon}
@@ -113,6 +115,7 @@ function Navigation() {
             </Nav.Link>
           </Nav>
         )}
+             
         {!menuOpen && (
  <img
  src={logoKomora}
@@ -121,9 +124,12 @@ function Navigation() {
  className="ml-auto d-none d-lg-block"
 
 />
+
 )}
       </Navbar.Collapse>
+ 
     </Navbar>
+     
   );
 }
 

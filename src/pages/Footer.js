@@ -18,6 +18,7 @@ export default function Footer() {
               <p className='mt-2'>
                 'Horizonti snage predstavljaju svoju drugu konferenciju s temom zajedništva. Prve smo godine krenuli s različitim idejama, a ove godine ih nastavljamo razvijati zajedno!'
               </p>
+              <div style={{ letterSpacing:'2px', fontSize:'8pt' }}>Filozofski fakultet u Zagrebu, 29. veljače i 1. ožujka 2024.</div>
             </Col>
             <Col md='6' lg='7' className='text-center text-md-right'>
               <div className='mb-4'>
