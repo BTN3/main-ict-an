@@ -635,7 +635,7 @@ function Step2({
                   <Form.Label>Oblik sudjelovanja:</Form.Label>
                   <div>
                     {/* Radio buttons for 'Oblik sudjelovanja' */}
-                    <Form.Check
+                    {/* <Form.Check
                       type="radio"
                       name={`oblikSudjelovanja_${index}`}
                       id={`oblikSudjelovanja_${index}_predavanje`}
@@ -643,7 +643,7 @@ function Step2({
                       value="Predavanje"
                       checked={oblikSudjelovanja[index] === 'Predavanje'}
                       onChange={(e) => handleOblikSudjelovanjaChange(index, e.target.value)}
-                    />
+                    /> */}
 
                       <Form.Check
                       type="radio"
@@ -668,9 +668,9 @@ function Step2({
                       type="radio"
                       name={`oblikSudjelovanja_${index}`}
                       id={`oblikSudjelovanja_${index}_znanstvenirad`}
-                      label="Znanstveni rad"
-                      value="Znanstveni rad"
-                      checked={oblikSudjelovanja[index] === 'Znanstveni rad'}
+                      label="Znanstveni/stručni rad"
+                      value="Znanstveni/stručni rad"
+                      checked={oblikSudjelovanja[index] === 'Znanstveni/stručni rad'}
                       onChange={(e) => handleOblikSudjelovanjaChange(index, e.target.value)}
                     />
                       <Form.Check

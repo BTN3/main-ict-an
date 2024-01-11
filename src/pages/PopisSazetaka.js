@@ -75,7 +75,9 @@ const PopisSazetaka = () => {
       sazetak.ime.toLowerCase().includes(searchStr) ||
       sazetak.prezime.toLowerCase().includes(searchStr) ||
       sazetak.email.toLowerCase().includes(searchStr) ||
-      sazetak.Oblik_sudjelovanja.toLowerCase().includes(searchStr)
+      sazetak.Oblik_sudjelovanja.toLowerCase().includes(searchStr) ||
+      sazetak.datetime.toLowerCase().includes(searchStr)
+      
     );
   });
   return (
@@ -99,7 +101,9 @@ const PopisSazetaka = () => {
                 <th>Prezime</th>
                 <th>Email</th>
                 <th>Oblik sudjelovanja</th>
+                <th>Datum prijave</th>
                 <th>Sažetci</th>
+    
               </tr>
             </thead>
             <tbody>
@@ -109,6 +113,7 @@ const PopisSazetaka = () => {
                   <td>{sazetak.prezime}</td>
                   <td>{sazetak.email}</td>
                   <td>{sazetak.Oblik_sudjelovanja}</td>
+                  <td>{sazetak.datetime}</td>
                   <td>
   {Array.isArray(sazetak.FileData) ? (
     sazetak.FileData.map((fileData, index) => (

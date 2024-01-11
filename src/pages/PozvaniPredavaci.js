@@ -23,7 +23,7 @@ export default function PozvaniPredavaci() {
           />}
 
          {isTrue && <PozvaniPredavaciCard
-            title='Naslov rada'
+            title='A kako su učitelji? Uloga učiteljske dobrobiti u obrazovnom procesu'
             subtitle='dr.sc.Iris Marušić'
             description='Iris Marušić je znanstvena savjetnica u Centru za istraživanje i razvoj obrazovanja Instituta za društvena istraživanja u Zagrebu. U središtu njezinih istraživačkih interesa su profesionalna dobrobit učitelja i nastavnika, učiteljska motivacija te uloga ličnosti u obrazovanju.  Trenutačno vodi projekt Hrvatske zaklade za znanost posvećen istraživanju individualnih odrednica dobrobiti učitelja na početku karijere. Uz istraživački rad, Iris Marušić je i edukatorica u programu razvoja socio-emocionalnih kompetencija i svijesti o različitosti kod učitelja koji  je dio međunarodnih Erasmus projekata.  
 
