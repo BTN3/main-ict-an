@@ -79,7 +79,7 @@ const PopisSazetaka = () => {
       sazetak.datetime.toLowerCase().includes(searchStr)
       
     );
-  });
+  }).sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
   return (
     <div className="container mt-5">
       {storedRole === 'admin' || storedRole === 'odbor' ? (

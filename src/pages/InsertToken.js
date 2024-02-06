@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Container, Row, Form, Button, Modal, Spinner } from 'react-bootstrap';
 import horizonti_velik_cropped from '../assets/media/horizonti_velik_cropped.png';
 import { useNavigate } from 'react-router-dom';
+// import forbiden from '../assets/media/red-stop-hand-sign-130999030.jpg'
+import { Colors } from 'chart.js';
 const sendRequest = async (url, data) => {
   try {
     const response = await fetch(url, {
@@ -62,6 +64,9 @@ ime = ime
     setIme(ime);
 
   }
+ 
+  
+  
   const handleInputPrezime = (e) =>{
     var prezime = e.target.value.trim().normalize('NFKD').replace(/[^\w\s.-_\/]|(?![šž])\p{Mark}/gu, '');
    
@@ -214,15 +219,15 @@ ime = ime
     <>
     <Container fluid>
         <Row>
-          <Button  style={{marginBottom:'20px'}} variant="outline-dark" size="md" onClick={handleShow}>
+          <Button  style={{marginBottom:'20px', marginTop:'20px'}} variant="outline-dark" size="md" onClick={handleShow}>
             <img width={50} height={40} src={horizonti_velik_cropped} />
-            Prijava na predavanja
+            Prijava na aktivnosti s ograničenim brojem sudionika
           </Button>
         </Row>
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header  closeButton>
-            <Modal.Title>Prijava na predavanja</Modal.Title>
+            <Modal.Title style={{color:'darkblue'}}>Prijava na aktivnosti s ograničenim brojem sudionika</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {isWaitingForConfirmation ? (
@@ -234,6 +239,7 @@ ime = ime
             ) : (
               <Form onSubmit={submitValues}>
                  <Form.Group>
+                 <div style={{color:'red',fontStyle:'italic'}} >Molimo da imena i prezimena unosite bez crtica. Ukoliko vam je ime npr. 'Ana-Maria' molimo upišite 'Ana Maria'. Ista logika vrijedi i za prezimena, ukoliko vam je prezime primjerice 'Čupić-Bond' molimo upišite samo 'Čupić Bond'</div>
                   <Form.Label htmlFor="ime">Unesi ime:</Form.Label>
                   <Form.Control
                     type="ime"
@@ -243,11 +249,12 @@ ime = ime
                     onChange={handleInputIme}
                   />
                    </Form.Group>
+          
                   <Form.Group>
                   <Form.Label htmlFor="ime">Unesi prezime:</Form.Label>
-                  <Form.Control
+                  <Form.Control 
                     type="prezime"
-                    placeholder="Unesi prezime"
+                   placeholder="Unesi prezime"
                     id="prezime"
                     name="prezime"
                     onChange={handleInputPrezime}
@@ -265,8 +272,8 @@ ime = ime
                 </Form.Group>
                 
                 <br />
-                <Button variant="outline-dark" type="submit">
-                 Prijava na predavanja
+                <Button style={{alignSelf:'center', width:'100%'}} variant="outline-dark" type="submit">
+                 Prijava na aktivnosti
                 </Button>
               </Form>
             )}
@@ -276,3 +283,16 @@ ime = ime
     </>
   )
 }
+//ovo će ići umjesto returna
+// return (
+//   <>  <div>
+//   <img
+//     src={forbiden}
+//     alt="forbidden"
+//     style={{ width: '350px', height: '350px', backgroundColor: 'transparent', opacity: 0.9 }}
+//   />
+//   Nemate pravo na pristup sadržaju ove stranice. Vrijeme za prijavu radova je isteklo.
+// </div></>
+
+// )
+// }

@@ -21,14 +21,35 @@ export default function Fees() {
      <div style={{minHeight:'100vh'}}>
     <Navigation/>
   <Routes>
+  <Route path="inserttoken" element={<InsertToken/>}></Route>
   <Route path="dataprotection" element={<DataProtection/>}></Route>
   <Route path="eventregistration" element={<EventRegistration/>}></Route>
   <Route path="formsofparticipation" element={<FormsOfParticipation/>}></Route>
+  <Route path="lectureselection" element={<LectureSelection/>}></Route>
+  <Route path="lectureselectionpredb" element={<LectureSelectionPredb/>}></Route>
   </Routes>
   <div style={{border:'2px solid black', padding:'10px'}}>
     <h4><span style={{color:'red'}}>  VAŽNO!</span>   Informacije o smještaju sudionika:</h4>
     <p>
    <p>Za sudionike 2. konferencije školskih psihologa osiguran je smještaj u hotelu International kojeg sudionici sami rezerviraju i plaćaju.</p>
+   <h4>Uputa za rezervaciju smještaja</h4>
+   <ul>
+    <li className="red-square">Molim vas otvorite web stranicu hotela Hotel International Zagreb, Hrvatska - <a href='https://www.maistra.com/properties/hotel-international/#/'>  Službena stranica | Maistra</a> </li>
+    <li className="red-square"> Odaberite REZERVIRAJ SADA</li>
+    <li className="red-square"> Unesite promotivni kod PSYC i ažurirajte pretragu</li>
+    <li className="red-square"> Odaberite željeni datum boravka i ponovno ažurirajte pretragu</li>
+    <li className="red-square"> Odaberite željeni tip sobe i zatim odaberite "Rezerviraj sada"</li>
+    <li className="red-square"> Slijedite daljnje korake i unesite potrebne podatke za rezervaciju</li>
+</ul>
+<h5>Verzija upute za rezervaciju smještaja na engleskom jeziku</h5>
+<ul>
+    <li className="red-square">Please open the website of Hotel International Zagreb, Croatia -  <a href='https://www.maistra.com/properties/hotel-international/#/'>Official Website | Maistra</a></li>
+    <li className="red-square">Choose BOOK NOW</li>
+    <li className="red-square">Enter promo code PSYC and update search</li>
+    <li className="red-square">Select your preferred stay date and update search again</li>
+    <li className="red-square">Choose your preferred room type and then select "Book now"</li>
+    <li className="red-square">Follow the further steps and enter the necessary data to make a reservation</li>
+</ul>
    <p>CIJENA: Classic soba za jednu osobu 95.00 EUR</p>
 Classic soba za dvije osobe 105.00 EUR
 <ul className="styled-list">
@@ -63,8 +84,8 @@ Otkaz pojedinačne rezervacije:
     <Routes>
     
    
-      <Route path="lectureselection" element={<LectureSelection/>}></Route>
-     <Route path="lectureselectionpredb" element={<LectureSelectionPredb/>}></Route>
+     
+     
      <Route path="createpredavanje" element={<CreatePredavanje/>}></Route>
      <Route path="createpredbiljezba" element={<CreatePredbiljezba/>}></Route>
      <Route path="inserttoken" element={<InsertToken/>}></Route>

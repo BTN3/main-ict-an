@@ -102,17 +102,18 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
+  height: 85%;
 }
 .modern-navbar .navbar-brand {
   display: flex;
   align-items: center;
-  color: black;
+  color: lightgray;
 }
 .modern-navbar .navbar-brand img {
   margin-right: 10px;
 }
 .modern-navbar .nav-link {
-  color: black;
+  color: lightgrey;
   transition: background-color 0.3s ease-in-out;
   text-shadow: #333;
 }

@@ -7,12 +7,16 @@ import Footer from './Footer';
 import PozvaniPredavaci from './PozvaniPredavaci';
 import Organizatori from './Organizatori';
 import Fotografije from './Fotografije'
+import Program from './Program';
 import '../AboutStyle.css'
 export default function About() {
   return (
     <>
     <div style={{minHeight:'100vh'}}>
    <Navigation/>
+   <Routes>
+   <Route path="program" element={<Program/>}></Route>
+   </Routes>
   
    <div className="custom-div">
       <h4>Tko smo?</h4>
@@ -48,6 +52,7 @@ export default function About() {
    <Route path="pozvanipredavaci" element={<PozvaniPredavaci/>}></Route>
    <Route path="organizacija" element={<Organizatori/>}></Route>
    <Route path="photos" element={<Fotografije/>}></Route>
+ 
  
   
    </Routes>

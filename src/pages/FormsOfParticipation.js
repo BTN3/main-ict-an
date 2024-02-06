@@ -53,13 +53,13 @@ export default function FormsOfParticipation() {
   const newDaysRemaining2 = Math.ceil(timeDifference2 / (1000 * 60 * 60 * 24));
 
   return (
-    <div>
+    <div style={{marginTop:'10px'}}>
       <Container>
         <Row>
           <Col>
             <CardGroup>
               <Card>
-                <div className="custom-card">
+                <div className="custom-card" >
                   <Card.Img
                     variant="top"
                     className="card-img"

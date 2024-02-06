@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import Logo from './Logo';
 import '../App.css';
-import HamburgerIcon from '../assets/media/hamburger-icon.png';
+import HamburgerIcon from '../assets/media/three-bars-icon-6.jpg';
 import { useNavigate } from 'react-router-dom';
 import logoKomora from '../assets/media/image.png'
 
@@ -35,23 +35,28 @@ function Navigation() {
   return (
     <Navbar
       expand="lg"
+      // style={{
+      //   backgroundColor: menuOpen ? 'hsla(232, 87%, 98%, 0.8)' : 'hsla(232, 87%, 98%, 0.8)',
+      //   height: menuOpen ? 'auto' : '120px',
+      // }}
       style={{
-        backgroundColor: menuOpen ? 'hsla(232, 87%, 98%, 0.8)' : 'hsla(232, 87%, 98%, 0.8)',
-        height: menuOpen ? 'auto' : '120px',
+        backgroundColor: menuOpen ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.8)',
+        height: menuOpen ? 'auto' : '120px'
       }}
+      
       variant="dark"
       className={`modern-navbar sticky-top ${menuOpen ? 'expanded' : ''}`}
     >
       <Navbar.Brand href="/">
         <Logo alt="" width="30" height="30" className="d-inline-block align-top" type="file"  />
-        Horizonti snage 
+        Horizonti snage
       </Navbar.Brand>
       
      
       <Navbar.Toggle onClick={toggleMenu} aria-controls="responsive-navbar-nav" className="menu">
         <img
           src={HamburgerIcon}
-          style={{ width: '42px', height: '30px', backgroundColor: 'hsla(210, 70%, 50%, 0.8)' }}
+          style={{ width: '42px', height: '30px', backgroundColor: 'hsla(0, 0%, 0%, 0.8)' }}
           alt="Hamburger Menu"
           className={`hamburger-icon ${menuOpen ? 'opened' : ''}`}
         />
@@ -72,6 +77,8 @@ function Navigation() {
             <NavDropdown.Item href="/about/organizacija">Organizatori</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="/about/photos">Fotografije</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="/about/program">Program</NavDropdown.Item>
           </NavDropdown>
           {/* Add more Nav.Link or NavDropdown items as needed */}
           <NavDropdown title="Kotizacije i oblici sudjelovanja" id="collasible-nav-dropdown">
@@ -83,7 +90,7 @@ function Navigation() {
              </NavDropdown.Item>
              <NavDropdown.Divider />
              {/* <NavDropdown.Item href="/registrationfeesaccommodation/inserttoken">
-               Token - prijava na predavanja
+               Token - prijava na aktivnosti
              </NavDropdown.Item>                                                                      
              <NavDropdown.Divider /> */}
              {/* <NavDropdown.Item href="/registrationfeesaccommodation/lectureselectionpredb">

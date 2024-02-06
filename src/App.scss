@@ -118,13 +118,14 @@ $text-color: black;
     position: sticky;
     top: 0;
     z-index: 1000;
+    height: 85%;
     
   
   
     .navbar-brand {
       display: flex;
       align-items: center;
-      color: $text-color;
+      color: lightgray;
   
       img {
         margin-right: 10px;
@@ -132,7 +133,7 @@ $text-color: black;
     }
   
     .nav-link {
-      color: $text-color;
+      color: lightgrey;
       transition: background-color  0.3s ease-in-out;
       text-shadow: #333;
 

@@ -548,7 +548,8 @@ export default function LectureSelection() {
 
   return (
     <>
-      <p>Dostupna predavanja:</p>
+    
+      <p style={{textAlign:'center', letterSpacing:'5px', fontSize:'16px',marginTop:'20px'}}>DOSTUPNE AKTIVNOSTI</p>
       <Container>
         <Row>
           <Table striped bordered hover>
@@ -561,6 +562,8 @@ export default function LectureSelection() {
                 <th>Broj polaznika</th>
                 <th>Slobodna mjesta</th>
                 <th>Ukupno mjesta</th>
+                <th>Mjesto održavanja</th>
+                <th>Vrijeme održavanja</th>
                 {storedRole === 'admin' || storedRole === 'odbor' ? (
                 <th>Brisanje predavanja:</th>):(null)}
               </tr>
@@ -614,6 +617,8 @@ export default function LectureSelection() {
                     <td>{pred.brojPolaznika}</td>
                     <td>{pred.slobodnaMjesta}</td>
                     <td>{pred.ukupnoMjesta}</td>
+                    <td>{pred.mjestoOdrzavanja}</td>
+                    <td>{pred.vrijemeOdrzavanja}</td>
                     <td>
                     {(storedRole === 'admin' || storedRole === 'odbor') && pred.brojPolaznika == 0 ? (
                       <Button
@@ -630,12 +635,12 @@ export default function LectureSelection() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="8">Trenutno ne postoji niti jedno predavanje ili su sva mjesta popunjena.</td>
+                  <td colSpan="8">Trenutno ne postoji niti jedna aktivnost ili su sve aktivnosti popunjene.</td>
                 </tr>
               )}
             </tbody>
           </Table>
-          <Button onClick={() => handleSendSelectedPredavanje()} variant="outline-dark">
+          <Button style={{marginBottom:'10px'}} onClick={() => handleSendSelectedPredavanje()} variant="outline-dark">
             Sljedeći korak
           </Button>
         </Row>

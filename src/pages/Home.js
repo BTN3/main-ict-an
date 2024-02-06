@@ -219,15 +219,18 @@
 import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
-import appImg from '../assets/media/application.jpg';
-import christmas from '../assets/media/1.konferencija/klupa.jpg';
+import PROGRAM_DOKUMENT from '../assets/documents/PROGRAM_FINAL.pdf'
 import komunikacija from '../assets/media/komunikacija.jpeg';
-import '../HomeStyle.css'; 
+import '../HomeStyle.css';
+import program from '../assets/media/PROGRAM.png'
+import backgrImg from '../assets/media/DJI_0364Prozirna.jpg'
+import appImg from '../assets/media/application.jpg'
 
 export default function Home() {
   return (
     <div>
       <Navigation />
+      {/* <img src={backgrImg} style={{opacity:'0.2'}} alt='photo'></img> */}
 
       <div
         className="grid-container"
@@ -235,18 +238,35 @@ export default function Home() {
           position: 'relative',
           minHeight: '100vh',
           minWidth: '100vw',
-          backgroundImage: `url(${christmas})`,
-          opacity: '0.9',
+         backgroundColor:'white',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           padding: '20px',
+          background: `url(${backgrImg})`,
+          
         }}
       >
+
+
+
             
         <div style={{ color: 'lightgrey', textAlign: 'center' }}>
         <div style={{ letterSpacing:'2px', fontSize:'10pt' }}>Filozofski fakultet u Zagrebu, 29. veljače i 1. ožujka 2024.</div>
-          <p style={{ margin: 0, fontSize: '24px' }}>
+        <hr/>
+        <p style={{ margin: 0, fontSize: '24px' }}>
+            <span style={{ color: 'black' }}>
+              <b>
+                <span style={{ color: 'black' }}>
+                  <span style={{ color: 'red' }}>VAŽNO! </span>
+                </span>
+              </b>{' '}
+              Prijava na konferenciju "Horizonti snage" OBAVEZNA je preko ovog sustava prijave, unatoč tome što se na Konferenciju može prijaviti i preko ettaedu sustava.
+              Molimo sve koji se nisu prijavili na ovaj sustav, a jesu na ettaedu da prijavu ponove i ovdje!
+            </span>
+          </p>
+          <hr/>
+          {/* <p style={{ margin: 0, fontSize: '24px' }}>
             <span style={{ color: 'lightgreen' }}>
               <b>
                 <span style={{ color: 'lightgreen' }}>
@@ -256,46 +276,65 @@ export default function Home() {
               15.siječnja 2024. 
             </span>
           </p>
+          <hr/> */}
           <p style={{ margin: 0, fontSize: '24px' }}>
-            <span style={{ color: 'lightgreen' }}>
+            <span style={{ color: 'black' }}>
               <b>
-                <span style={{ color: 'lightgreen' }}>
+                <span style={{ color: 'black' }}>
                   <span style={{ color: 'red' }}>NOVO! </span><a href='https://horizonti-snage.azurewebsites.net/registrationfeesaccommodation/'>OVDJE</a>
                 </span>
               </b>{' '}
               se možete informirati o smještaju i pogodnostima koje omogućujemo sudionicima Konferencije!
             </span>
           </p>
-        
+       
         </div>
 
         <div className="sectionContent">
           <h2 className='naslovni'>O aplikaciji za prijavu</h2>
+          <hr/>
           <img src={appImg} style={{ width: '100%', height: 'auto' }} alt="photo" />
+          {/* <div style={{ width: '100%', height: 'auto', backgroundColor:'black'}}  /> */}
           <p>
             <a href="https://horizonti-snage.azurewebsites.net/registrationfeesaccommodation/eventregistration">Prijavi se</a> na 2. konferenciju školskih psihologa "Horizonti snage" na sljedeći način.
           </p>
-          <p>
+          <hr/>
+          {/* <p>
             <span style={{ color: 'red' }}>VAŽNO! </span>Prijave sažetaka moguće su do 15. siječnja 2024. godine. Prijavite se! Sretnu i uspješnu novu 2024. godinu želi vam programsko - organizacijski odbor Konferencije!
-          </p>
-          <p>Naknadno će biti moguće odabrati i aktivnosti s ograničenim sudjelovanjem, poput radionica i drugih aktivnosti!</p>
+          </p> */}
+          <p>Više o samoj prijavi na aktivnosti s ograničenim brojem sudionika, kao i sama mogućnost prijave sudionika bit će dostupni uskoro!</p>
+          <hr/>
+          <p style={{fontSize:'8pt',letterSpacing:'5px'}}>Objavljeno 06.veljače 2024.</p>
+          <hr/>
         </div>
 
         <div className="sectionContent">
           <h2 className='naslovni'>Vijesti</h2>
-          <p style={{ textAlign: 'center' }}>Važni datumi:</p>
-          <p>
+          <hr/>
+          <p style={{ fontStyle:'bold', textAlign:'center', color:'darkblue', textShadow:'initial'}}>Objavljen preliminarni program Konferencije!</p>
+          <a href='https://horizonti-snage.azurewebsites.net/about/program'>
+          {/* <a href='http://localhost:3000/about/program'> */}
+  <img src={program} style={{width:'100%', height: '60%'}} alt='photoProgram'/>
+
+</a>
+<div><a href={PROGRAM_DOKUMENT} download={PROGRAM_DOKUMENT}>PREUZIMANJE DOKUMENTA</a></div>
+<hr/>
+<p style={{fontSize:'8pt',letterSpacing:'5px'}}>Objavljeno 06.veljače 2024.</p>
+<hr/>
+          {/* <p>
             <span style={{ color: 'red' }}>NOVO! </span>Rok za prijavu sažetaka: 15.1.2024.
-          </p>
-          <p>Rana prijava (rana kotizacija): do 31.12.2023.</p>
+          </p> */}
+          {/* <p>Rana prijava (rana kotizacija): do 31.12.2023.</p>
           <p>Srednja prijava (srednja kotizacija): od 1.1. - 31.01.2024.</p>
-          <p>Kasna prijava (kasna kotizacija): od 1.2. - 20.2.2024.</p>
+          <p>Kasna prijava (kasna kotizacija): od 1.2. - 20.2.2024.</p> */}
         </div>
 
-        <div className="sectionContent">
+        <div className="sectionContent" style={{ alignContent:'center'}}>
           <h2 className='naslovni'>Kontaktirajte nas</h2>
+          <hr/>
           <img src={komunikacija} style={{ width: '100%', height: 'auto' }} alt="photo" />
           <p>Za sve upite budite slobodni obratiti se na elektroničku poštu <a href="mailto:horizontisnage@gmail.com">horizontisnage@gmail.com</a></p>
+          <hr/>
         </div>
       </div>
 

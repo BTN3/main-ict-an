@@ -572,13 +572,16 @@ export default function EventRegistration({ role }) {
 function Step1({ chooseParticipantType }) {
   return (
     <Container className="text-center mt-5">
-      <h6 color='dark-blue'>Odaberi tip sudjelovanja na konferenciji 'Horizonti snage': </h6>
-      <Button onClick={() => chooseParticipantType('Aktivni sudionik')} variant="outline-dark">
+      {/* <h6 color='dark-blue'>Odaberi tip sudjelovanja na konferenciji 'Horizonti snage': </h6> */}
+      <h5 style={{color:'purple'}}>Prijavite se na 2. konferenciju 'Horizonti snage' </h5>
+      <p style={{color:'red'}}>Vrijeme za aktivnu prijavu je isteklo 15. siječnja 2024. </p>
+      {/* ovo ovdje ćeš zablokirati ispod - 16.1.2024. */}
+      {/* <Button onClick={() => chooseParticipantType('Aktivni sudionik')} variant="outline-dark">
         Aktivni sudionik
       </Button>
-      <hr />
+      <hr /> */}
       <Button onClick={() => chooseParticipantType('Pasivni sudionik')} variant="outline-dark">
-        Pasivni sudionik
+        PRIJAVA
       </Button>
     </Container>
   );
