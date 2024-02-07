@@ -8,6 +8,9 @@ import PozvaniPredavaci from './PozvaniPredavaci';
 import Organizatori from './Organizatori';
 import Fotografije from './Fotografije'
 import Program from './Program';
+import Video from './Video'
+
+
 import '../AboutStyle.css'
 export default function About() {
   return (
@@ -16,6 +19,7 @@ export default function About() {
    <Navigation/>
    <Routes>
    <Route path="program" element={<Program/>}></Route>
+   <Route path="video" element={<Video/>}></Route>
    </Routes>
   
    <div className="custom-div">
@@ -52,6 +56,7 @@ export default function About() {
    <Route path="pozvanipredavaci" element={<PozvaniPredavaci/>}></Route>
    <Route path="organizacija" element={<Organizatori/>}></Route>
    <Route path="photos" element={<Fotografije/>}></Route>
+   
  
  
   

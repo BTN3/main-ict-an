@@ -219,18 +219,23 @@
 import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
-import PROGRAM_DOKUMENT from '../assets/documents/PROGRAM_FINAL.pdf'
+import PROGRAM_DOKUMENT from '../assets/documents/PROGRAM_FINALNI.pdf'
 import komunikacija from '../assets/media/komunikacija.jpeg';
 import '../HomeStyle.css';
 import program from '../assets/media/PROGRAM.png'
 import backgrImg from '../assets/media/DJI_0364Prozirna.jpg'
 import appImg from '../assets/media/application.jpg'
-import videouputa from '../assets/media/Aktivnosti_videouputa.mp4'
+
+
+// import videouputa from '../assets/media/Aktivnosti_videouputa.mp4'
 
 export default function Home() {
+  const videouputa = `${process.env.PUBLIC_URL}/Aktivnosti_videouputa.mp4`;
   return (
+    
     <div>
       <Navigation />
+     
       {/* <img src={backgrImg} style={{opacity:'0.2'}} alt='photo'></img> */}
 
       <div
@@ -310,6 +315,7 @@ export default function Home() {
     <source src={videouputa} type="video/mp4" />
     Vaš browser ne podržava reprodukciju ovog zapisa.
   </video>
+  <a href='https://drive.google.com/file/d/1WepvjdqiIYuv5L8-1fkVJaRLsBiFLZBB/view?usp=drive_link'>POVEZNICA NA UPUTU ZA PRIJAVU AKTIVNOSTI</a>
   
           <hr/>
           {/* <p>
