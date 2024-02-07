@@ -89,10 +89,10 @@ function Navigation() {
             Oblici sudjelovanja
              </NavDropdown.Item>
              <NavDropdown.Divider />
-             {/* <NavDropdown.Item href="/registrationfeesaccommodation/inserttoken">
+             <NavDropdown.Item href="/registrationfeesaccommodation/inserttoken">
                Token - prijava na aktivnosti
              </NavDropdown.Item>                                                                      
-             <NavDropdown.Divider /> */}
+             <NavDropdown.Divider />
              {/* <NavDropdown.Item href="/registrationfeesaccommodation/lectureselectionpredb">
                Predbilježbe
              </NavDropdown.Item>

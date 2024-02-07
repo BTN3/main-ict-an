@@ -22,6 +22,7 @@ export default function Fees() {
     <Navigation/>
   <Routes>
   <Route path="inserttoken" element={<InsertToken/>}></Route>
+  <Route path="createpredbiljezba" element={<CreatePredbiljezba/>}></Route>
   <Route path="dataprotection" element={<DataProtection/>}></Route>
   <Route path="eventregistration" element={<EventRegistration/>}></Route>
   <Route path="formsofparticipation" element={<FormsOfParticipation/>}></Route>
@@ -87,8 +88,8 @@ Otkaz pojedinačne rezervacije:
      
      
      <Route path="createpredavanje" element={<CreatePredavanje/>}></Route>
-     <Route path="createpredbiljezba" element={<CreatePredbiljezba/>}></Route>
-     <Route path="inserttoken" element={<InsertToken/>}></Route>
+     {/* <Route path="createpredbiljezba" element={<CreatePredbiljezba/>}></Route> */}
+     {/* <Route path="inserttoken" element={<InsertToken/>}></Route> */}
      <Route path="popissazetaka" element={<PopisSazetaka/>}></Route>
       </Routes>
     <div className="custom-div">

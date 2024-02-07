@@ -225,6 +225,7 @@ import '../HomeStyle.css';
 import program from '../assets/media/PROGRAM.png'
 import backgrImg from '../assets/media/DJI_0364Prozirna.jpg'
 import appImg from '../assets/media/application.jpg'
+import videouputa from '../assets/media/Aktivnosti_videouputa.mp4'
 
 export default function Home() {
   return (
@@ -299,10 +300,23 @@ export default function Home() {
             <a href="https://horizonti-snage.azurewebsites.net/registrationfeesaccommodation/eventregistration">Prijavi se</a> na 2. konferenciju školskih psihologa "Horizonti snage" na sljedeći način.
           </p>
           <hr/>
+          <p>Od danas su moguće prijave na aktivnosti s ograničenim brojem sudionika. Ispod ovog teksta nalazi se i kratki video s uputom kako se najlakše prijaviti. Kako je ovo prvi put da idemo s ovakvim načinom prijavljivanja,
+            molimo da eventualne upite i probleme s prijavom pošaljete na mail  <a href='MAILTO:horizontisnage@gmail.com'>horizontisnage@gmail.com</a>
+            
+          </p>
+          <hr/>
+  {/* Dodavanje videa */}
+  <video width="320" height="240" controls={true} autoplay={false}>
+    <source src={videouputa} type="video/mp4" />
+    Vaš browser ne podržava reprodukciju ovog zapisa.
+  </video>
+  
+          <hr/>
           {/* <p>
             <span style={{ color: 'red' }}>VAŽNO! </span>Prijave sažetaka moguće su do 15. siječnja 2024. godine. Prijavite se! Sretnu i uspješnu novu 2024. godinu želi vam programsko - organizacijski odbor Konferencije!
           </p> */}
-          <p>Više o samoj prijavi na aktivnosti s ograničenim brojem sudionika, kao i sama mogućnost prijave sudionika bit će dostupni uskoro!</p>
+          
+
           <hr/>
           <p style={{fontSize:'8pt',letterSpacing:'5px'}}>Objavljeno 06.veljače 2024.</p>
           <hr/>
@@ -319,7 +333,7 @@ export default function Home() {
 </a>
 <div><a href={PROGRAM_DOKUMENT} download={PROGRAM_DOKUMENT}>PREUZIMANJE DOKUMENTA</a></div>
 <hr/>
-<p style={{fontSize:'8pt',letterSpacing:'5px'}}>Objavljeno 06.veljače 2024.</p>
+<p style={{fontSize:'8pt',letterSpacing:'5px'}}>Objavljeno 07.veljače 2024.</p>
 <hr/>
           {/* <p>
             <span style={{ color: 'red' }}>NOVO! </span>Rok za prijavu sažetaka: 15.1.2024.

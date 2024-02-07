@@ -368,6 +368,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Container, Row, Button, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
 //import socketClient  from "socket.io-client";
 import { useNavigate } from 'react-router-dom';
+import forbiden from '../assets/media/red-stop-hand-sign-130999030.jpg'
 
 export default function LectureSelection() {
  
@@ -527,7 +528,7 @@ export default function LectureSelection() {
       ))
       }catch (error) {
         // TypeError: Failed to fetch
-        alert("Server trenutno nije u funckciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
+        alert("Server trenutno nije u funkciji. Molimo pokušajte kasnije ili nam se obratite na e-mail: horizontisnage@gmail.com.")
         console.log('There was an error', error);
       }
       const presjek = result.filter(predavanje => !allResultsNaziv.has(predavanje.naziv));
@@ -548,7 +549,17 @@ export default function LectureSelection() {
 
   return (
     <>
-    
+      {receivedPsihologID === null || receivedPsihologID === undefined ? (
+      <div>
+        <img
+          src={forbiden}
+          alt="forbidden"
+          style={{ width: '50px', height: '50px', backgroundColor: 'transparent', opacity: 0.9 }}
+        />
+        Nemate pravo na pristup sadržaju ove stranice.
+      </div>
+    ) : (
+      <div>
       <p style={{textAlign:'center', letterSpacing:'5px', fontSize:'16px',marginTop:'20px'}}>DOSTUPNE AKTIVNOSTI</p>
       <Container>
         <Row>
@@ -645,6 +656,8 @@ export default function LectureSelection() {
           </Button>
         </Row>
       </Container>
+      </div>
+     )}
     </>
   );
 }
