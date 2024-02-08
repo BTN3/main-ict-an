@@ -1,7 +1,8 @@
 import React from 'react'
+import videouputa from '../assets/media/Videouputa_Aktivnosti.mp4'
 
 export default function Video() {
-    const videouputa = `${process.env.PUBLIC_URL}/Aktivnosti_videouputa.mp4`;
+    // const videouputa = `${process.env.PUBLIC_URL}/Aktivnosti_videouputa.mp4`;
   return (
     <div>
        <video width="20%" height="30%" style={{marginLeft:'39%'}} controls={true} autoplay={false}>

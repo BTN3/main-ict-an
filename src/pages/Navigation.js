@@ -94,9 +94,9 @@ function Navigation() {
              </NavDropdown.Item>                                                                      
              <NavDropdown.Divider />
              <NavDropdown.Item href="/registrationfeesaccommodation/lectureselectionpredb">
-               Predbilježbe na aktivnosti
+               Pregled odabranih aktivnosti
              </NavDropdown.Item>
-             {/* <NavDropdown.Divider />  */}
+             <NavDropdown.Divider /> 
             {/* <NavDropdown.Item href="/registrationfeesaccommodation/createpredavanje">
                Stvori predavanje
             </NavDropdown.Item>

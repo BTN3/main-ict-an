@@ -175,7 +175,7 @@ const handleNavigate = () => {
         <div style={{backgroundColor:'gray', color:'white'}}>
     <img src={forbidden} style={{ width: '350px', height: '350px' }} alt='STOP' />
     Morate se prijaviti kao sudionik da biste vidjeli sadržaj ove stranice. Nemate pravo pristupa sadržaju ove stranice!{' '}
-    <span onClick={() => navigate('../eventregistration')}style={{color: 'blue'}}>
+    <span onClick={() => navigate('../inserttoken')}style={{color: 'blue'}}>
       Prijavi se!
     </span>
   </div>
