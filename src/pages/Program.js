@@ -1,6 +1,6 @@
 import React from 'react'
 import {Card} from 'react-bootstrap'
-import program from '../assets/documents/PROGRAM_FINALNI.pdf'
+import program from '../assets/documents/PROGRAM_FINALNO.pdf'
 
 export default function Program() {
   return (

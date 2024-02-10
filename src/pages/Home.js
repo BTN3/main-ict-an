@@ -219,7 +219,7 @@
 import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
-import PROGRAM_DOKUMENT from '../assets/documents/PROGRAM_FINALNI.pdf'
+import PROGRAM_DOKUMENT from '../assets/documents/PROGRAM_FINALNO.pdf'
 import komunikacija from '../assets/media/komunikacija.jpeg';
 import '../HomeStyle.css';
 import program from '../assets/media/PROGRAM.png'
