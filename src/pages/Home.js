@@ -226,6 +226,10 @@ import program from '../assets/media/PROGRAM.png'
 import backgrImg from '../assets/media/DJI_0364Prozirna.jpg'
 import appImg from '../assets/media/application.jpg'
 import videouputa from '../assets/media/Videouputa_Aktivnosti.mp4'
+import deadline from '../assets/media/deadline.jpg'
+import KnjigaSazetakaPdf from '../assets/documents/KnjigaSazetakaPdf.pdf'
+import KnjigaFoto from '../assets/media/KnjigaFoto.jpg'
+import sponzori from '../assets/media/svisponzori.jpg'
 
 
 // import videouputa from '../assets/media/Aktivnosti_videouputa.mp4'
@@ -261,7 +265,31 @@ export default function Home() {
         <div style={{ color: 'lightgrey', textAlign: 'center' }}>
         <div style={{ letterSpacing:'2px', fontSize:'10pt' }}>Filozofski fakultet u Zagrebu, 29. veljače i 1. ožujka 2024.</div>
         <hr/>
-        <p style={{ margin: 0, fontSize: '24px' }}>
+          <p style={{ fontStyle:'bold', textAlign:'center', color:'darkblue', textShadow:'initial'}}>Objavljena je i Knjiga sažetaka 2. konferencije "Horizonti snage".</p>
+          <a href='https://horizonti-snage.azurewebsites.net/about/knjigasazetaka'>
+          {/* <a href='http://localhost:3000/about/program'> */}
+  <img src={KnjigaFoto} style={{width:'100%', height: 'auto'}} alt='photoKnjiga'/>
+</a>
+<div><a href={KnjigaSazetakaPdf} download={KnjigaSazetakaPdf} >PREUZIMANJE DOKUMENTA</a></div>
+<hr/>
+        <hr/>
+        <p style={{ margin: 0, fontSize: '16px', textAlign:'justify'}}>
+            <span style={{ color: 'black' }}>
+              <b>
+                <span style={{ color: 'black' }}>
+                  <span style={{ color: 'red' }}>VAŽNO! </span>
+                </span>
+                <img src={deadline} style={{width:'100%', height:'240px'}} alt='photo'></img>
+              </b>{' '}
+            Molimo sve sudionike koji nisu izvršili uplatu te one koji se planiraju prijaviti da računaju s time da se uplate i prijave zaprimaju zaključno s <em style={{color:'red'}}>20. veljače 2024. </em> 
+            Nakon navedenog datuma ćemo iz baze prijavljenih morati izbrisati sve one koji nisu izvršili uplatu zaključno sa navedenim datumom, kako bismo podatke mogli koristiti za kreiranje akreditacija, potvrdnica i ostalih podataka te na vrijeme pripremili potrebne količine materijala za sve sudionike!
+            Iskreno se radujemo našem skorom susretu! 
+            
+            </span>
+          </p>
+          <hr/>
+        <hr/>
+        <p style={{ margin: 0, fontSize: '14px', textAlign:'justify' }}>
             <span style={{ color: 'black' }}>
               <b>
                 <span style={{ color: 'black' }}>
@@ -284,7 +312,7 @@ export default function Home() {
             </span>
           </p>
           <hr/> */}
-          <p style={{ margin: 0, fontSize: '24px' }}>
+          <p style={{ margin: 0, fontSize: '14px', textAlign:'justify' }}>
             <span style={{ color: 'black' }}>
               <b>
                 <span style={{ color: 'black' }}>
@@ -302,7 +330,7 @@ export default function Home() {
           <hr/>
           <img src={appImg} style={{ width: '100%', height: 'auto' }} alt="photo" />
           {/* <div style={{ width: '100%', height: 'auto', backgroundColor:'black'}}  /> */}
-          <p>
+          <p style={{textAlign:'justify'}}>
             <a href="https://horizonti-snage.azurewebsites.net/registrationfeesaccommodation/eventregistration">Prijavi se</a> na 2. konferenciju školskih psihologa "Horizonti snage" na sljedeći način.
           </p>
           <hr/>
@@ -312,10 +340,11 @@ export default function Home() {
           </p>
           <hr/>
   {/* Dodavanje videa */}
-  <video width="320" height="240" controls={true} autoplay={false}>
+  <video width="100%" height="auto" controls={true} autoplay={false}>
     <source src={videouputa} type="video/mp4" />
     Vaš browser ne podržava reprodukciju ovog zapisa.
   </video>
+  <br/>
   <a href='https://drive.google.com/file/d/1hi1bJKFuxt3N1OeOb1Po2WoPsW4cRAme/view?usp=sharing'>POVEZNICA NA UPUTU ZA PRIJAVU AKTIVNOSTI</a>
   
           <hr/>
@@ -332,15 +361,15 @@ export default function Home() {
         <div className="sectionContent">
           <h2 className='naslovni'>Vijesti</h2>
           <hr/>
-          <p style={{ fontStyle:'bold', textAlign:'center', color:'darkblue', textShadow:'initial'}}>Objavljen preliminarni program Konferencije!</p>
+          <p style={{ fontStyle:'bold', textAlign:'center', color:'darkblue', textShadow:'initial'}}>Objavljen konačna verzija Programa konferencije.</p>
           <a href='https://horizonti-snage.azurewebsites.net/about/program'>
           {/* <a href='http://localhost:3000/about/program'> */}
-  <img src={program} style={{width:'100%', height: '60%'}} alt='photoProgram'/>
+  <img src={program} style={{width:'100%', height: 'auto'}} alt='photoProgram'/>
 
 </a>
 <div><a href={PROGRAM_DOKUMENT} download={PROGRAM_DOKUMENT}>PREUZIMANJE DOKUMENTA</a></div>
 <hr/>
-<p style={{fontSize:'8pt',letterSpacing:'5px'}}>Objavljeno 07.veljače 2024.</p>
+<p style={{fontSize:'8pt',letterSpacing:'5px'}}>Objavljeno 26.veljače 2024.</p>
 <hr/>
           {/* <p>
             <span style={{ color: 'red' }}>NOVO! </span>Rok za prijavu sažetaka: 15.1.2024.
@@ -351,10 +380,10 @@ export default function Home() {
         </div>
 
         <div className="sectionContent" style={{ alignContent:'center'}}>
-          <h2 className='naslovni'>Kontaktirajte nas</h2>
+          <h2 className='naslovni'>Zahvale sponzorima</h2>
           <hr/>
-          <img src={komunikacija} style={{ width: '100%', height: 'auto' }} alt="photo" />
-          <p>Za sve upite budite slobodni obratiti se na elektroničku poštu <a href="mailto:horizontisnage@gmail.com">horizontisnage@gmail.com</a></p>
+          <img src={sponzori} style={{ width: '100%', height: 'auto' }} alt="photo" />
+          <p style={{textAlign:'justify'}}>Zahvaljujemo svim sponzorima na prepoznavanju važnosti financijske potpore za nabavu materijala za sudionike konferencije "Horizonti snage". Hvala vam što prepoznajete našu vrijednost i pomažete nam u osnaživanju za podršku drugima. Svaki čin dobre volje, kao i spremnost na pomoć, istinski cijenimo.  </p>
           <hr/>
         </div>
       </div>

@@ -9,6 +9,7 @@ import Organizatori from './Organizatori';
 import Fotografije from './Fotografije'
 import Program from './Program';
 import Video from './Video'
+import KnjigaSazetaka from './KnjigaSazetaka';
 
 
 import '../AboutStyle.css'
@@ -56,6 +57,7 @@ export default function About() {
    <Route path="pozvanipredavaci" element={<PozvaniPredavaci/>}></Route>
    <Route path="organizacija" element={<Organizatori/>}></Route>
    <Route path="photos" element={<Fotografije/>}></Route>
+   <Route path="knjigasazetaka" element={<KnjigaSazetaka/>}></Route>
    
  
  

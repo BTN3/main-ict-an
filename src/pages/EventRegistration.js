@@ -580,9 +580,10 @@ function Step1({ chooseParticipantType }) {
         Aktivni sudionik
       </Button>
       <hr /> */}
-      <Button onClick={() => chooseParticipantType('Pasivni sudionik')} variant="outline-dark">
+      {/* <Button onClick={() => chooseParticipantType('Pasivni sudionik')} variant="outline-dark">
         PRIJAVA
-      </Button>
+      </Button> */}
+      <div><em style={{color:'darkblue', fontSize:'16pt'}}>Prijave za 2. konferenciju "Horizonti snage" su završene. Svi prijavljeni još se mogu prijaviti na aktivnosti s ograničenim brojem sudionika. S veseljem vas očekujemo u što većem broju!</em></div>
     </Container>
   );
 }

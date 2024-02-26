@@ -18,7 +18,23 @@
     padding: 20px;
     margin-bottom: 50px;
     background-color: gainsboro;
-    font-size: larger;
+    font-size: larger;.image-container {
+      border: 2px solid orange;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .card-image {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .card-image:hover {
+      transform: scale(1.1);
+    }
+    
     
 
   }
@@ -31,7 +47,13 @@
     width: 75%;
     
   }
-  .red-square {
+  .red-square {.image-container {
+    border: 2px solid orange;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: orange; /* Dodajte ovu liniju kako biste postavili narančastu pozadinu */
+  }
+  
     color: black;
     font-weight: bold;
 }

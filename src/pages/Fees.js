@@ -91,7 +91,7 @@ Otkaz pojedinačne rezervacije:
      {/* <Route path="createpredbiljezba" element={<CreatePredbiljezba/>}></Route> */}
      {/* <Route path="inserttoken" element={<InsertToken/>}></Route> */}
      <Route path="popissazetaka" element={<PopisSazetaka/>}></Route>
-     <Route path="lectureselectionpredb" element={<LectureSelectionPredb/>}></Route>
+   
       </Routes>
     <div className="custom-div">
       
