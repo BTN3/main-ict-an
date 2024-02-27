@@ -57,3 +57,27 @@
     color: black;
     font-weight: bold;
 }
+
+
+.organizatori-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Raspored logotipa */
+  gap: 20px; /* Prostor između logotipa */
+}
+
+.organizator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease-in-out; /* Dodajemo hover efekt */
+}
+
+.organizator:hover {
+  transform: scale(1.1); /* Povećavamo logotip na hover */
+}
+
+.organizator-logo {
+  width: 100%;
+  height: auto;
+  max-width: 200px; /* Ograničavamo veličinu logotipa */
+}

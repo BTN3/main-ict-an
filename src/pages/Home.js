@@ -229,7 +229,7 @@ import videouputa from '../assets/media/Videouputa_Aktivnosti.mp4'
 import deadline from '../assets/media/deadline.jpg'
 import KnjigaSazetakaPdf from '../assets/documents/KnjigaSazetakaPdf.pdf'
 import KnjigaFoto from '../assets/media/KnjigaFoto.jpg'
-import sponzori from '../assets/media/svisponzori.jpg'
+import sponzori from '../assets/media/sponzori_mix.jpg'
 
 
 // import videouputa from '../assets/media/Aktivnosti_videouputa.mp4'
@@ -361,7 +361,7 @@ export default function Home() {
         <div className="sectionContent">
           <h2 className='naslovni'>Vijesti</h2>
           <hr/>
-          <p style={{ fontStyle:'bold', textAlign:'center', color:'darkblue', textShadow:'initial'}}>Objavljen konačna verzija Programa konferencije.</p>
+          <p style={{ fontStyle:'bold', textAlign:'center', color:'darkblue', textShadow:'initial'}}>Objavljena konačna verzija Programa konferencije.</p>
           <a href='https://horizonti-snage.azurewebsites.net/about/program'>
           {/* <a href='http://localhost:3000/about/program'> */}
   <img src={program} style={{width:'100%', height: 'auto'}} alt='photoProgram'/>
@@ -382,7 +382,7 @@ export default function Home() {
         <div className="sectionContent" style={{ alignContent:'center'}}>
           <h2 className='naslovni'>Zahvale sponzorima</h2>
           <hr/>
-          <img src={sponzori} style={{ width: '100%', height: 'auto' }} alt="photo" />
+         <a href='https://horizonti-snage.azurewebsites.net/about/sponzori'><img src={sponzori} style={{ width: '100%', height: 'auto' }} alt="photo" /></a> 
           <p style={{textAlign:'justify'}}>Zahvaljujemo svim sponzorima na prepoznavanju važnosti financijske potpore za nabavu materijala za sudionike konferencije "Horizonti snage". Hvala vam što prepoznajete našu vrijednost i pomažete nam u osnaživanju za podršku drugima. Svaki čin dobre volje, kao i spremnost na pomoć, istinski cijenimo.  </p>
           <hr/>
         </div>
